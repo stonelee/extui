@@ -1,0 +1,31 @@
+.x-panel {
+  border: 1px solid rgb(153, 188, 232);
+}
+.x-panel-header {
+  border-bottom: 1px solid rgb(153, 188, 232);
+
+  background-color: rgb(203, 221, 243);
+  background-image: -webkit-linear-gradient(top,rgb(218, 231, 246),rgb(205, 222, 243) 45%,rgb(171, 199, 236) 46%,rgb(171, 199, 236) 50%,rgb(184, 207, 238) 51%,rgb(203, 221, 243));
+  box-shadow: rgb(244, 248, 253) 0 1px 0 0 inset;
+
+  padding: 3px 5px 4px;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.x-panel-header span {
+  color: rgb(4, 64, 140);
+  font-weight: bold;
+}
+.x-panel-body {
+}
+
+.x-unselectable {
+  user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+
