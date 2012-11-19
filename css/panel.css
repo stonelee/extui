@@ -1,5 +1,6 @@
 .x-panel {
   border: 1px solid rgb(153, 188, 232);
+  position: relative;
 }
 .x-panel-header {
   border-bottom: 1px solid rgb(153, 188, 232);
@@ -13,7 +14,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.x-panel-header span {
+.x-panel-header-span {
   color: rgb(4, 64, 140);
   font-weight: bold;
 }
@@ -29,3 +30,13 @@
   cursor: default;
 }
 
+/*frame*/
+.x-panel-frame {
+  -webkit-border-radius: 4px;
+  background-color: rgb(223, 233, 246);
+}
+.x-panel-header-frame {
+  -webkit-border-radius: 4px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
