@@ -1,0 +1,65 @@
+* {
+  margin:0;
+  padding:0;
+}
+.x-grid {
+  border-spacing: 0;
+}
+.x-grid img {
+  border: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+.x-tree-elbow-end, .x-tree-elbow-end-minus, .x-tree-elbow-end-minus-nl, .x-tree-elbow-end-plus, .x-tree-elbow-end-plus-nl, .x-tree-elbow, .x-tree-elbow-line, .x-tree-elbow-minus, .x-tree-elbow-minus-nl, .x-tree-elbow-plus, .x-tree-elbow-plus-nl {
+  height: 20px;
+  width: 16px;
+}
+.x-tree-folder, .x-tree-folder-open, .x-tree-leaf {
+  height: 16px;
+  width: 16px;
+  margin: 2px 3px 0 0;
+}
+.x-tree-folder {
+  background-image: url('../images/tree/folder.gif');
+}
+.x-tree-folder-open {
+  background-image: url('../images/tree/folder-open.gif');
+}
+
+.x-tree-elbow-end {
+  background-image: url('../images/tree/elbow-end.gif');
+}
+.x-tree-elbow-end-minus {
+  background-image: url('../images/tree/elbow-end-minus.gif');
+}
+.x-tree-elbow-end-minus-nl {
+  background-image: url('../images/tree/elbow-end-minus-nl.gif');
+}
+.x-tree-elbow-end-plus {
+  background-image: url('../images/tree/elbow-end-plus.gif');
+}
+.x-tree-elbow-end-plus-nl {
+  background-image: url('../images/tree/elbow-end-plus-nl.gif');
+}
+.x-tree-elbow{
+  background-image: url('../images/tree/elbow.gif');
+}
+.x-tree-elbow-line {
+  background-image: url('../images/tree/elbow-line.gif');
+}
+.x-tree-elbow-minus {
+  background-image: url('../images/tree/elbow-minus.gif');
+}
+.x-tree-elbow-minus-nl {
+  background-image: url('../images/tree/elbow-minus-nl.gif');
+}
+.x-tree-elbow-plus {
+  background-image: url('../images/tree/elbow-plus.gif');
+}
+.x-tree-elbow-plus-nl {
+  background-image: url('../images/tree/elbow-plus-nl.gif');
+}
+.x-tree-leaf {
+  background-image: url('../images/tree/leaf.gif');
+}
+
