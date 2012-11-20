@@ -51,7 +51,7 @@
   border-right: 1px solid white;
 }
 
-.x-icon {
+.x-icon-btn {
   border: 1px solid transparent;
   -webkit-border-radius: 3px;
   cursor: pointer;
@@ -62,7 +62,7 @@
   background-repeat: no-repeat;
   vertical-align: middle;
 }
-.x-icon:hover {
+.x-icon-btn:hover {
   border-color: rgb(129, 164, 208);
   background-color: rgb(219, 238, 255);
 }

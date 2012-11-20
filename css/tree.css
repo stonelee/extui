@@ -1,14 +1,13 @@
-.x-grid img {
-  vertical-align: top;
+.x-icon {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  background-repeat: no-repeat;
+  vertical-align: middle;
 }
 .x-tree-elbow-end, .x-tree-elbow-end-minus, .x-tree-elbow-end-minus-nl, .x-tree-elbow-end-plus, .x-tree-elbow-end-plus-nl, .x-tree-elbow, .x-tree-elbow-line, .x-tree-elbow-minus, .x-tree-elbow-minus-nl, .x-tree-elbow-plus, .x-tree-elbow-plus-nl {
   height: 20px;
   width: 16px;
-}
-.x-tree-folder, .x-tree-folder-open, .x-tree-leaf {
-  height: 16px;
-  width: 16px;
-  margin: 2px 3px 0 0;
 }
 .x-tree-folder {
   background-image: url('../images/tree/folder.gif');
