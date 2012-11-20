@@ -1,4 +1,15 @@
+.x-form {
+  padding: 5px;
+}
+
 .x-form-text {
+  /*width: 100%;*/
+  /*[>同时设了padding和width<]*/
+  /*box-sizing: border-box;*/
+
+  /*清除默认*/
+  margin: 0;
+
   vertical-align: middle;
   padding: 1px 3px;
   background: repeat-x 0 0;
@@ -31,4 +42,7 @@
 .x-form-trigger:hover {
   background-position: -17px 0;
   border-bottom-color: rgb(126, 173, 217);
+}
+.x-form-exclamation {
+  background-image: url('../images/form/exclamation.gif');
 }

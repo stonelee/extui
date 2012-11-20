@@ -129,12 +129,39 @@
         <span class="x-panel-header-span">form</span>
       </div>
       <div class="x-panel-body">
-        <input class="x-form-text" type="text">
-        <input class="x-form-text x-form-invalid" type="text">
-        <textarea class="x-form-text" rols="10"></textarea>
-        <textarea class="x-form-text x-form-invalid" rols="10"></textarea>
+        <table class="x-form">
+          <tbody>
+            <tr>
+              <td><label for="name" class="x-form-label">Name:</label></td>
+              <td colspan="2"><input class="x-form-text" id="name" type="text"></td>
+            </tr>
+            <tr>
+              <td><label for="name2" class="x-form-label">
+                  Name2:<span style="color:red;font-weight:bold">*</span>
+              </label></td>
+              <td><input class="x-form-text x-form-invalid" id="name2" type="text"></td>
+              <td><i class="x-icon x-form-exclamation"></i></td>
+            </tr>
+            <tr>
+              <td><label for="class" class="x-form-label">class:</label></td>
+              <td colspan="2">
+                <input class="x-form-text" id="class" type="text"><i class="x-form-trigger"></i>
+              </td>
+            </tr>
 
-        <input class="x-form-text" style="width:40px;" type="text"><i class="x-form-trigger"></i>
+            <tr>
+              <td colspan="3"><label for="content" class="x-form-label">Content:</label></td>
+            </tr>
+            <tr>
+              <td colspan="3"><textarea class="x-form-text" id="content" rols="10"></textarea></td>
+            </tr>
+            <tr>
+              <td colspan="2"><textarea class="x-form-text x-form-invalid" id="content2" rols="10"></textarea></td>
+              <td><i class="x-icon x-form-exclamation"></i></td>
+            </tr>
+          </tbody>
+        </table>
+
       </div>
     </div>
     <!--form over-->
