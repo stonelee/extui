@@ -11,6 +11,16 @@
   border-right: 1px solid rgb(197, 197, 197);
   padding: 3px 6px 4px;
 }
+.x-grid-header-desc span{
+  padding-right: 16px;
+  background: no-repeat right 6px;
+  background-image: url('../images/grid/sort_desc.gif');
+}
+.x-grid-header-asc span{
+  padding-right: 16px;
+  background: no-repeat right 6px;
+  background-image: url('../images/grid/sort_asc.gif');
+}
 
 .x-grid-row {
   background-color: white;
