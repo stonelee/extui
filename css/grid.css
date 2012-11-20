@@ -43,12 +43,26 @@
 }
 .x-grid-footer-cell {
   border-top: 1px solid rgb(153, 188, 232);
-  padding: 2px 0 2px 2px;
+  padding: 4px 0 5px 5px;
 }
+.x-grid-footer-text {
+  vertical-align: middle;
+  color: rgb(76, 76, 76);
+}
+
 .x-grid-separator {
   vertical-align: middle;
   border-left: 1px solid rgb(152, 200, 255);
   border-right: 1px solid white;
+}
+
+.x-form-text {
+  vertical-align: middle;
+  padding: 1px 3px;
+  background: repeat-x 0 0;
+  background-color: white;
+  background-image: url('../images/form/text-bg.gif');
+  border: 1px solid rgb(181, 184, 200);
 }
 
 .x-icon-btn {
