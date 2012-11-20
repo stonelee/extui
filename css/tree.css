@@ -1,13 +1,4 @@
-* {
-  margin:0;
-  padding:0;
-}
-.x-grid {
-  border-spacing: 0;
-}
 .x-grid img {
-  border: 0;
-  display: inline-block;
   vertical-align: top;
 }
 .x-tree-elbow-end, .x-tree-elbow-end-minus, .x-tree-elbow-end-minus-nl, .x-tree-elbow-end-plus, .x-tree-elbow-end-plus-nl, .x-tree-elbow, .x-tree-elbow-line, .x-tree-elbow-minus, .x-tree-elbow-minus-nl, .x-tree-elbow-plus, .x-tree-elbow-plus-nl {
