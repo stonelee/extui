@@ -1,11 +1,14 @@
+.x-grid-body {
+  width: 100%;
+}
+
 .x-grid-header {
-  border-bottom: 1px solid rgb(197, 197, 197);
   background-color: rgb(197, 197, 197);
   background-image: -webkit-linear-gradient(top,rgb(249, 249, 249),rgb(227, 228, 230));
 }
-.x-grid-header-text {
+.x-grid-header-cell {
+  border-bottom: 1px solid rgb(197, 197, 197);
   border-right: 1px solid rgb(197, 197, 197);
-  display: inline-block;
   padding: 3px 6px 4px;
 }
 
