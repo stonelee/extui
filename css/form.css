@@ -46,3 +46,9 @@
 .x-form-exclamation {
   background-image: url('../images/form/exclamation.gif');
 }
+
+.x-form-toolbar {
+  text-align: center;
+  border-top: 1px solid rgb(181, 184, 200);
+  padding: 3px 0 4px;
+}
