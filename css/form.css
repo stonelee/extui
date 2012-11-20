@@ -52,3 +52,12 @@
   border-top: 1px solid rgb(181, 184, 200);
   padding: 3px 0 4px;
 }
+
+.x-fieldset {
+  border: 1px solid rgb(181, 184, 200);
+  padding: 10px;
+}
+.x-fieldset > legend {
+  color: rgb(21, 66, 139);
+  padding: 0 3px 1px;
+}
