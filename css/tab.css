@@ -1,6 +1,6 @@
 .x-tab-bar {
-  /*比原始值大一点，盖住strip*/
-  height:23px;
+  /*比原始高度少1像素，盖住strip*/
+  height:22.6px;
 
   /*清除ul默认样式*/
   list-style: none;
