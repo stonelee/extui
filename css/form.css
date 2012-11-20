@@ -6,3 +6,29 @@
   background-image: url('../images/form/text-bg.gif');
   border: 1px solid rgb(181, 184, 200);
 }
+.x-form-text:focus {
+  outline: none;
+  border-color: rgb(126, 173, 217);
+}
+.x-form-invalid {
+  background-color: white;
+  background-image: url('../images/grid/invalid_line.gif');
+  background-repeat: repeat-x;
+  background-position: bottom;
+  border-color: rgb(204, 51, 0);
+}
+
+.x-form-trigger {
+  display: inline-block;
+  width: 17px;
+  height: 18px;
+  vertical-align: middle;
+  background-image: url('../images/form/trigger.gif');
+  background-position: 0 0;
+  border-bottom: 1px solid rgb(181, 184, 200);
+  cursor: pointer;
+}
+.x-form-trigger:hover {
+  background-position: -17px 0;
+  border-bottom-color: rgb(126, 173, 217);
+}
