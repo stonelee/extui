@@ -22,15 +22,6 @@
 .x-panel-body {
 }
 
-.x-unselectable {
-  user-select: none;
-  -o-user-select: none;
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -webkit-user-select: none;
-  cursor: default;
-}
-
 /*frame*/
 .x-panel-frame {
   -webkit-border-radius: 4px;

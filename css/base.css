@@ -1,4 +1,4 @@
-.x-body {
+body {
   margin: 0;
   background-color: rgb(223, 232, 246);
   font: 12px/1.5 tahoma,arial,宋体b8b\4f53;
@@ -19,12 +19,12 @@
   line-height: 30px;
 }
 
-.x-splitter {
+.splitter {
   width: 5px;
   cursor: col-resize;
   position: relative;
 }
-.x-splitter-mini-left {
+.splitter-mini-left {
   background: no-repeat top right;
   background-image: url('../images/util/splitter/mini-left.gif');
   cursor: pointer;
@@ -36,21 +36,12 @@
   position: absolute;
 }
 
-.x-btn {
-  padding: 3px 8px;
-  cursor: pointer;
+.unselectable {
+  user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  cursor: default;
+}
 
-  -webkit-border-radius: 3px;
-  border: 1px solid rgb(209, 209, 209);
-  background-image: -webkit-linear-gradient(top,white,rgb(249, 249, 249) 48%,rgb(226, 226, 226) 52%,rgb(231, 231, 231));
-}
-.x-btn:hover {
-  border-color: rgb(176, 204, 242);
-  background-color: rgb(228, 243, 255);
-  background-image: -webkit-linear-gradient(top,rgb(228, 243, 255),rgb(217, 237, 255) 48%,rgb(194, 216, 242) 52%,rgb(198, 220, 246));
-}
-.x-btn-pressed {
-  border-color: rgb(158, 186, 225);
-  background-color: rgb(182, 203, 228);
-  background-image: -webkit-linear-gradient(top,rgb(182, 203, 228),rgb(191, 210, 230) 48%,rgb(141, 192, 245) 52%,rgb(152, 197, 245));
-}

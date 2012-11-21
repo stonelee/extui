@@ -1,121 +1,70 @@
-.x-grid-body {
+.grid {
   width: 100%;
 }
+/* 另外还有grid-with-row-lines*/
 
 /*header*/
-.x-grid-header {
+.grid-header {
   background-color: rgb(197, 197, 197);
   background-image: -webkit-linear-gradient(top,rgb(249, 249, 249),rgb(227, 228, 230));
 }
-.x-grid-header-cell {
+.grid-header-cell {
   border-bottom: 1px solid rgb(197, 197, 197);
   border-right: 1px solid rgb(197, 197, 197);
   padding: 3px 6px 4px;
 }
-.x-grid-header-desc span{
+.grid-header-desc span{
   padding-right: 16px;
   background: no-repeat right 6px;
   background-image: url('../images/grid/sort_desc.gif');
 }
-.x-grid-header-asc span{
+.grid-header-asc span{
   padding-right: 16px;
   background: no-repeat right 6px;
   background-image: url('../images/grid/sort_asc.gif');
 }
 
 /*row*/
-.x-grid-row {
+.grid-row {
   background-color: white;
 }
-.x-grid-row-alt {
+.grid-row-alt {
   background-color: rgb(250, 250, 250);
 }
-.x-grid-cell {
-  border-style: solid;
-  border-width: 0;
-  border-color: rgb(237, 237, 237);
+.grid-cell {
+  border: 0 solid rgb(237, 237, 237);
   border-top-color: rgb(250, 250, 250);
 }
-.x-grid-row:hover .x-grid-cell {
+.grid-row:hover .grid-cell {
   font-weight: bold;
   border-color: rgb(221, 221, 221);
   background-color: rgb(239, 239, 239);
 }
-.x-grid-row-selected .x-grid-cell {
+.grid-row-selected .grid-cell {
   border-style: dotted;
   border-color: rgb(163, 186, 233);
   background-color: rgb(223, 232, 246);
 }
-.x-grid-with-row-lines .x-grid-cell{
+.grid-with-row-lines .grid-cell{
   border-width: 1px 0;
 }
 
 /*footer*/
-.x-grid-footer {
+.grid-footer {
   background-color: rgb(211, 225, 241);
   background-image: -webkit-linear-gradient(top,rgb(223, 233, 245),rgb(211, 225, 241));
   border-top: 1px solid rgb(153, 188, 232);
   padding: 4px 0 5px 5px;
 }
-.x-grid-footer-text {
+
+/*TODO:放到toolbar*/
+.grid-footer-text {
   vertical-align: middle;
   color: rgb(76, 76, 76);
 }
 
-.x-grid-separator {
+.grid-separator {
   vertical-align: middle;
   border-left: 1px solid rgb(152, 200, 255);
   border-right: 1px solid white;
-}
-
-/*btn*/
-.x-icon-btn {
-  border: 1px solid transparent;
-  -webkit-border-radius: 3px;
-  cursor: pointer;
-
-  display: inline-block;
-  height: 16px;
-  width: 16px;
-  background-repeat: no-repeat;
-  vertical-align: middle;
-}
-.x-icon-btn:hover {
-  border-color: rgb(129, 164, 208);
-  background-color: rgb(219, 238, 255);
-}
-.x-icon-presed {
-  border-color: rgb(122, 154, 196);
-  background-color: rgb(188, 207, 229);
-}
-
-.x-grid-page-next {
-  background-image: url('../images/grid/page-next.gif');
-}
-.x-grid-page-next-disabled {
-  background-image: url('../images/grid/page-next-disabled.gif');
-}
-.x-grid-page-prev {
-  background-image: url('../images/grid/page-prev.gif');
-}
-.x-grid-page-prev-disabled {
-  background-image: url('../images/grid/page-prev-disabled.gif');
-}
-.x-grid-refresh {
-  background-image: url('../images/grid/refresh.gif');
-}
-.x-grid-refresh-disabled {
-  background-image: url('../images/grid/refresh-disabled.gif');
-}
-.x-grid-page-first {
-  background-image: url('../images/grid/page-first.gif');
-}
-.x-grid-page-first-disabled {
-  background-image: url('../images/grid/page-first-disabled.gif');
-}
-.x-grid-page-last {
-  background-image: url('../images/grid/page-last.gif');
-}
-.x-grid-page-last-disabled {
-  background-image: url('../images/grid/page-last-disabled.gif');
 }

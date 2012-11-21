@@ -1,11 +1,26 @@
-.x-icon {
-  display: inline-block;
+.icon {
   height: 16px;
   width: 16px;
+  display: inline-block;
   background-repeat: no-repeat;
   vertical-align: middle;
 }
 
+.icon-btn {
+  border: 1px solid transparent;
+  -webkit-border-radius: 3px;
+  cursor: pointer;
+}
+.icon-btn:hover {
+  border-color: rgb(129, 164, 208);
+  background-color: rgb(219, 238, 255);
+}
+.icon-btn-is-pressed {
+  border-color: rgb(122, 154, 196);
+  background-color: rgb(188, 207, 229);
+}
+
+/*自定义图标*/
 .icon-book-addresses {
   background-image: url('../images/icons/book_addresses.png');
 }
@@ -13,31 +28,29 @@
   background-image: url('../images/icons/book.png');
 }
 
-.x-tree-elbow-end, .x-tree-elbow-end-minus, .x-tree-elbow-end-minus-nl, .x-tree-elbow-end-plus, .x-tree-elbow-end-plus-nl, .x-tree-elbow, .x-tree-elbow-line, .x-tree-elbow-minus, .x-tree-elbow-minus-nl, .x-tree-elbow-plus, .x-tree-elbow-plus-nl {
-  height: 20px;
-  width: 16px;
-}
+/*tree*/
 .x-tree-folder {
   background-image: url('../images/tree/folder.gif');
 }
 .x-tree-folder-open {
   background-image: url('../images/tree/folder-open.gif');
 }
-
-.x-tree-elbow-end {
-  background-image: url('../images/tree/elbow-end.gif');
+.x-tree-leaf {
+  background-image: url('../images/tree/leaf.gif');
 }
-.x-tree-elbow-end-minus {
-  background-image: url('../images/tree/elbow-end-minus.gif');
-}
-.x-tree-elbow-end-minus-nl {
-  background-image: url('../images/tree/elbow-end-minus-nl.gif');
-}
-.x-tree-elbow-end-plus {
-  background-image: url('../images/tree/elbow-end-plus.gif');
-}
+.x-tree-elbow,
+.x-tree-elbow-line,
+.x-tree-elbow-minus,
+.x-tree-elbow-minus-nl,
+.x-tree-elbow-plus,
+.x-tree-elbow-plus-nl,
+.x-tree-elbow-end,
+.x-tree-elbow-end-minus,
+.x-tree-elbow-end-minus-nl,
+.x-tree-elbow-end-plus,
 .x-tree-elbow-end-plus-nl {
-  background-image: url('../images/tree/elbow-end-plus-nl.gif');
+  height: 20px;
+  width: 16px;
 }
 .x-tree-elbow{
   background-image: url('../images/tree/elbow.gif');
@@ -57,7 +70,81 @@
 .x-tree-elbow-plus-nl {
   background-image: url('../images/tree/elbow-plus-nl.gif');
 }
-.x-tree-leaf {
-  background-image: url('../images/tree/leaf.gif');
+.x-tree-elbow-end {
+  background-image: url('../images/tree/elbow-end.gif');
+}
+.x-tree-elbow-end-minus {
+  background-image: url('../images/tree/elbow-end-minus.gif');
+}
+.x-tree-elbow-end-minus-nl {
+  background-image: url('../images/tree/elbow-end-minus-nl.gif');
+}
+.x-tree-elbow-end-plus {
+  background-image: url('../images/tree/elbow-end-plus.gif');
+}
+.x-tree-elbow-end-plus-nl {
+  background-image: url('../images/tree/elbow-end-plus-nl.gif');
 }
 
+/*grid*/
+.x-grid-page-next {
+  background-image: url('../images/grid/page-next.gif');
+}
+.x-grid-page-next-disabled {
+  background-image: url('../images/grid/page-next-disabled.gif');
+}
+.x-grid-page-prev {
+  background-image: url('../images/grid/page-prev.gif');
+}
+.x-grid-page-prev-disabled {
+  background-image: url('../images/grid/page-prev-disabled.gif');
+}
+.x-grid-refresh {
+  background-image: url('../images/grid/refresh.gif');
+}
+.x-grid-refresh-disabled {
+  background-image: url('../images/grid/refresh-disabled.gif');
+}
+.x-grid-page-first {
+  background-image: url('../images/grid/page-first.gif');
+}
+.x-grid-page-first-disabled {
+  background-image: url('../images/grid/page-first-disabled.gif');
+}
+.x-grid-page-last {
+  background-image: url('../images/grid/page-last.gif');
+}
+.x-grid-page-last-disabled {
+  background-image: url('../images/grid/page-last-disabled.gif');
+}
+
+/*tool*/
+.icon-tool {
+  width: 15px;
+  height: 15px;
+
+  display:inline-block;
+  vertical-align: middle;
+  float: right;
+
+  cursor: pointer;
+  background-image: url('../images/tools/tool-sprites.gif');
+}
+.x-tool-collapse-left {
+  background-position: 0 -180px;
+}
+.x-tool-collapse-left:hover {
+  background-position: -15px -180px;
+}
+.x-tool-collapse-top {
+  background-position: 0 -255px;
+}
+.x-tool-collapse-top:hover {
+  background-position: -15px -255px;
+}
+.x-tool-expand-bottom {
+  background-position: 0 -240px;
+}
+.x-tool-expand-bottom:hover {
+  background-position: -15px -240px;
+}

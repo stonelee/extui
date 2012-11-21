@@ -1,34 +1,8 @@
+/*继承自panel*/
 .x-accordion {
   border-width: 0;
 }
 .x-accordion-header {
   background-image: none;
   background: rgb(217, 231, 248);
-}
-.x-tool {
-  float: right;
-  display:inline-block;
-  vertical-align: middle;
-  cursor: pointer;
-  width: 15px;
-  height: 15px;
-  background-image: url('../images/tools/tool-sprites.gif');
-}
-.x-tool-collapse-left {
-  background-position: 0 -180px;
-}
-.x-tool-collapse-left:hover {
-  background-position: -15px -180px;
-}
-.x-tool-collapse-top {
-  background-position: 0 -255px;
-}
-.x-tool-collapse-top:hover {
-  background-position: -15px -255px;
-}
-.x-tool-expand-bottom {
-  background-position: 0 -240px;
-}
-.x-tool-expand-bottom:hover {
-  background-position: -15px -240px;
 }
