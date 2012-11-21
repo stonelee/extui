@@ -6,12 +6,20 @@
   <link href="css/main.css" rel="stylesheet"/>
 </head>
 <body class="x-body">
+  <div class="header">
+    <span>Ext UI原型系统</span>
+  </div>
+
+  <!--main start-->
+  <div class="main">
+    <!--left panel-->
     <div class="x-panel" style="float:left;width:200px;height:300px;top:5px;left:5px;">
       <div class="x-panel-header x-unselectable">
         <span class="x-panel-header-span">菜单</span>
         <i class="x-tool x-tool-collapse-left"></i>
       </div>
       <div class="x-panel-body">
+        <!--accordion-->
         <div class="x-panel x-accordion">
           <div class="x-panel-header x-accordion-header x-unselectable">
             <i class="x-icon icon-book-addresses"></i>
@@ -52,24 +60,29 @@
             <i class="x-tool x-tool-expand-bottom"></i>
           </div>
         </div>
+        <!--accordion over-->
       </div>
     </div>
+    <!--left panel over-->
     <div class="x-splitter" style="float:left;height:300px;top:5px;left:5px;">
       <i class="x-splitter-mini-left"></i>
     </div>
+    <!--main panel-->
     <div class="x-panel" style="margin-left:212px;height:300px;top:5px;background-color:white;">
       <div class="x-panel-header x-unselectable">
         <span class="x-panel-header-span">子模块标题</span>
       </div>
       <div style="padding:3px;" class="x-panel-body">
+        <!--tab-->
         <ul class="x-tab-bar">
           <li class="x-tab-item x-tab-item-active">item</li>
           <li class="x-tab-item">item</li>
           <li class="x-tab-item">item</li>
         </ul>
         <div class="x-tab-strip"></div>
+        <!--tab over-->
         <div class="x-panel">
-          <!--table-->
+          <!--grid-->
           <table class="x-grid-body x-grid-with-row-lines" border="0" cellspacing="0" cellpadding="0">
             <thead class="x-grid-header x-unselectable">
               <tr>
@@ -115,9 +128,16 @@
             <i class="x-icon-btn x-icon-presed x-grid-refresh"></i>
             <span class="x-grid-footer-text" style="float:right;margin-right:100px;">共100条记录，每页10条</span>
           </div>
-          <!--table over-->
+          <!--grid over-->
         </div>
       </div>
     </div>
+    <!--main panel over-->
+  </div>
+  <!--main over-->
+
+  <div class="footer">
+    <span>©2012 煤炭科学研究总院</span>
+  </div>
 </body>
 </html>

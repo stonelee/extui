@@ -4,6 +4,22 @@
   font: 12px/1.5 tahoma,arial,宋体b8b\4f53;
 }
 
+.header {
+  height: 50px;
+  background: -webkit-linear-gradient(top, rgba(134, 174, 204, 1) 0%,rgba(212, 228, 239, 1) 100%);
+  padding-left: 30px;
+}
+.header span {
+  line-height: 50px;
+  font-size: 24px;
+}
+.footer {
+  padding-left: 20px;
+}
+.footer span{
+  line-height: 30px;
+}
+
 .x-splitter {
   width: 5px;
   cursor: col-resize;
