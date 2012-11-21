@@ -5,6 +5,14 @@
   background-repeat: no-repeat;
   vertical-align: middle;
 }
+
+.icon-book-addresses {
+  background-image: url('../images/icons/book_addresses.png');
+}
+.icon-book {
+  background-image: url('../images/icons/book.png');
+}
+
 .x-tree-elbow-end, .x-tree-elbow-end-minus, .x-tree-elbow-end-minus-nl, .x-tree-elbow-end-plus, .x-tree-elbow-end-plus-nl, .x-tree-elbow, .x-tree-elbow-line, .x-tree-elbow-minus, .x-tree-elbow-minus-nl, .x-tree-elbow-plus, .x-tree-elbow-plus-nl {
   height: 20px;
   width: 16px;

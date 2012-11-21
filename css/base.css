@@ -1,7 +1,7 @@
 .x-body {
   margin: 0;
-  font-size: 12px;
   background-color: rgb(223, 232, 246);
+  font: 12px/1.5 tahoma,arial,宋体b8b\4f53;
 }
 
 .x-splitter {

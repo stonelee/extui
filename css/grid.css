@@ -54,8 +54,6 @@
 .x-grid-footer {
   background-color: rgb(211, 225, 241);
   background-image: -webkit-linear-gradient(top,rgb(223, 233, 245),rgb(211, 225, 241));
-}
-.x-grid-footer-cell {
   border-top: 1px solid rgb(153, 188, 232);
   padding: 4px 0 5px 5px;
 }
