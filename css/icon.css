@@ -28,6 +28,12 @@
   background-image: url('../images/icons/book.png');
 }
 
+.icon-question {
+  width: 50px;
+  height: 35px;
+  background-image: url('../images/shared/icon-question.gif');
+}
+
 /*tree*/
 .icon-tree-folder {
   background-image: url('../images/tree/folder.gif');
@@ -144,4 +150,10 @@
 }
 .icon-tool-expand-bottom:hover {
   background-position: -15px -240px;
+}
+.icon-tool-close {
+  background-position: 0 0;
+}
+.icon-tool-close:hover {
+  background-position: -15px 0;
 }
