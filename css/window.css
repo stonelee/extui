@@ -33,3 +33,6 @@
   margin-top: 8px;
   text-align: center;
 }
+.window-toolbar button {
+  width: 60px;
+}
