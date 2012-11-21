@@ -20,19 +20,6 @@
   display:inline-block;
   position: absolute;
 }
-.x-tool-collapse-left {
-  float: right;
-  display:inline-block;
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
-  background-image: url('../images/tools/tool-sprites.gif');
-  background-position: 0 -180px;
-  vertical-align: middle;
-}
-.x-tool-collapse-left:hover {
-  background-position: -15px -180px;
-}
 
 .x-btn {
   padding: 3px 8px;
