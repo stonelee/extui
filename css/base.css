@@ -5,7 +5,6 @@
 }
 
 .header {
-  height: 50px;
   background: -webkit-linear-gradient(top, rgba(134, 174, 204, 1) 0%,rgba(212, 228, 239, 1) 100%);
   padding-left: 30px;
 }

@@ -1,6 +1,6 @@
 .x-tab-bar {
   /*比原始高度少1像素，盖住strip*/
-  height:25px;
+  height:19px;
 
   /*清除ul默认样式*/
   list-style: none;
@@ -12,7 +12,7 @@
   display: inline-block;
   *display: inline;
   *zoom: 1;
-  padding: 3px 9px;
+  padding: 0 9px;
   cursor: pointer;
 
   font-weight: bold;
