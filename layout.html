@@ -14,11 +14,30 @@
       <div class="x-panel-body">
         <div class="x-panel x-accordion">
           <div class="x-panel-header x-accordion-header x-unselectable">
+            <i class="x-icon icon-book-addresses"></i>
             <span>模块1</span>
             <i class="x-tool x-tool-collapse-top"></i>
           </div>
           <div class="x-panel-body">
-            def
+            <table style="width:100%" class="x-grid" border="0" cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr class="x-grid-row">
+                  <td class="x-grid-cell">
+                    <i class="x-icon x-tree-elbow"></i><i class="x-icon icon-book"></i>First
+                  </td>
+                </tr>
+                <tr class="x-grid-row">
+                  <td class="x-grid-cell">
+                    <i class="x-icon x-tree-elbow"></i><i class="x-icon icon-book"></i>First
+                  </td>
+                </tr>
+                <tr class="x-grid-row">
+                  <td class="x-grid-cell">
+                    <i class="x-icon x-tree-elbow-end"></i><i class="x-icon icon-book"></i>First
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <div class="x-panel x-accordion">
@@ -38,9 +57,66 @@
     <div class="x-splitter" style="float:left;height:300px;top:5px;left:5px;">
       <i class="x-splitter-mini-left"></i>
     </div>
-    <div class="x-panel" style="margin-left:212px;height:300px;top:5px;">
-      <div class="x-panel-body">
-        abc
+    <div class="x-panel" style="margin-left:212px;height:300px;top:5px;background-color:white;">
+      <div class="x-panel-header x-unselectable">
+        <span class="x-panel-header-span">子模块标题</span>
+      </div>
+      <div style="padding:3px;" class="x-panel-body">
+        <ul class="x-tab-bar">
+          <li class="x-tab-item x-tab-item-active">item</li>
+          <li class="x-tab-item">item</li>
+          <li class="x-tab-item">item</li>
+        </ul>
+        <div class="x-tab-strip"></div>
+        <div class="x-panel">
+          <table class="x-grid-body x-grid-with-row-lines" border="0" cellspacing="0" cellpadding="0">
+            <thead class="x-grid-header x-unselectable">
+              <tr>
+                <td class="x-grid-header-cell"><span>title</span></td>
+                <td class="x-grid-header-cell x-grid-header-desc"><span>title</span></td>
+                <td class="x-grid-header-cell x-grid-header-asc"><span>title</span></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="x-grid-row">
+                <td class="x-grid-cell">a</td>
+                <td class="x-grid-cell">a</td>
+                <td class="x-grid-cell">a</td>
+              </tr>
+              <tr class="x-grid-row x-grid-row-alt">
+                <td class="x-grid-cell">a</td>
+                <td class="x-grid-cell">a</td>
+                <td class="x-grid-cell">a</td>
+              </tr>
+              <tr class="x-grid-row x-grid-row-selected">
+                <td class="x-grid-cell">a</td>
+                <td class="x-grid-cell">a</td>
+                <td class="x-grid-cell">a</td>
+              </tr>
+              <tr class="x-grid-row x-grid-row-alt">
+                <td class="x-grid-cell">a</td>
+                <td class="x-grid-cell">a</td>
+                <td class="x-grid-cell">a</td>
+              </tr>
+            </tbody>
+            <tfoot class="x-grid-footer">
+              <tr><td class="x-grid-footer-cell" colspan="3">
+                <i class="x-icon-btn x-grid-page-first-disabled"></i>
+                <i class="x-icon-btn x-grid-page-prev-disabled"></i>
+                <i class="x-grid-separator"></i>
+                <span class="x-grid-footer-text">当前第</span>
+                <input class="x-form-text" style="width:40px;" type="text">
+                <span class="x-grid-footer-text">/10页</span>
+                <i class="x-grid-separator"></i>
+                <i class="x-icon-btn x-grid-page-next"></i>
+                <i class="x-icon-btn x-grid-page-last"></i>
+                <i class="x-grid-separator"></i>
+                <i class="x-icon-btn x-icon-presed x-grid-refresh"></i>
+                <span class="x-grid-footer-text" style="float:right;margin-right:100px;">共100条记录，每页10条</span>
+              </td></tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </div>
 </body>

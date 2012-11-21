@@ -32,3 +32,9 @@
 .x-tool-expand-bottom:hover {
   background-position: -15px -240px;
 }
+.icon-book-addresses {
+  background-image: url('../images/icons/book_addresses.png');
+}
+.icon-book {
+  background-image: url('../images/icons/book.png');
+}
