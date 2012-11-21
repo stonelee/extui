@@ -29,92 +29,92 @@
 }
 
 /*tree*/
-.x-tree-folder {
+.icon-tree-folder {
   background-image: url('../images/tree/folder.gif');
 }
-.x-tree-folder-open {
+.icon-tree-folder-open {
   background-image: url('../images/tree/folder-open.gif');
 }
-.x-tree-leaf {
+.icon-tree-leaf {
   background-image: url('../images/tree/leaf.gif');
 }
-.x-tree-elbow,
-.x-tree-elbow-line,
-.x-tree-elbow-minus,
-.x-tree-elbow-minus-nl,
-.x-tree-elbow-plus,
-.x-tree-elbow-plus-nl,
-.x-tree-elbow-end,
-.x-tree-elbow-end-minus,
-.x-tree-elbow-end-minus-nl,
-.x-tree-elbow-end-plus,
-.x-tree-elbow-end-plus-nl {
+.icon-tree-elbow,
+.icon-tree-elbow-line,
+.icon-tree-elbow-minus,
+.icon-tree-elbow-minus-nl,
+.icon-tree-elbow-plus,
+.icon-tree-elbow-plus-nl,
+.icon-tree-elbow-end,
+.icon-tree-elbow-end-minus,
+.icon-tree-elbow-end-minus-nl,
+.icon-tree-elbow-end-plus,
+.icon-tree-elbow-end-plus-nl {
   height: 20px;
   width: 16px;
 }
-.x-tree-elbow{
+.icon-tree-elbow{
   background-image: url('../images/tree/elbow.gif');
 }
-.x-tree-elbow-line {
+.icon-tree-elbow-line {
   background-image: url('../images/tree/elbow-line.gif');
 }
-.x-tree-elbow-minus {
+.icon-tree-elbow-minus {
   background-image: url('../images/tree/elbow-minus.gif');
 }
-.x-tree-elbow-minus-nl {
+.icon-tree-elbow-minus-nl {
   background-image: url('../images/tree/elbow-minus-nl.gif');
 }
-.x-tree-elbow-plus {
+.icon-tree-elbow-plus {
   background-image: url('../images/tree/elbow-plus.gif');
 }
-.x-tree-elbow-plus-nl {
+.icon-tree-elbow-plus-nl {
   background-image: url('../images/tree/elbow-plus-nl.gif');
 }
-.x-tree-elbow-end {
+.icon-tree-elbow-end {
   background-image: url('../images/tree/elbow-end.gif');
 }
-.x-tree-elbow-end-minus {
+.icon-tree-elbow-end-minus {
   background-image: url('../images/tree/elbow-end-minus.gif');
 }
-.x-tree-elbow-end-minus-nl {
+.icon-tree-elbow-end-minus-nl {
   background-image: url('../images/tree/elbow-end-minus-nl.gif');
 }
-.x-tree-elbow-end-plus {
+.icon-tree-elbow-end-plus {
   background-image: url('../images/tree/elbow-end-plus.gif');
 }
-.x-tree-elbow-end-plus-nl {
+.icon-tree-elbow-end-plus-nl {
   background-image: url('../images/tree/elbow-end-plus-nl.gif');
 }
 
 /*grid*/
-.x-grid-page-next {
+.icon-grid-page-next {
   background-image: url('../images/grid/page-next.gif');
 }
-.x-grid-page-next-disabled {
+.icon-grid-page-next-disabled {
   background-image: url('../images/grid/page-next-disabled.gif');
 }
-.x-grid-page-prev {
+.icon-grid-page-prev {
   background-image: url('../images/grid/page-prev.gif');
 }
-.x-grid-page-prev-disabled {
+.icon-grid-page-prev-disabled {
   background-image: url('../images/grid/page-prev-disabled.gif');
 }
-.x-grid-refresh {
+.icon-grid-refresh {
   background-image: url('../images/grid/refresh.gif');
 }
-.x-grid-refresh-disabled {
+.icon-grid-refresh-disabled {
   background-image: url('../images/grid/refresh-disabled.gif');
 }
-.x-grid-page-first {
+.icon-grid-page-first {
   background-image: url('../images/grid/page-first.gif');
 }
-.x-grid-page-first-disabled {
+.icon-grid-page-first-disabled {
   background-image: url('../images/grid/page-first-disabled.gif');
 }
-.x-grid-page-last {
+.icon-grid-page-last {
   background-image: url('../images/grid/page-last.gif');
 }
-.x-grid-page-last-disabled {
+.icon-grid-page-last-disabled {
   background-image: url('../images/grid/page-last-disabled.gif');
 }
 
@@ -127,21 +127,21 @@
   cursor: pointer;
   background-image: url('../images/tools/tool-sprites.gif');
 }
-.x-tool-collapse-left {
+.icon-tool-collapse-left {
   background-position: 0 -180px;
 }
-.x-tool-collapse-left:hover {
+.icon-tool-collapse-left:hover {
   background-position: -15px -180px;
 }
-.x-tool-collapse-top {
+.icon-tool-collapse-top {
   background-position: 0 -255px;
 }
-.x-tool-collapse-top:hover {
+.icon-tool-collapse-top:hover {
   background-position: -15px -255px;
 }
-.x-tool-expand-bottom {
+.icon-tool-expand-bottom {
   background-position: 0 -240px;
 }
-.x-tool-expand-bottom:hover {
+.icon-tool-expand-bottom:hover {
   background-position: -15px -240px;
 }

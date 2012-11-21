@@ -1,8 +1,0 @@
-/*继承自panel*/
-.accordion {
-  border-width: 0;
-}
-.accordion-header {
-  background-image: none;
-  background: rgb(217, 231, 248);
-}

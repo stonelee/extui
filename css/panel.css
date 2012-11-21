@@ -32,3 +32,12 @@
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+/*accordion*/
+.panel-accordion {
+  border-width: 0;
+}
+.panel-accordion-header {
+  background-image: none;
+  background: rgb(217, 231, 248);
+}

@@ -13,12 +13,12 @@
   border-right: 1px solid rgb(197, 197, 197);
   padding: 3px 6px 4px;
 }
-.grid-header-desc span{
+.grid-header-is-desc span{
   padding-right: 16px;
   background: no-repeat right 6px;
   background-image: url('../images/grid/sort_desc.gif');
 }
-.grid-header-asc span{
+.grid-header-is-asc span{
   padding-right: 16px;
   background: no-repeat right 6px;
   background-image: url('../images/grid/sort_asc.gif');
@@ -40,7 +40,7 @@
   border-color: rgb(221, 221, 221);
   background-color: rgb(239, 239, 239);
 }
-.grid-row-selected .grid-cell {
+.grid-row-is-selected .grid-cell {
   border-style: dotted;
   border-color: rgb(163, 186, 233);
   background-color: rgb(223, 232, 246);
