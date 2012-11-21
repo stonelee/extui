@@ -123,10 +123,7 @@
   width: 15px;
   height: 15px;
 
-  display:inline-block;
-  vertical-align: middle;
   float: right;
-
   cursor: pointer;
   background-image: url('../images/tools/tool-sprites.gif');
 }

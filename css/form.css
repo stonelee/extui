@@ -1,8 +1,8 @@
-.x-form {
+.form {
   padding: 5px;
 }
 
-.x-form-text {
+.form-text {
   /*width: 100%;*/
   /*[>同时设了padding和width<]*/
   /*box-sizing: border-box;*/
@@ -17,11 +17,11 @@
   background-image: url('../images/form/text-bg.gif');
   border: 1px solid rgb(181, 184, 200);
 }
-.x-form-text:focus {
+.form-text:focus {
   outline: none;
   border-color: rgb(126, 173, 217);
 }
-.x-form-invalid {
+.form-invalid {
   background-color: white;
   background-image: url('../images/grid/invalid_line.gif');
   background-repeat: repeat-x;
@@ -29,7 +29,7 @@
   border-color: rgb(204, 51, 0);
 }
 
-.x-form-trigger {
+.form-trigger {
   display: inline-block;
   width: 17px;
   height: 18px;
@@ -39,25 +39,25 @@
   border-bottom: 1px solid rgb(181, 184, 200);
   cursor: pointer;
 }
-.x-form-trigger:hover {
+.form-trigger:hover {
   background-position: -17px 0;
   border-bottom-color: rgb(126, 173, 217);
 }
-.x-form-exclamation {
+.form-exclamation {
   background-image: url('../images/form/exclamation.gif');
 }
 
-.x-form-toolbar {
+.form-toolbar {
   text-align: center;
   border-top: 1px solid rgb(181, 184, 200);
   padding: 3px 0 4px;
 }
 
-.x-fieldset {
+.fieldset {
   border: 1px solid rgb(181, 184, 200);
   padding: 10px;
 }
-.x-fieldset > legend {
+.fieldset > legend {
   color: rgb(21, 66, 139);
   padding: 0 3px 1px;
 }

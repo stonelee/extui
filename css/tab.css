@@ -1,4 +1,4 @@
-.x-tab-bar {
+.tab-bar {
   /*比原始高度少1像素，盖住strip*/
   height:19px;
 
@@ -8,10 +8,11 @@
   padding: 0;
 }
 
-.x-tab-item {
+.tab-item {
   display: inline-block;
   *display: inline;
   *zoom: 1;
+
   padding: 0 9px;
   cursor: pointer;
 
@@ -27,16 +28,16 @@
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
-.x-tab-item:first-child {
+.tab-item:first-child {
   margin-left: 3px;
 }
-.x-tab-item-active {
+.tab-item-is-active {
   background-image: -webkit-linear-gradient(top,white,rgb(245, 249, 254) 25%,rgb(222, 236, 253) 45%);
   border-bottom-color: rgb(222, 236, 253);
   color: rgb(21, 73, 139);
 }
 
-.x-tab-strip {
+.tab-strip {
   height: 3px;
   border-width: 1px 1px 0 1px;
   border-style: solid;

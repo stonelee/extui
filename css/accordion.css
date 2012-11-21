@@ -1,8 +1,8 @@
 /*继承自panel*/
-.x-accordion {
+.accordion {
   border-width: 0;
 }
-.x-accordion-header {
+.accordion-header {
   background-image: none;
   background: rgb(217, 231, 248);
 }

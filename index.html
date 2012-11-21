@@ -7,18 +7,18 @@
   </head>
   <body>
     <!--panel-->
-    <div class="x-panel">
-      <div class="x-panel-header x-unselectable">
-        <span class="x-panel-header-span">title</span>
+    <div class="panel">
+      <div class="panel-header unselectable">
+        <span class="panel-header-span">title</span>
       </div>
-      <div class="x-panel-body">
+      <div class="panel-body">
         <p>abcdefg</p>
         <!--frame-->
-        <div class="x-panel x-panel-frame" style="left:100px;width:100px;">
-          <div class="x-panel-header x-panel-header-frame x-unselectable">
-            <span class="x-panel-header-span">titletitletitletitletitletitletitle</span>
+        <div class="panel panel-frame" style="left:100px;width:100px;">
+          <div class="panel-header panel-header-frame unselectable">
+            <span class="panel-header-span">titletitletitletitletitletitletitle</span>
           </div>
-          <div class="x-panel-body">
+          <div class="panel-body">
             <p>abcdefg</p>
           </div>
         </div>
@@ -53,13 +53,13 @@
     </div>
     <!--panel over-->
     <!--panel-->
-    <div class="x-panel">
-      <div class="x-panel-header x-unselectable">
-        <span class="x-panel-header-span">grid</span>
+    <div class="panel">
+      <div class="panel-header unselectable">
+        <span class="panel-header-span">grid</span>
       </div>
-      <div class="x-panel-body">
+      <div class="panel-body">
         <table class="grid grid-with-row-lines" border="0" cellspacing="0" cellpadding="0">
-          <thead class="grid-header x-unselectable">
+          <thead class="grid-header unselectable">
             <tr>
               <td class="grid-header-cell"><span>title</span></td>
               <td class="grid-header-cell grid-header-desc"><span>title</span></td>
@@ -94,7 +94,7 @@
           <i class="icon icon-btn x-grid-page-prev-disabled"></i>
           <i class="grid-separator"></i>
           <span class="grid-footer-text">当前第</span>
-          <input class="x-form-text" style="width:40px;" type="text">
+          <input class="form-text" style="width:40px;" type="text">
           <span class="grid-footer-text">/10页</span>
           <i class="grid-separator"></i>
           <i class="icon icon-btn x-grid-page-next"></i>
@@ -108,66 +108,66 @@
     <!--panel over-->
 
     <!--tab-->
-    <ul class="x-tab-bar">
-      <li class="x-tab-item x-tab-item-active">item</li>
-      <li class="x-tab-item">item</li>
-      <li class="x-tab-item">item</li>
+    <ul class="tab-bar">
+      <li class="tab-item tab-item-is-active">item</li>
+      <li class="tab-item">item</li>
+      <li class="tab-item">item</li>
     </ul>
-    <div class="x-tab-strip"></div>
-    <div class="x-panel">
-      <div class="x-panel-body">
+    <div class="tab-strip"></div>
+    <div class="panel">
+      <div class="panel-body">
         abc
       </div>
     </div>
     <!--tab over-->
 
     <!--form-->
-    <div class="x-panel x-panel-frame" style="width:500px;">
-      <div class="x-panel-header x-panel-header-frame x-unselectable">
-        <span class="x-panel-header-span">form</span>
+    <div class="panel panel-frame" style="width:500px;">
+      <div class="panel-header panel-frame-header unselectable">
+        <span class="panel-header-span">form</span>
       </div>
-      <div class="x-panel-body">
-        <table class="x-form">
+      <div class="panel-body">
+        <table class="form">
           <tbody>
             <tr>
-              <td><label for="name" class="x-form-label">Name:</label></td>
-              <td colspan="2"><input class="x-form-text" id="name" type="text"></td>
+              <td><label for="name" class="form-label">Name:</label></td>
+              <td colspan="2"><input class="form-text" id="name" type="text"></td>
             </tr>
             <tr>
-              <td><label for="name2" class="x-form-label">
+              <td><label for="name2" class="form-label">
                   Name2:<span style="color:red;font-weight:bold">*</span>
               </label></td>
-              <td><input class="x-form-text x-form-invalid" id="name2" type="text"></td>
-              <td><i class="icon x-form-exclamation"></i></td>
+              <td><input class="form-text form-invalid" id="name2" type="text"></td>
+              <td><i class="icon form-exclamation"></i></td>
             </tr>
             <tr>
-              <td><label for="class" class="x-form-label">class:</label></td>
+              <td><label for="class" class="form-label">class:</label></td>
               <td colspan="2">
-                <input class="x-form-text" id="class" type="text"><i class="x-form-trigger"></i>
+                <input class="form-text" id="class" type="text"><i class="form-trigger"></i>
               </td>
             </tr>
 
             <tr>
-              <td colspan="3"><label for="content" class="x-form-label">Content:</label></td>
+              <td colspan="3"><label for="content" class="form-label">Content:</label></td>
             </tr>
             <tr>
-              <td colspan="3"><textarea class="x-form-text" id="content" rols="10"></textarea></td>
+              <td colspan="3"><textarea class="form-text" id="content" rols="10"></textarea></td>
             </tr>
             <tr>
-              <td colspan="2"><textarea class="x-form-text x-form-invalid" id="content2" rols="10"></textarea></td>
-              <td><i class="icon x-form-exclamation"></i></td>
+              <td colspan="2"><textarea class="form-text form-invalid" id="content2" rols="10"></textarea></td>
+              <td><i class="icon form-exclamation"></i></td>
             </tr>
             <tr>
               <td colspan="3">
-                <fieldset class="x-fieldset">
+                <fieldset class="fieldset">
                   <legend>
                     fieldset
                   </legend>
-                  <table class="x-form">
+                  <table class="form">
                     <tbody>
                       <tr>
-                        <td><label for="some" class="x-form-label">Some:</label></td>
-                        <td><input class="x-form-text" id="some" type="text"></td>
+                        <td><label for="some" class="form-label">Some:</label></td>
+                        <td><input class="form-text" id="some" type="text"></td>
                       </tr>
                     </tbody>
                   </table>
@@ -176,7 +176,7 @@
             </tr>
           </tbody>
         </table>
-        <div class="x-form-toolbar">
+        <div class="form-toolbar">
           <button class="btn">确定</button>
           <button class="btn btn-is-pressed">取消</button>
         </div>
