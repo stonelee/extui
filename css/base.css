@@ -1,6 +1,39 @@
-body {
+.x-body {
+  margin: 0;
   font-size: 12px;
+  background-color: rgb(223, 232, 246);
 }
+
+.x-splitter {
+  width: 5px;
+  cursor: col-resize;
+  position: relative;
+}
+.x-splitter-mini-left {
+  background: no-repeat top right;
+  background-image: url('../images/util/splitter/mini-left.gif');
+  cursor: pointer;
+  width: 5px;
+  height: 35px;
+  top: 50%;
+  margin-top: -17px;
+  display:inline-block;
+  position: absolute;
+}
+.x-tool-collapse-left {
+  float: right;
+  display:inline-block;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  background-image: url('../images/tools/tool-sprites.gif');
+  background-position: 0 -180px;
+  vertical-align: middle;
+}
+.x-tool-collapse-left:hover {
+  background-position: -15px -180px;
+}
+
 .x-btn {
   padding: 3px 8px;
   cursor: pointer;
