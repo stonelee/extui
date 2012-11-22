@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title></title>
     <link href="css/main.css" rel="stylesheet"/>
+    <script src="http://code.jquery.com/jquery.js"></script>
   </head>
   <body>
     <!--panel-->
@@ -24,26 +25,46 @@
         </div>
         <!--frame over-->
         <!--tree-->
-        <table class="grid tree" border="0" cellspacing="0" cellpadding="0">
+        <table class="grid tree unselectable" border="0" cellspacing="0" cellpadding="0">
           <tbody>
             <tr class="grid-row">
               <td class="grid-cell">
-                <i class="icon icon-tree-elbow-plus"></i><i class="icon icon-tree-folder"></i>First
+                <i class="icon icon-tree-elbow-end-minus" data-type="toggle"></i><i class="icon icon-tree-folder-open"></i>攸县
               </td>
             </tr>
             <tr class="grid-row">
               <td class="grid-cell">
-                <i class="icon icon-tree-elbow-minus"></i><i class="icon icon-tree-folder-open"></i>Second
-              </td>
-            </tr>
-            <tr class="grid-row grid-row-selected">
-              <td class="grid-cell">
-                <i class="icon icon-tree-elbow-line"></i><i class="icon icon-tree-elbow-end"></i><i class="icon icon-tree-leaf"></i>Second-first
+                <i class="icon icon-tree-elbow-empty"></i><i class="icon icon-tree-elbow"></i><i class="icon icon-tree-leaf"></i>4验票站
               </td>
             </tr>
             <tr class="grid-row">
               <td class="grid-cell">
-                <i class="icon icon-tree-elbow-end-plus"></i><i class="icon icon-tree-folder"></i>Third
+                <i class="icon icon-tree-elbow-empty"></i><i class="icon icon-tree-elbow-minus"></i><i class="icon icon-tree-folder-open"></i>验票站
+              </td>
+            </tr>
+            <tr class="grid-row">
+              <td class="grid-cell">
+                <i class="icon icon-tree-elbow-empty"></i><i class="icon icon-tree-elbow-line"></i><i class="icon icon-tree-elbow-end"></i><i class="icon icon-tree-leaf"></i>2验票站
+              </td>
+            </tr>
+            <tr class="grid-row">
+              <td class="grid-cell">
+                <i class="icon icon-tree-elbow-empty"></i><i class="icon icon-tree-elbow-minus"></i><i class="icon icon-tree-folder-open"></i>3验票站
+              </td>
+            </tr>
+            <tr class="grid-row">
+              <td class="grid-cell">
+                <i class="icon icon-tree-elbow-empty"></i><i class="icon icon-tree-elbow-line"></i><i class="icon icon-tree-elbow"></i><i class="icon icon-tree-leaf"></i>2验票站
+              </td>
+            </tr>
+            <tr class="grid-row">
+              <td class="grid-cell">
+                <i class="icon icon-tree-elbow-empty"></i><i class="icon icon-tree-elbow-line"></i><i class="icon icon-tree-elbow-end"></i><i class="icon icon-tree-leaf"></i>2验票站
+              </td>
+            </tr>
+            <tr class="grid-row">
+              <td class="grid-cell">
+                <i class="icon icon-tree-elbow-empty"></i><i class="icon icon-tree-elbow-end"></i><i class="icon icon-tree-leaf"></i>2验票站
               </td>
             </tr>
           </tbody>
