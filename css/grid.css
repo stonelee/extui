@@ -48,9 +48,6 @@
 .grid-with-row-lines .grid-cell{
   border-width: 1px 0;
 }
-.grid-row:hover .tree-cell {
-  cursor: pointer;
-}
 
 /*footer*/
 .grid-footer {
@@ -70,4 +67,10 @@
   vertical-align: middle;
   border-left: 1px solid rgb(152, 200, 255);
   border-right: 1px solid white;
+}
+
+/*继承于grid*/
+.tree .grid-row:hover .grid-cell{
+  font-weight: normal;
+  cursor: pointer;
 }
