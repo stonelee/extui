@@ -1,0 +1,16 @@
+{
+    "name": "tree",
+    "version": "0.0.1",
+    "root": "kj",
+    "description": "树形组件",
+    "author": "stonelee",
+    "dependencies": {
+        "$": "$",
+        "widget": "arale/widget/1.0.2/widget",
+        "templatable": "arale/widget/1.0.2/templatable"
+    },
+    "tests": ["tree"],
+    "output": {
+        "tree.js": "."
+    }
+}

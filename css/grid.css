@@ -48,6 +48,9 @@
 .grid-with-row-lines .grid-cell{
   border-width: 1px 0;
 }
+.grid-row:hover .tree-cell {
+  cursor: pointer;
+}
 
 /*footer*/
 .grid-footer {
