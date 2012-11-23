@@ -1,6 +1,9 @@
 define(function(require, exports, module) {
   var $ = require('$'),
-    Widget = require('widget');
+    Widget = require('widget'),
+    handlebars = require('handlebars');
+
+  var rowTpl = require('./row.tpl');
 
   var Tree = Widget.extend({
     setup: function() {
@@ -8,7 +11,7 @@ define(function(require, exports, module) {
 
       var url = this.get('url');
       $.getJSON(url, function(data){
-        var tpl = createTree(data);
+        var tpl = that._createTree(data);
         that.element.html(tpl);
       });
     },
@@ -46,8 +49,58 @@ define(function(require, exports, module) {
         seajs.console('不合法的class');
       }
       node.attr('class', cls);
-    }
+    },
 
+    //生成tree
+    _treeTpl: '',
+
+    _createTree: function(data){
+      this._treeTpl = '<table class="grid tree unselectable" border="0" cellspacing="0" cellpadding="0"><tbody>';
+      this._loopRow(data,[]);
+      this._treeTpl += '</tbody></table>';
+      return this._treeTpl;
+    },
+
+    _createRow: function(icons, data) {
+      var headers = this.get('headers');
+      var grids = headers? $.map(headers,function(header){
+        return data[header];
+      }):[];
+
+      var row = handlebars.compile(rowTpl)({
+        icons: icons,
+        name: data.name,
+        expanded: data.children.length !== 0? true:false,
+        leaf: data.children.length === 0? true:false,
+        grids: grids
+      });
+      this._treeTpl += row;
+    },
+
+    _loopRow: function(data, prefix){
+      for (var i = 0; i < data.children.length; i++) {
+        var d = data.children[i];
+        if (d.children.length === 0) {
+          if (i != data.children.length-1){
+            this._createRow(prefix.concat('elbow','leaf'), d);
+          } else {
+            this._createRow(prefix.concat('elbow-end','leaf'), d);
+          }
+        } else {
+          if (i != data.children.length-1){
+            this._createRow(prefix.concat('elbow-minus','folder'), d);
+          } else {
+            this._createRow(prefix.concat('elbow-end-minus','folder'), d);
+          }
+          if (i != data.children.length-1){
+            this._loopRow(d, prefix.concat('elbow-line'));
+          }
+          else {
+            this._loopRow(d, prefix.concat('elbow-empty'));
+          }
+        }
+      }
+    }
 
   });
 
@@ -69,56 +122,6 @@ define(function(require, exports, module) {
         }
       } else {
         toggle(type, nextRow, index);
-      }
-    }
-  }
-
-  var treeTpl = '';
-  function createTree(data){
-    treeTpl = '<table class="grid tree unselectable" border="0" cellspacing="0" cellpadding="0"><tbody>';
-    loopLevel(data,[]);
-    treeTpl += '</tbody></table>';
-    return treeTpl;
-  }
-  function createRow(icons, data) {
-    var expanded = '';
-    var type = '';
-    if (data.children.length !== 0){
-      expanded = ' data-status="expanded"';
-    } else {
-      type = ' data-type="leaf"';
-    }
-
-    var tr = '<tr class="grid-row"' + expanded + type + '><td class="grid-cell">';
-    for (var i = 0; i < icons.length; i++) {
-      tr += '<i class="icon icon-tree-' + icons[i] + '"></i>';
-    }
-    tr += data.name?data.name:'';
-    tr += '</td></tr>';
-
-    treeTpl += tr;
-  }
-  function loopLevel(data,prefix){
-    for (var i = 0; i < data.children.length; i++) {
-      var d = data.children[i];
-      if (d.children.length === 0) {
-        if (i != data.children.length-1){
-          createRow(prefix.concat('elbow','leaf'), d);
-        } else {
-          createRow(prefix.concat('elbow-end','leaf'), d);
-        }
-      } else {
-        if (i != data.children.length-1){
-          createRow(prefix.concat('elbow-minus','folder'), d);
-        } else {
-          createRow(prefix.concat('elbow-end-minus','folder'), d);
-        }
-        if (i != data.children.length-1){
-          loopLevel(d, prefix.concat('elbow-line'));
-        }
-        else {
-          loopLevel(d, prefix.concat('elbow-empty'));
-        }
       }
     }
   }
