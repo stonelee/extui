@@ -1,24 +1,34 @@
 define(function(require, exports, module) {
   var $ = require('$'),
-    Widget = require('widget'),
-    Templatable = require('templatable');
+    Widget = require('widget');
 
   var Tree = Widget.extend({
-    //Implements: Templatable,
+    setup: function() {
+      var that = this;
 
-    attrs: {
-      //template: require('./tree.tpl'),
-      title: 'title'
+      var url = this.get('url');
+      $.getJSON(url, function(data){
+        var tpl = createTree(data);
+        that.element.html(tpl);
+      });
     },
 
     events: {
-      'click [data-type]=toggle': 'toggle',
       'click .grid-row': 'click'
     },
 
-    toggle: function(e){
+    click: function(e){
       var node = $(e.target);
+      if (/minus|plus/.test(node.attr('class'))){
+        this.toggle(node);
+      } else {
+        node.parents('tr').addClass('grid-row-is-selected')
+          .siblings().removeClass('grid-row-is-selected');
+        console.log(node);
+      }
+    },
 
+    toggle: function(node){
       var cls = node.attr('class');
       if (/minus/.test(cls)){
         cls = cls.replace('minus', 'plus');
@@ -33,26 +43,6 @@ define(function(require, exports, module) {
 
     },
 
-    click: function(e){
-      var node = $(e.target);
-      console.log(node);
-    },
-
-    parseElement: function() {
-      this.model = {
-        title: this.get('title')
-      };
-      Tree.superclass.parseElement.call(this);
-    },
-
-    setup: function() {
-      var url = this.get('url');
-      var that = this;
-      $.getJSON(url, function(data){
-        var tpl = createTree(data);
-        that.element.html(tpl);
-      });
-    }
 
   });
 
