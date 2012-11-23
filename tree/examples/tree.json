@@ -1,38 +1,36 @@
 {
-  "data": {
-    "id": 1,
-    "name": "攸县",
+  "id": 1,
+  "name": "攸县",
+  "children": [{
+    "id": 17,
+    "name": "4验票站",
+    "children": []
+  },
+  {
+    "id": 15,
+    "name": "验票站",
     "children": [{
-      "id": 17,
-      "name": "4验票站",
-      "children": []
-    },
-    {
       "id": 15,
-      "name": "验票站",
-      "children": [{
-        "id": 15,
-        "name": "2验票站",
-        "children": []
-      }]
-    },
-    {
-      "id": 16,
-      "name": "3验票站",
-      "children": [{
-        "id": 15,
-        "name": "2验票站",
-        "children": []
-      },{
-        "id": 15,
-        "name": "2验票站",
-        "children": []
-      }]
-    },
-    {
-      "id": 14,
-      "name": "1验票站",
+      "name": "2验票站",
       "children": []
     }]
-  }
+  },
+  {
+    "id": 16,
+    "name": "3验票站",
+    "children": [{
+      "id": 15,
+      "name": "2验票站",
+      "children": []
+    },{
+      "id": 15,
+      "name": "2验票站",
+      "children": []
+    }]
+  },
+  {
+    "id": 14,
+    "name": "1验票站",
+    "children": []
+  }]
 }
