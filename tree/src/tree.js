@@ -3,40 +3,7 @@ define(function(require, exports, module) {
     Widget = require('widget'),
     Templatable = require('templatable');
 
-  var cidCounter = 0
-
-  function uniqueCid() {
-    return 'widget-' + cidCounter++
-  }
-
-  var AsycWidget = Widget.extend({
-    initialize: function(config) {
-      this.cid = uniqueCid()
-
-      // 初始化 attrs
-      var dataAttrsConfig = this._parseDataAttrsConfig(config)
-      this.initAttrs(config, dataAttrsConfig)
-
-      // 初始化 props
-      this.createElement(function(){
-        this.parseElement()
-        this.initProps()
-
-        // 初始化 events
-        this.delegateEvents()
-
-        // 子类自定义的初始化
-        this.setup()
-
-        // 保存实例信息
-        this._stamp()
-
-        this.render()
-      })
-    }
-  })
-
-  var Tree = AsycWidget.extend({
+  var Tree = Widget.extend({
     //Implements: Templatable,
 
     attrs: {
@@ -46,7 +13,7 @@ define(function(require, exports, module) {
 
     events: {
       'click [data-type]=toggle': 'toggle',
-      'click .tree-cell': 'click'
+      'click .grid-row': 'click'
     },
 
     toggle: function(e){
@@ -71,35 +38,32 @@ define(function(require, exports, module) {
       console.log(node);
     },
 
-    createElement: function(callback) {
-      var url = this.get('url');
-      var that = this;
-      $.getJSON(url, function(data){
-        var tpl = createTree(data);
-        that.element = tpl;
-
-        callback.call(that);
-      });
-    },
-
     parseElement: function() {
       this.model = {
         title: this.get('title')
       };
       Tree.superclass.parseElement.call(this);
-    }
+    },
 
+    setup: function() {
+      var url = this.get('url');
+      var that = this;
+      $.getJSON(url, function(data){
+        var tpl = createTree(data);
+        that.element.html(tpl);
+      });
+    }
 
   });
 
   module.exports = Tree;
 
-  var tree='';
+  var treeTpl = '';
   function createTree(data){
-    tree += '<table class="grid tree unselectable" border="0" cellspacing="0" cellpadding="0"><tbody>';
+    treeTpl = '<table class="grid tree unselectable" border="0" cellspacing="0" cellpadding="0"><tbody>';
     loopLevel(data,[]);
-    tree += '</tbody></table>';
-    return tree;
+    treeTpl += '</tbody></table>';
+    return treeTpl;
   }
   function createRow(icons, data) {
     var tr = '<tr class="grid-row"><td class="grid-cell">';
@@ -108,7 +72,7 @@ define(function(require, exports, module) {
     }
     tr += data.name?data.name:'';
     tr += '</td></tr>';
-    tree += tr;
+    treeTpl += tr;
   }
   function loopLevel(data,prefix){
     for (var i = 0; i < data.children.length; i++) {

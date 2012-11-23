@@ -8,6 +8,7 @@ seajs.use(['tree'], function(Tree) {
   var tree = new Tree({
     url: './tree.json'
   });
+  tree.render();
 });
 </script>
 ````
