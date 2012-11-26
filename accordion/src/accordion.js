@@ -11,7 +11,8 @@ define(function(require, exports, module) {
 
     setup: function(){
       Accordion.superclass.setup.call(this);
-      this._fitToHeight();
+
+      this.fitToHeight(this.get('height'));
     },
 
     _switchTrigger: function(toIndex, fromIndex) {
@@ -23,9 +24,9 @@ define(function(require, exports, module) {
         .toggleClass('icon-tool-collapse-top icon-tool-expand-bottom');
     },
 
-    _fitToHeight: function(){
+    //高度扩展到height
+    fitToHeight: function(height){
       //element
-      var height = this.get('height');
       if (height > 0){
         this.element.height(height);
       }
