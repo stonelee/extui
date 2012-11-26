@@ -1,6 +1,6 @@
-.tab-bar {
+.tab-nav {
   /*比原始高度少1像素，盖住strip*/
-  height:19px;
+  /*height:19px;*/
 
   /*清除ul默认样式*/
   list-style: none;
@@ -9,6 +9,8 @@
 }
 
 .tab-item {
+  /*height:18px;*/
+
   display: inline-block;
   *display: inline;
   *zoom: 1;
@@ -43,4 +45,8 @@
   border-style: solid;
   border-color: rgb(153, 188, 232);
   background-color: rgb(222, 236, 253);
+}
+
+.tab-content > div {
+  display: none;
 }
