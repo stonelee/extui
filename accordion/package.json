@@ -1,0 +1,16 @@
+{
+    "name": "accordion",
+    "version": "0.0.1",
+    "root": "kj",
+    "description": "accordion组件",
+    "author": "stonelee",
+    "dependencies": {
+        "$": "$",
+        "widget": "arale/widget/1.0.2/widget",
+        "switchable": "arale/switchable/0.9.11/switchable"
+    },
+    "tests": ["accordion"],
+    "output": {
+        "accordion.js": "."
+    }
+}

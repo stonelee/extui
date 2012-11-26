@@ -34,10 +34,22 @@
 }
 
 /*accordion*/
-.panel-accordion {
-  border-width: 0;
-}
 .panel-accordion-header {
+  border-top: 1px solid rgb(153, 188, 232);
+  border-bottom-width: 0;
+
   background-image: none;
   background: rgb(217, 231, 248);
+}
+
+.panel-accordion-header:first-child {
+  border-top-width: 0;
+}
+
+.accordion-item {
+  background-color: white;
+  display: none;
+}
+.accordion-item-is-active {
+  border-bottom: 1px solid rgb(153, 188, 232);
 }
