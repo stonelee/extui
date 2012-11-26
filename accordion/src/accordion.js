@@ -6,12 +6,21 @@ define(function(require, exports, module) {
     attrs: {
       triggerType: 'click',
       height: 0,
-      activeTriggerClass: 'accordion-item-is-active'
+      activeTriggerClass: 'accordion-header-is-active'
     },
 
     setup: function(){
       Accordion.superclass.setup.call(this);
       this._fitToHeight();
+    },
+
+    _switchTrigger: function(toIndex, fromIndex) {
+      Accordion.superclass._switchTrigger.apply(this, arguments);
+
+      this.triggers.eq(fromIndex).find('[data-role=flag]')
+        .toggleClass('icon-tool-collapse-top icon-tool-expand-bottom');
+      this.triggers.eq(toIndex).find('[data-role=flag]')
+        .toggleClass('icon-tool-collapse-top icon-tool-expand-bottom');
     },
 
     _fitToHeight: function(){

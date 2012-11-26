@@ -9,7 +9,7 @@
   <div class="panel-header panel-accordion-header unselectable">
     <i class="icon icon-book-addresses"></i>
     <span>模块1</span>
-    <i class="icon icon-tool icon-tool-collapse-top"></i>
+    <i data-role="flag" class="icon icon-tool icon-tool-expand-bottom"></i>
   </div>
   <div class="accordion-item">
     <table style="width:100%" class="grid" border="0" cellspacing="0" cellpadding="0">
@@ -34,12 +34,12 @@
   </div>
   <div class="panel-header panel-accordion-header unselectable">
     <span>模块1</span>
-    <i class="icon icon-tool icon-tool-expand-bottom"></i>
+    <i data-role="flag" class="icon icon-tool icon-tool-expand-bottom"></i>
   </div>
   <div class="accordion-item">abc</div>
   <div class="panel-header panel-accordion-header unselectable">
     <span>模块1</span>
-    <i class="icon icon-tool icon-tool-expand-bottom"></i>
+    <i data-role="flag" class="icon icon-tool icon-tool-expand-bottom"></i>
   </div>
   <div class="accordion-item">def</div>
 </div>
