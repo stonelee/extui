@@ -1,0 +1,52 @@
+[{
+  "id": 1,
+  "name": "模块1",
+  "icon": "icon-book-addresses",
+  "children": [{
+    "id": 11,
+    "name": "功能11",
+    "uri": "module11",
+    "icon": "icon_book",
+    "children": []
+  },{
+    "id": 12,
+    "name": "功能12",
+    "uri": "module12",
+    "icon": "icon_book",
+    "children": []
+  }]
+},{
+  "id": 2,
+  "name": "模块2",
+  "icon": "icon-book-addresses",
+  "children": [{
+    "id": 21,
+    "name": "功能21",
+    "uri": "module21",
+    "icon": "icon_book",
+    "children": []
+  },{
+    "id": 22,
+    "name": "功能22",
+    "uri": "module22",
+    "icon": "icon_book",
+    "children": []
+  }]
+},{
+  "id": 3,
+  "name": "模块3",
+  "icon": "icon-book-addresses",
+  "children": [{
+    "id": 31,
+    "name": "功能31",
+    "uri": "module31",
+    "icon": "icon_book",
+    "children": []
+  },{
+    "id": 32,
+    "name": "功能32",
+    "uri": "module32",
+    "icon": "icon_book",
+    "children": []
+  }]
+}]

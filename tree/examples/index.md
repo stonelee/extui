@@ -1,3 +1,5 @@
+# Tree
+
 ---
 
 
@@ -12,6 +14,9 @@ seajs.use(['tree'], function(Tree) {
     url: './tree.json'
   });
   tree.render();
+  tree.on('click',function(){
+    console.log(arguments);
+  })
 });
 </script>
 ````

@@ -90,3 +90,22 @@ seajs.use(['widget'], function(Widget) {
 
 </script>
 ````
+
+## json
+
+````iframe:250
+<link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
+
+<div class="panel" id="demo1">
+</div>
+
+<script>
+seajs.use(['accordion'], function(Accordion) {
+  new Accordion({
+    element: '#demo1',
+    url: './accordion.json',
+    height: 200
+  });
+});
+</script>
+````

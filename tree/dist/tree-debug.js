@@ -1,9 +1,9 @@
-define(function(require, exports, module) {
-  var $ = require('$'),
-    Widget = require('widget'),
-    handlebars = require('handlebars');
+define("kj/tree/0.0.1/tree-debug", ["$-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "gallery/handlebars/1.0.0/handlebars-debug"], function(require, exports, module) {
+  var $ = require('$-debug'),
+    Widget = require('arale/widget/1.0.2/widget-debug'),
+    handlebars = require('gallery/handlebars/1.0.0/handlebars-debug');
 
-  var rowTpl = require('./row.tpl');
+  var rowTpl = '<tr class="grid-row" {{#if expanded}}data-status="expanded"{{/if}} {{#if leaf}}data-type="leaf"{{/if}}> <td class="grid-cell"> {{#each icons}}<i class="icon icon-tree-{{this}}"></i>{{/each}}{{name}} </td> {{#each grids}} <td class="grid-cell">{{this}}</td> {{/each}} </tr>';
 
   var Tree = Widget.extend({
     setup: function() {
@@ -16,7 +16,6 @@ define(function(require, exports, module) {
           that.element.html(tpl);
         });
       } else {
-        //避免向服务端发送请求
         var data = this.get('data');
         if (data){
           var tpl = that._createTree(data);
@@ -31,14 +30,11 @@ define(function(require, exports, module) {
 
     click: function(e){
       var node = $(e.target);
-      //打开折叠
       if (/minus|plus/.test(node.attr('class'))){
         this.toggle(node);
       } else {
-        //点击事件
         node.parents('tr').addClass('grid-row-is-selected')
           .siblings().removeClass('grid-row-is-selected');
-        this.trigger('click', node);
       }
     },
 

@@ -6,7 +6,9 @@
     "author": "stonelee",
     "dependencies": {
         "$": "$",
+        "handlebars": "gallery/handlebars/1.0.0/handlebars",
         "widget": "arale/widget/1.0.2/widget",
+        "tree": "kj/tree/0.0.1/tree",
         "switchable": "arale/switchable/0.9.11/switchable"
     },
     "tests": ["accordion"],
