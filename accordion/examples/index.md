@@ -101,11 +101,14 @@ seajs.use(['widget'], function(Widget) {
 
 <script>
 seajs.use(['accordion'], function(Accordion) {
-  new Accordion({
+  var accordion = new Accordion({
     element: '#demo1',
     url: './accordion.json',
     height: 200
   });
+  accordion.on('itemclick',function(){
+    console.log(arguments);
+  })
 });
 </script>
 ````

@@ -12,12 +12,15 @@ define("kj/tree/0.0.1/tree-debug", ["$-debug", "arale/widget/1.0.2/widget-debug"
       var url = this.get('url');
       if (url){
         $.getJSON(url, function(data){
+          that.data = data;
           var tpl = that._createTree(data);
           that.element.html(tpl);
         });
       } else {
-        var data = this.get('data');
+        //避免向服务端发送请求
+        var data =this.get('data');
         if (data){
+          this.data = data;
           var tpl = that._createTree(data);
           that.element.html(tpl);
         }
@@ -30,11 +33,18 @@ define("kj/tree/0.0.1/tree-debug", ["$-debug", "arale/widget/1.0.2/widget-debug"
 
     click: function(e){
       var node = $(e.target);
+      var data = node.parents('tr').data('data');
+
+      //打开折叠
       if (/minus|plus/.test(node.attr('class'))){
         this.toggle(node);
       } else {
+        //点击事件
         node.parents('tr').addClass('grid-row-is-selected')
           .siblings().removeClass('grid-row-is-selected');
+
+        //参数为点击项对应数据，节点，整个tree数据
+        this.trigger('click', data, node, this.data);
       }
     },
 
@@ -60,13 +70,18 @@ define("kj/tree/0.0.1/tree-debug", ["$-debug", "arale/widget/1.0.2/widget-debug"
     },
 
     //生成tree
-    _treeTpl: '',
+    _tree: null,
 
     _createTree: function(data){
-      this._treeTpl = '<table class="grid tree unselectable" border="0" cellspacing="0" cellpadding="0"><tbody>';
+      this._tree = $('<table>', {
+        'class': 'grid tree unselectable',
+        border: '0',
+        cellspacing: '0',
+        cellpadding: '0'
+      }).append('<tbody>');
+
       this._loopRow(data,[]);
-      this._treeTpl += '</tbody></table>';
-      return this._treeTpl;
+      return this._tree;
     },
 
     _createRow: function(icons, data) {
@@ -82,7 +97,9 @@ define("kj/tree/0.0.1/tree-debug", ["$-debug", "arale/widget/1.0.2/widget-debug"
         leaf: data.children.length === 0? true:false,
         grids: grids
       });
-      this._treeTpl += row;
+      row = $(row);
+      row.data('data', data);
+      this._tree.append(row);
     },
 
     _loopRow: function(data, prefix){

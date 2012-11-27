@@ -12,13 +12,15 @@ define(function(require, exports, module) {
       var url = this.get('url');
       if (url){
         $.getJSON(url, function(data){
+          that.data = data;
           var tpl = that._createTree(data);
           that.element.html(tpl);
         });
       } else {
         //避免向服务端发送请求
-        var data = this.get('data');
+        var data =this.get('data');
         if (data){
+          this.data = data;
           var tpl = that._createTree(data);
           that.element.html(tpl);
         }
@@ -31,6 +33,8 @@ define(function(require, exports, module) {
 
     click: function(e){
       var node = $(e.target);
+      var data = node.parents('tr').data('data');
+
       //打开折叠
       if (/minus|plus/.test(node.attr('class'))){
         this.toggle(node);
@@ -38,7 +42,9 @@ define(function(require, exports, module) {
         //点击事件
         node.parents('tr').addClass('grid-row-is-selected')
           .siblings().removeClass('grid-row-is-selected');
-        this.trigger('click', node);
+
+        //参数为点击项对应数据，节点，整个tree数据
+        this.trigger('click', data, node, this.data);
       }
     },
 
@@ -64,13 +70,18 @@ define(function(require, exports, module) {
     },
 
     //生成tree
-    _treeTpl: '',
+    _tree: null,
 
     _createTree: function(data){
-      this._treeTpl = '<table class="grid tree unselectable" border="0" cellspacing="0" cellpadding="0"><tbody>';
+      this._tree = $('<table>', {
+        'class': 'grid tree unselectable',
+        border: '0',
+        cellspacing: '0',
+        cellpadding: '0'
+      }).append('<tbody>');
+
       this._loopRow(data,[]);
-      this._treeTpl += '</tbody></table>';
-      return this._treeTpl;
+      return this._tree;
     },
 
     _createRow: function(icons, data) {
@@ -86,7 +97,9 @@ define(function(require, exports, module) {
         leaf: data.children.length === 0? true:false,
         grids: grids
       });
-      this._treeTpl += row;
+      row = $(row);
+      row.data('data', data);
+      this._tree.append(row);
     },
 
     _loopRow: function(data, prefix){

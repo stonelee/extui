@@ -40,11 +40,19 @@ define(function(require, exports, module) {
       return html;
     },
     _createSubPanel: function(data){
+      var that = this;
+      function onClick(a,b,c){
+        var args = Array.prototype.slice.call(arguments, 0);
+        args.unshift('itemclick');
+        that.trigger.apply(that, args);
+      }
+
       for (var i = 0; i < data.length; i++) {
-        new Tree({
+        var tree = new Tree({
           element: this.panels[i],
           data: data[i]
         });
+        tree.on('click', onClick);
       }
     },
 
