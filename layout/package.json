@@ -1,0 +1,15 @@
+{
+    "name": "layout",
+    "version": "0.0.1",
+    "root": "kj",
+    "description": "layout示例",
+    "author": "stonelee",
+    "dependencies": {
+        "$": "$",
+        "widget": "arale/widget/1.0.2/widget",
+        "tree": "kj/tree/0.0.1/tree"
+    },
+    "output": {
+        "layout.js": "."
+    }
+}
