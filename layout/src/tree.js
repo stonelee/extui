@@ -6,7 +6,6 @@ define(function(require, exports, modules) {
     element: '#tree',
     url: 'data/tree.json'
   });
-  tree.render();
   tree.on('click',function(){
     console.log(arguments);
   });

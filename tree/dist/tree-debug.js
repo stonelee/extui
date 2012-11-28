@@ -3,7 +3,8 @@ define("kj/tree/0.0.1/tree-debug", ["$-debug", "arale/widget/1.0.2/widget-debug"
     Widget = require('arale/widget/1.0.2/widget-debug'),
     handlebars = require('gallery/handlebars/1.0.0/handlebars-debug');
 
-  var rowTpl = '<tr class="grid-row" {{#if expanded}}data-status="expanded"{{/if}} {{#if leaf}}data-type="leaf"{{/if}}> <td class="grid-cell"> {{#each icons}}<i class="icon icon-tree-{{this}}"></i>{{/each}}{{name}} </td> {{#each grids}} <td class="grid-cell">{{this}}</td> {{/each}} </tr>';
+  var rowTpl = '<tr class="grid-row" {{#if expanded}}data-status="expanded"{{/if}} {{#if leaf}}data-type="leaf"{{/if}}> <td class="grid-cell"> {{#each icons}}<i class="icon icon-tree-{{this}}"></i>{{/each}}{{name}} </td> {{#each grids}} <td class="grid-cell">{{this}}</td> {{/each}} </tr>',
+    headerTpl = '{{#if headers}} <thead class="grid-header unselectable"> <tr> {{#each headers}} <td class="grid-header-cell"><span>{{this}}</span></td> {{/each}} </tr> </thead> {{/if}}';
 
   var Tree = Widget.extend({
     setup: function() {
@@ -25,6 +26,8 @@ define("kj/tree/0.0.1/tree-debug", ["$-debug", "arale/widget/1.0.2/widget-debug"
           that.element.html(tpl);
         }
       }
+
+      this.render();
     },
 
     events: {
@@ -80,14 +83,24 @@ define("kj/tree/0.0.1/tree-debug", ["$-debug", "arale/widget/1.0.2/widget-debug"
         cellpadding: '0'
       }).append('<tbody>');
 
+      this._createHeader();
+
       this._loopRow(data,[]);
       return this._tree;
     },
 
-    _createRow: function(icons, data) {
+    _createHeader: function(){
       var headers = this.get('headers');
-      var grids = headers? $.map(headers,function(header){
-        return data[header];
+      var header = handlebars.compile(headerTpl)({
+        headers: headers
+      });
+      this._tree.append(header);
+    },
+
+    _createRow: function(icons, data) {
+      var fields = this.get('fields');
+      var grids = fields? $.map(fields,function(field){
+        return data[field];
       }):[];
 
       var row = handlebars.compile(rowTpl)({

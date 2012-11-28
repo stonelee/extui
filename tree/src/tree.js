@@ -3,7 +3,8 @@ define(function(require, exports, module) {
     Widget = require('widget'),
     handlebars = require('handlebars');
 
-  var rowTpl = require('./row.tpl');
+  var rowTpl = require('./row.tpl'),
+    headerTpl = require('./header.tpl');
 
   var Tree = Widget.extend({
     setup: function() {
@@ -25,6 +26,8 @@ define(function(require, exports, module) {
           that.element.html(tpl);
         }
       }
+
+      this.render();
     },
 
     events: {
@@ -80,14 +83,24 @@ define(function(require, exports, module) {
         cellpadding: '0'
       }).append('<tbody>');
 
+      this._createHeader();
+
       this._loopRow(data,[]);
       return this._tree;
     },
 
-    _createRow: function(icons, data) {
+    _createHeader: function(){
       var headers = this.get('headers');
-      var grids = headers? $.map(headers,function(header){
-        return data[header];
+      var header = handlebars.compile(headerTpl)({
+        headers: headers
+      });
+      this._tree.append(header);
+    },
+
+    _createRow: function(icons, data) {
+      var fields = this.get('fields');
+      var grids = fields? $.map(fields,function(field){
+        return data[field];
       }):[];
 
       var row = handlebars.compile(rowTpl)({

@@ -13,7 +13,6 @@ seajs.use(['tree'], function(Tree) {
   var tree = new Tree({
     url: './tree.json'
   });
-  tree.render();
   tree.on('click',function(){
     console.log(arguments);
   })
@@ -26,13 +25,16 @@ seajs.use(['tree'], function(Tree) {
 ````iframe:250
 <link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
 
+<div class="panel"></div>
+
 <script>
 seajs.use(['tree'], function(Tree) {
   var tree = new Tree({
-    headers: ['id','name'],
+    element: '.panel',
+    headers: ['','编号','名称'],
+    fields: ['id','name'],
     url: './tree.json'
   });
-  tree.render();
 });
 </script>
 ````
