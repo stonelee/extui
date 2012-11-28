@@ -4,7 +4,7 @@ define(function(require, exports, modules) {
 
   var menu = new Accordion({
     element: '#menu',
-    url: 'data/accordion.json',
+    url: 'data/menu.json',
     height: 274
   });
   menu.on('itemclick',function(data){

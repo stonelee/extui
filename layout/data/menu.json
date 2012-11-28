@@ -20,6 +20,12 @@
     "uri": "tab",
     "icon": "icon_book",
     "children": []
+  },{
+    "id": 14,
+    "name": "Grid",
+    "uri": "grid",
+    "icon": "icon_book",
+    "children": []
   }]
 },{
   "id": 2,
