@@ -4,14 +4,20 @@
   "icon": "icon-book-addresses",
   "children": [{
     "id": 11,
-    "name": "功能11",
-    "uri": "module11",
+    "name": "Tree",
+    "uri": "tree",
     "icon": "icon_book",
     "children": []
   },{
     "id": 12,
-    "name": "功能12",
-    "uri": "module12",
+    "name": "TreeGrid",
+    "uri": "treegrid",
+    "icon": "icon_book",
+    "children": []
+  },{
+    "id": 13,
+    "name": "Tab",
+    "uri": "tab",
     "icon": "icon_book",
     "children": []
   }]
