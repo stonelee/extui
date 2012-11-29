@@ -12,7 +12,10 @@
         "tree": "kj/tree/0.0.1/tree"
     },
     "output": {
+        "common.js": "*",
         "main.js": ".",
-        "common.js": "*"
+        "tab.js": ".",
+        "tree.js": ".",
+        "treegrid.js": "."
     }
 }

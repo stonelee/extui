@@ -1,0 +1,1 @@
+define("kj/demo/0.0.1/tab",["$","kj/tab/0.0.1/tab","arale/switchable/0.9.11/switchable","arale/easing/1.0.0/easing","arale/widget/1.0.2/widget","arale/base/1.0.1/base","arale/class/1.0.0/class","arale/events/1.0.0/events"],function(e,t,n){var r=e("$"),i=e("kj/tab/0.0.1/tab"),s=new i({element:"#tab",triggers:".tab-nav li",panels:".tab-content div"})});
