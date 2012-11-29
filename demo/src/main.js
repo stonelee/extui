@@ -1,4 +1,4 @@
-define(function(require, exports, modules) {
+define(function(require, exports, module) {
   var $ = require('$'),
     Accordion = require('accordion');
 
