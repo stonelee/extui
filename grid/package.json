@@ -1,0 +1,17 @@
+{
+    "name": "grid",
+    "version": "0.0.1",
+    "root": "kj",
+    "description": "grid组件",
+    "author": "stonelee",
+    "dependencies": {
+        "$": "$",
+        "underscore": "gallery/underscore/1.4.2/underscore",
+        "handlebars": "gallery/handlebars/1.0.0/handlebars",
+        "widget": "arale/widget/1.0.2/widget"
+    },
+    "tests": ["grid"],
+    "output": {
+        "grid.js": "."
+    }
+}
