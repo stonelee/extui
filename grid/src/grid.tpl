@@ -3,7 +3,7 @@
   <span class="panel-header-span">{{title}}</span>
 </div>
 {{/if}}
-<div class="panel-body">
+<div class="panel-body" style="background-color:white;">
   <table class="grid grid-with-row-lines" border="0" cellspacing="0" cellpadding="0">
     <thead class="grid-header unselectable">
       <tr>
@@ -36,6 +36,6 @@
     <i class="icon icon-btn {{#if isLast}}icon-btn-is-disabled icon-grid-page-last-disabled{{else}}icon-grid-page-last{{/if}}" data-role="last"></i>
     <i class="grid-separator"></i>
     <i class="icon icon-btn icon-grid-refresh" data-role="refresh"></i>
-    <span class="grid-footer-text" style="float:right;margin-right:100px;">共100条记录，每页10条</span>
+    <span class="grid-footer-text" style="float:right;margin-right:100px;">共{{totalCount}}条记录，每页{{pageSize}}条</span>
   </div>
 </div>

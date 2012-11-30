@@ -7,6 +7,10 @@ define(function(require, exports, module) {
   var tpl = require('./grid.tpl');
 
   var Grid = Widget.extend({
+    attrs: {
+      //行默认高度
+      rowHeight: 23
+    },
     events: {
       'click .grid-row': 'click',
       'click :not(.icon-btn-is-disabled)[data-role=prev]': 'prevPage',
@@ -22,44 +26,44 @@ define(function(require, exports, module) {
       var row = cell.parents('tr');
 
       var id = row.attr('data-id');
-      var data = _.find(this.data.data.result, function(record) {
+      var data = _.find(this.data.result, function(record) {
         return record.id = id;
       });
       this.trigger('click', data, cell, row);
     },
 
     prevPage: function() {
-      var id = this.data.data.prevPage;
+      var id = this.data.prevPage;
       this.fetch(id);
     },
     nextPage: function() {
-      var id = this.data.data.nextPage;
+      var id = this.data.nextPage;
       this.fetch(id);
     },
     firstPage: function() {
-      var id = this.data.data.firstPage;
+      var id = this.data.firstPage;
       this.fetch(id);
     },
     lastPage: function() {
-      var id = this.data.data.lastPage;
+      var id = this.data.lastPage;
       this.fetch(id);
     },
     refresh: function() {
-      var id = this.data.data.pageNumber;
+      var id = this.data.pageNumber;
       this.fetch(id);
     },
     gotoPage: function(e) {
       var $input = $(e.target);
       var value = $input.val();
 
-      if (value && e.which == 13){
+      if (value && e.which == 13) {
         this.fetch(value);
       } else {
         value = value.replace(/\D/g, '');
         if (value) {
           value = parseInt(value, 10);
 
-          var totalPages = this.data.data.totalPages;
+          var totalPages = this.data.totalPages;
           if (value > totalPages) {
             value = totalPages;
           } else if (value === 0) {
@@ -73,16 +77,15 @@ define(function(require, exports, module) {
     },
 
     fetch: function(id) {
-      console.log(id);
       var that = this;
       var url = this.urlFormat(id);
       $.getJSON(url, function(data) {
-        that._createGrid(data);
+        that._createGrid(data.data);
       });
     },
 
-    urlFormat: function(id){
-      return './grid_' + id + '.json';
+    urlFormat: function(id) {
+      return id;
     },
 
     setup: function() {
@@ -93,7 +96,7 @@ define(function(require, exports, module) {
       var url = this.get('url');
       if (url) {
         $.getJSON(url, function(data) {
-          that._createGrid(data);
+          that._createGrid(data.data);
         });
       } else {
         //避免向服务端发送请求
@@ -109,7 +112,7 @@ define(function(require, exports, module) {
 
       var title = this.get('title');
       var fields = this.get('fields');
-      var records = $.map(data.data.result, function(record, index) {
+      var records = $.map(data.result, function(record, index) {
         return {
           isAlt: index % 2 === 1,
           id: record.id,
@@ -125,24 +128,32 @@ define(function(require, exports, module) {
           })
         };
       });
-      console.log(records);
 
       var html = handlebars.compile(tpl)({
         title: title,
         fields: fields,
         records: records,
         isFirst: function() {
-          return data.data.pageNumber <= 1;
+          return data.pageNumber <= 1;
         },
         isLast: function() {
-          return data.data.totalPages === 0 || data.data.pageNumber === data.data.totalPages;
+          return data.totalPages === 0 || data.pageNumber === data.totalPages;
         },
-        hasPrev: data.data.hasPrev,
-        hasNext: data.data.hasNext
+        hasPrev: data.hasPrev,
+        hasNext: data.hasNext,
+        totalCount: data.totalCount,
+        pageSize: data.pageSize
       });
       this.element.html(html);
 
-      this.$('[data-role=num]').val(data.data.pageNumber);
+      this.$('[data-role=num]').val(data.pageNumber);
+
+      this._fixFooterPosition();
+    },
+
+    _fixFooterPosition: function() {
+      var blankHeight = this.get('rowHeight') * (this.data.pageSize - this.data.result.length);
+      this.$('.grid-footer').css('margin-top', blankHeight);
     }
 
   });

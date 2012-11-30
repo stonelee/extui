@@ -55,6 +55,9 @@ seajs.use(['$','grid'], function($, Grid) {
   grid.on('click', function(data, cell, row){
     console.log(data);
   })
+  grid.urlFormat = function(id){
+    return './grid_' + id + '.json';
+  },
 
   $('#demo1').delegate('a[data-role=detail]', 'click', function(e) {
     var id = $(e.target).parents('tr').attr('data-id');
