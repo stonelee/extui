@@ -29,7 +29,7 @@
     <i class="icon icon-btn {{#if hasPrev}}icon-grid-page-prev{{else}}icon-btn-is-disabled icon-grid-page-prev-disabled{{/if}}" data-role="prev"></i>
     <i class="grid-separator"></i>
     <span class="grid-footer-text">当前第</span>
-    <input class="form-text" style="width:40px;" type="text">
+    <input class="form-text" style="width:40px;" type="text" data-role="num">
     <span class="grid-footer-text">/10页</span>
     <i class="grid-separator"></i>
     <i class="icon icon-btn {{#if hasNext}}icon-grid-page-next{{else}}icon-btn-is-disabled icon-grid-page-next-disabled{{/if}}" data-role="next"></i>

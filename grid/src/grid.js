@@ -13,7 +13,8 @@ define(function(require, exports, module) {
       'click :not(.icon-btn-is-disabled)[data-role=next]': 'nextPage',
       'click :not(.icon-btn-is-disabled)[data-role=first]': 'firstPage',
       'click :not(.icon-btn-is-disabled)[data-role=last]': 'lastPage',
-      'click [data-role=refresh]': 'refresh'
+      'click [data-role=refresh]': 'refresh',
+      'keyup [data-role=num]': 'gotoPage'
     },
 
     click: function(e) {
@@ -46,6 +47,29 @@ define(function(require, exports, module) {
     refresh: function() {
       var id = this.data.data.pageNumber;
       this.fetch(id);
+    },
+    gotoPage: function(e) {
+      var $input = $(e.target);
+      var value = $input.val();
+
+      if (value && e.which == 13){
+        this.fetch(value);
+      } else {
+        value = value.replace(/\D/g, '');
+        if (value) {
+          value = parseInt(value, 10);
+
+          var totalPages = this.data.data.totalPages;
+          if (value > totalPages) {
+            value = totalPages;
+          } else if (value === 0) {
+            value = 1;
+          }
+          $input.val(value);
+        } else {
+          $input.val('');
+        }
+      }
     },
 
     fetch: function(id) {
@@ -117,6 +141,8 @@ define(function(require, exports, module) {
         hasNext: data.data.hasNext
       });
       this.element.html(html);
+
+      this.$('[data-role=num]').val(data.data.pageNumber);
     }
 
   });
