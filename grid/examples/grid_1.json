@@ -1,11 +1,12 @@
 {
   "data": {
     "pageNumber": 1,
-    "first": 1,
     "hasNext": true,
-    "hasPre": false,
-    "prePage": 1,
+    "hasPrev": false,
+    "firstPage": 1,
+    "prevPage": 1,
     "nextPage": 2,
+    "lastPage": 2,
     "pageSize": 18,
     "totalCount": 30,
     "totalPages": 2,

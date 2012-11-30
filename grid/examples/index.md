@@ -48,6 +48,7 @@ seajs.use(['$','grid'], function($, Grid) {
 
   var grid = new Grid({
     element: '#demo1',
+    title: 'title',
     url: './grid_1.json',
     fields: fields
   });

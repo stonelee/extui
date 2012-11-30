@@ -25,17 +25,17 @@
     </tbody>
   </table>
   <div class="grid-footer">
-    <i class="icon icon-btn icon-grid-page-first-disabled"></i>
-    <i class="icon icon-btn icon-grid-page-prev-disabled"></i>
+    <i class="icon icon-btn {{#if isFirst}}icon-btn-is-disabled icon-grid-page-first-disabled{{else}}icon-grid-page-first{{/if}}" data-role="first"></i>
+    <i class="icon icon-btn {{#if hasPrev}}icon-grid-page-prev{{else}}icon-btn-is-disabled icon-grid-page-prev-disabled{{/if}}" data-role="prev"></i>
     <i class="grid-separator"></i>
     <span class="grid-footer-text">当前第</span>
     <input class="form-text" style="width:40px;" type="text">
     <span class="grid-footer-text">/10页</span>
     <i class="grid-separator"></i>
-    <i class="icon icon-btn icon-grid-page-next"></i>
-    <i class="icon icon-btn icon-grid-page-last"></i>
+    <i class="icon icon-btn {{#if hasNext}}icon-grid-page-next{{else}}icon-btn-is-disabled icon-grid-page-next-disabled{{/if}}" data-role="next"></i>
+    <i class="icon icon-btn {{#if isLast}}icon-btn-is-disabled icon-grid-page-last-disabled{{else}}icon-grid-page-last{{/if}}" data-role="last"></i>
     <i class="grid-separator"></i>
-    <i class="icon icon-btn icon-btn-is-pressed icon-grid-refresh"></i>
+    <i class="icon icon-btn icon-grid-refresh" data-role="refresh"></i>
     <span class="grid-footer-text" style="float:right;margin-right:100px;">共100条记录，每页10条</span>
   </div>
 </div>

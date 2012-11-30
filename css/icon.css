@@ -19,6 +19,13 @@
   border-color: rgb(122, 154, 196);
   background-color: rgb(188, 207, 229);
 }
+.icon-btn-is-disabled {
+  cursor: default;
+}
+.icon-btn-is-disabled:hover {
+  border-color: transparent;
+  background-color: transparent;
+}
 
 /*自定义图标*/
 .icon-book-addresses {
