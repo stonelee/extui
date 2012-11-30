@@ -12,6 +12,7 @@ define(function(require, exports, module) {
       rowHeight: 23
     },
     events: {
+      'click .grid-header': 'sort',
       'click .grid-row': 'click',
       'click :not(.icon-btn-is-disabled)[data-role=prev]': 'prevPage',
       'click :not(.icon-btn-is-disabled)[data-role=next]': 'nextPage',
@@ -19,6 +20,29 @@ define(function(require, exports, module) {
       'click :not(.icon-btn-is-disabled)[data-role=last]': 'lastPage',
       'click [data-role=refresh]': 'refresh',
       'keyup [data-role=num]': 'gotoPage'
+    },
+
+    sort: function(e) {
+      var cell = $(e.target).closest('td');
+      var name = cell.attr('data-name');
+
+      //只能按照单独的列排序
+      if (!this.oldSortHeader) {
+        this.oldSortHeader = cell;
+      } else {
+        if (this.oldSortHeader.attr('data-name') !== name) {
+          this.oldSortHeader.removeClass('grid-header-is-desc grid-header-is-asc');
+          this.oldSortHeader = cell;
+        }
+      }
+
+      if (cell.hasClass('grid-header-is-desc')) {
+        cell.removeClass('grid-header-is-desc').addClass('grid-header-is-asc');
+        console.log(name, 'asc');
+      } else {
+        cell.removeClass('grid-header-is-asc').addClass('grid-header-is-desc');
+        console.log(name, 'desc');
+      }
     },
 
     click: function(e) {

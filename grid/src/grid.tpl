@@ -8,8 +8,8 @@
     <thead class="grid-header unselectable">
       <tr>
       {{#each fields}}
-        <td class="grid-header-cell" width="{{width}}">
-          <span>{{this.header}}</span>
+        <td class="grid-header-cell" data-name="{{name}}"{{#if width}} width="{{width}}"{{/if}}>
+          <span>{{header}}</span>
         </td>
       {{/each}}
       </tr>
