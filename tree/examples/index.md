@@ -11,7 +11,10 @@
 <script>
 seajs.use(['tree'], function(Tree) {
   var tree = new Tree({
-    url: './tree.json'
+    url: './tree.json',
+    onClick: function(){
+      console.log('d');
+    }
   });
   tree.on('click',function(){
     console.log(arguments);
