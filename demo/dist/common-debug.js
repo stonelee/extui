@@ -4710,10 +4710,2708 @@ define("kj/tab/0.0.1/tab-debug", ["$-debug", "arale/switchable/0.9.11/switchable
 
 });
 
-define("kj/demo/0.0.1/common-debug", ["$-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "kj/accordion/0.0.1/accordion-debug", "gallery/handlebars/1.0.0/handlebars-debug", "kj/tree/0.0.1/tree-debug", "arale/switchable/0.9.11/switchable-debug", "arale/easing/1.0.0/easing-debug", "kj/tab/0.0.1/tab-debug"], function(require, exports, module) {
+define("kj/dialog/0.0.1/dialog-debug", ["$-debug", "arale/overlay/0.9.12/mask-debug", "arale/overlay/0.9.12/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/dialog/0.9.1/confirm-box-debug", "arale/dialog/0.9.1/anim-dialog-debug", "arale/dialog/0.9.1/base-dialog-debug", "arale/easing/1.0.0/easing-debug", "arale/widget/1.0.2/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug"], function(require, exports, module) {
+  var $ = require('$-debug'),
+    mask = require('arale/overlay/0.9.12/mask-debug'),
+    ConfirmBox = require('arale/dialog/0.9.1/confirm-box-debug');
+
+  var EVENT_NS = '.dialog-events-';
+
+  mask.set('className', 'mask').set('opacity', 0.5).set('backgroundColor', 'rgb(204, 204, 204)');
+
+  var Dialog = ConfirmBox.extend({
+    attrs: {
+      template: '<div class="window" style="left:50px;top:150px;"> {{#if hasCloseX}}<i class="icon icon-tool icon-tool-close" data-role="close"></i>{{/if}} {{#if hasTitle}} <div class="window-header unselectable" data-role="head"> <span data-role="title">{{title}}</span> </div> {{/if}} <div class="window-body"> {{#if icon}} <i class="icon icon-{{icon}}"></i> {{/if}} <span data-role="content">{{content}}</span> {{#if hasFoot}} <div class="window-toolbar" data-role="foot"> {{#if hasOk}}<button class="btn" data-role="confirm">确定</button>{{/if}} {{#if hasCancel}}<button class="btn" data-role="cancel">取消</button>{{/if}} </div> {{/if}} </div> </div>',
+      width: 300
+    },
+
+    parseElement: function() {
+      this.model = {
+        title: this.get('title'),
+        content: this.get('content'),
+        icon: this.get('icon'),
+        hasTitle: this.get('hasTitle'),
+        hasOk: this.get('hasOk'),
+        hasCancel: this.get('hasCancel'),
+        hasCloseX: this.get('hasCloseX'),
+        hasFoot: this.get('hasOk') || this.get('hasCancel')
+      };
+      //直接调用父类的父类
+      ConfirmBox.superclass.parseElement.call(this);
+    },
+
+    events: {
+      'mousedown [data-role=head]': 'dragStart',
+      'mouseup [data-role=head]': 'dragEnd'
+    },
+
+    dragStart: function(e) {
+      //鼠标左键
+      if (e.which == 1) {
+        //避免鼠标变为text-selection
+        e.preventDefault();
+
+        this.onDrag = true;
+        this.mouseX = e.pageX;
+        this.mouseY = e.pageY;
+      }
+    },
+    drag: function(e) {
+      if (this.onDrag) {
+        var deltaX = e.pageX - this.mouseX;
+        var deltaY = e.pageY - this.mouseY;
+
+        var p = this.element.offset();
+        var newLeft = p.left + deltaX;
+        var newTop = p.top + deltaY;
+        this.element.offset({
+          left: newLeft,
+          top: newTop
+        });
+        this.mouseX = e.pageX;
+        this.mouseY = e.pageY;
+      }
+    },
+    dragEnd: function(e) {
+      this.onDrag = false;
+    },
+
+    setup: function() {
+      Dialog.superclass.setup.call(this);
+
+      var that = this;
+      $(document).on('mousemove' + EVENT_NS + this.cid, function() {
+        that.drag.apply(that, arguments);
+      });
+    },
+    destroy: function() {
+      $(document).off('mousemove' + EVENT_NS + this.cid);
+      return Dialog.superclass.destroy.call(this);
+    }
+
+  });
+
+  Dialog.alert = function(content, callback) {
+    new Dialog({
+      content: content,
+      icon: 'info',
+      hasTitle: false,
+      hasCancel: false,
+      hasCloseX: false,
+      onConfirm: function() {
+        callback && callback();
+        this.hide();
+      }
+    }).show();
+  };
+
+  Dialog.confirm = function(content, title, confirmCb, cancelCb) {
+    new Dialog({
+      content: content,
+      title: title || '提示',
+      icon: 'question',
+      hasCloseX: false,
+      onConfirm: function() {
+        confirmCb && confirmCb();
+        this.hide();
+      },
+      onClose: function() {
+        cancelCb && cancelCb();
+      }
+    }).show();
+  };
+
+  Dialog.show = function(content, callback) {
+    new Dialog({
+      content: content,
+      hasTitle: false,
+      hasOk: false,
+      hasCancel: false,
+      hasCloseX: true,
+      onConfirm: function() {
+        callback && callback();
+        this.hide();
+      }
+    }).show();
+  };
+
+  module.exports = Dialog;
+
+});
+
+define("arale/overlay/0.9.12/mask-debug", ["./overlay-debug", "$-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug"], function(require, exports, module) {
+
+    var $ = require('$-debug'),
+        Overlay = require('./overlay-debug'),
+        isIE6 = ($.browser || 0).msie && $.browser.version == 6.0,
+        body = $(document.body),
+        doc = $(document);
+
+
+    // Mask
+    // ----------
+    // 全屏遮罩层组件
+
+    var Mask = Overlay.extend({
+
+        attrs: {
+            width: isIE6 ? doc.outerWidth(true) : '100%',
+            height: isIE6 ? doc.outerHeight(true) : '100%',
+
+            className: 'ui-mask',
+            style: {
+                opacity: .2,
+                backgroundColor: '#000',
+                position: isIE6 ? 'absolute' : 'fixed'
+            },
+
+            align: {
+                // undefined 表示相对于当前可视范围定位
+                baseElement: isIE6 ? body : undefined
+            }
+        },
+
+        show: function() {
+            if (isIE6) {
+                this.set('width', doc.outerWidth(true));
+                this.set('height', doc.outerHeight(true));
+            }
+            return Mask.superclass.show.call(this);
+        },
+
+        setup: function() {
+            // 加载 iframe 遮罩层并与 overlay 保持同步
+            this._setupShim();
+        },
+
+        _onRenderBackgroundColor: function(val) {
+            this.element.css('backgroundColor', val);
+        },
+
+        _onRenderOpacity: function(val) {
+            this.element.css('opacity', val);
+        }
+    });
+
+    // 单例
+    module.exports = new Mask();
+
+});
+
+define("arale/overlay/0.9.12/overlay-debug", ["$-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug"], function(require, exports, module) {
+
+    var $ = require('$-debug'),
+        Position = require('arale/position/1.0.0/position-debug'),
+        Shim = require('arale/iframe-shim/1.0.0/iframe-shim-debug'),
+        Widget = require('arale/widget/1.0.2/widget-debug');
+
+
+    // Overlay
+    // -------
+    // Overlay 组件的核心特点是可定位（Positionable）和可层叠（Stackable），是一切悬浮类
+    // UI 组件的基类。
+
+    var Overlay = Widget.extend({
+
+        attrs: {
+            // 基本属性
+            width: '',
+            height: '',
+            zIndex: 99,
+            visible: false,
+
+            // 定位配置
+            align: {
+                // element 的定位点，默认为左上角
+                selfXY: [0, 0],
+                // 基准定位元素，默认为当前可视区域
+                baseElement: Position.VIEWPORT,
+                // 基准定位元素的定位点，默认为左上角
+                baseXY: [0, 0]
+            },
+
+            // 父元素
+            parentNode: document.body
+        },
+
+        show: function() {
+            // 若从未渲染，则调用 render
+            if (!this.rendered) {
+                this.render();
+            }
+            this.set('visible', true);
+            this._setPosition();
+            return this;
+        },
+
+        hide: function() {
+            this.set('visible', false);
+            return this;
+        },
+
+        setup: function() {
+            // 加载 iframe 遮罩层并与 overlay 保持同步
+            this._setupShim();
+            // 窗口resize时，重新定位浮层
+            this._setupResize();
+        },
+
+        // 进行定位
+        _setPosition: function(align) {
+            // 不在文档流中，定位无效
+            if (!isInDocument(this.element[0])) return;
+
+            align || (align = this.get('align'));
+            var isHidden = this.element.css('display') === 'none';
+
+            // 在定位时，为避免元素高度不定，先显示出来
+            if (isHidden) {
+                this.element.css({ visibility: 'hidden', display: 'block' });
+            }
+
+            Position.pin({
+                element: this.element,
+                x: align.selfXY[0],
+                y: align.selfXY[1]
+            }, {
+                element: align.baseElement,
+                x: align.baseXY[0],
+                y: align.baseXY[1]
+            });
+
+            // 定位完成后，还原
+            if (isHidden) {
+                this.element.css({ visibility: '', display: 'none' });
+            }
+
+            return this;
+        },
+
+        // 加载 iframe 遮罩层并与 overlay 保持同步
+        _setupShim: function() {
+            var shim = new Shim(this.element);
+            this.after('show hide', shim.sync, shim);
+
+            // 除了 parentNode 之外的其他属性发生变化时，都触发 shim 同步
+            var attrs = Overlay.prototype.attrs;
+            for (var attr in attrs) {
+                if (attrs.hasOwnProperty(attr)) {
+                    if (attr === 'parentNode') continue;
+                    this.on('change:' + attr, shim.sync, shim);
+                }
+            }
+        },
+
+        // resize窗口时重新定位浮层，用这个方法收集所有浮层实例
+        _setupResize: function() {
+            Overlay.allOverlays.push(this);
+        },
+        
+        // 除了 element 和 relativeElements，点击 body 后都会隐藏 element
+        _blurHide: function(arr) {
+            arr = arr || [];
+            arr.push(this.element);
+            this._relativeElements = arr;
+            Overlay.blurOverlays.push(this);
+        },
+
+        // 用于 set 属性后的界面更新
+
+        _onRenderWidth: function(val) {
+            this.element.css('width', val);
+        },
+
+        _onRenderHeight: function(val) {
+            this.element.css('height', val);
+        },
+
+        _onRenderZIndex: function(val) {
+            this.element.css('zIndex', val);
+        },
+
+        _onRenderAlign: function(val) {
+            this._setPosition(val);
+        },
+
+        _onRenderVisible: function(val) {
+            this.element[val ? 'show' : 'hide']();
+        }
+
+    });
+
+    // 绑定 blur 隐藏事件
+    Overlay.blurOverlays = [];
+    $(document).on('click', function(e) {
+        hideBlurOverlays(e);
+    });
+
+    // 绑定 resize 重新定位事件
+    var timeout;    
+    Overlay.allOverlays = [];
+    $(window).resize(function() {
+        timeout && clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            $(Overlay.allOverlays).each(function(i, item) {
+                // 当元素隐藏时，不处理
+                if(!item.get('visible')) {
+                    return;
+                }
+                item._setPosition();
+            });
+        }, 80);
+    });
+
+    module.exports = Overlay;
+
+
+    // Helpers
+    // -------
+
+    function isInDocument(element) {
+        return $.contains(document.documentElement, element);
+    }
+
+    function hideBlurOverlays(e) {
+        $(Overlay.blurOverlays).each(function(i, item) {
+            // 当元素隐藏时，不处理
+            if(!item.get('visible')) {
+                return;
+            }
+            
+            // 遍历 _relativeElements ，当点击的元素落在这些元素上时，不处理
+            for(var i=0; i<item._relativeElements.length; i++) {
+                var el = $(item._relativeElements[i])[0];
+                if (el === e.target || $.contains(el, e.target)) {
+                    return;
+                }
+            }
+
+            // 到这里，判断触发了元素的 blur 事件，隐藏元素
+            item.hide();
+        });
+    }
+
+});
+
+
+define("arale/position/1.0.0/position-debug", ["$-debug"], function(require, exports) {
+
+    // Position
+    // --------
+    // 定位工具组件，将一个 DOM 节点相对对另一个 DOM 节点进行定位操作。
+    // 代码易改，人生难得
+
+    var Position = exports,
+        VIEWPORT = { _id: 'VIEWPORT', nodeType: 1 },
+        $ = require('$-debug'),
+        isPinFixed = false,
+        isIE6 = $.browser.msie && $.browser.version == 6.0;
+
+
+    // 将目标元素相对于基准元素进行定位
+    // 这是 Position 的基础方法，接收两个参数，分别描述了目标元素和基准元素的定位点
+    Position.pin = function(pinObject, baseObject) {
+
+        // 将两个参数转换成标准定位对象 { element: a, x: 0, y: 0 }
+        pinObject = normalize(pinObject);
+        baseObject = normalize(baseObject);
+
+        // 设定目标元素的 position 为绝对定位
+        // 若元素的初始 position 不为 absolute，会影响元素的 display、宽高等属性
+        var pinElement = $(pinObject.element);
+
+        if (pinElement.css('position') !== 'fixed' || isIE6) {
+            pinElement.css('position', 'absolute');
+            isPinFixed = false;
+        }
+        else {
+            // 定位 fixed 元素的标志位，下面有特殊处理
+            isPinFixed = true;
+        }
+
+        // 将位置属性归一化为数值
+        // 注：必须放在上面这句 `css('position', 'absolute')` 之后，
+        //    否则获取的宽高有可能不对
+        posConverter(pinObject);
+        posConverter(baseObject);
+
+        var parentOffset = getParentOffset(pinElement);
+        var baseOffset = baseObject.offset();
+
+        // 计算目标元素的位置
+        var top = baseOffset.top + baseObject.y -
+                pinObject.y - parentOffset.top;
+
+        var left = baseOffset.left + baseObject.x -
+                pinObject.x - parentOffset.left;
+
+        // 定位目标元素
+        pinElement.css({ left: left, top: top });
+    };
+
+
+    // 将目标元素相对于基准元素进行居中定位
+    // 接受两个参数，分别为目标元素和定位的基准元素，都是 DOM 节点类型
+    Position.center = function(pinElement, baseElement) {
+        Position.pin({
+            element: pinElement,
+            x: '50%',
+            y: '50%'
+        }, {
+            element: baseElement,
+            x: '50%',
+            y: '50%'
+        });
+    };
+
+
+    // 这是当前可视区域的伪 DOM 节点
+    // 需要相对于当前可视区域定位时，可传入此对象作为 element 参数
+    Position.VIEWPORT = VIEWPORT;
+
+
+    // Helpers
+    // -------
+
+    // 将参数包装成标准的定位对象，形似 { element: a, x: 0, y: 0 }
+    function normalize(posObject) {
+        posObject = toElement(posObject) || {};
+
+        if (posObject.nodeType) {
+            posObject = { element: posObject };
+        }
+
+        var element = toElement(posObject.element) || VIEWPORT;
+        if (element.nodeType !== 1) {
+            throw new Error('posObject.element is invalid.');
+        }
+
+        var result = {
+            element: element,
+            x: posObject.x || 0,
+            y: posObject.y || 0
+        };
+
+        // config 的深度克隆会替换掉 Position.VIEWPORT, 导致直接比较为 false
+        var isVIEWPORT = (element === VIEWPORT || element._id === 'VIEWPORT');
+
+        // 归一化 offset
+        result.offset = function() {
+            // 若定位 fixed 元素，则父元素的 offset 没有意义
+            if (isPinFixed) {
+                return {
+                    left: 0,
+                    top: 0
+                };
+            }
+            else if (isVIEWPORT) {
+                return {
+                    left: $(document).scrollLeft(),
+                    top: $(document).scrollTop()
+                };
+            }
+            else {
+                return $(element).offset();
+            }
+        };
+
+        // 归一化 size, 含 padding 和 border
+        result.size = function() {
+            var el = isVIEWPORT ? $(window) : $(element);
+            return {
+                width: el.outerWidth(),
+                height: el.outerHeight()
+            };
+        };
+
+        return result;
+    }
+
+    // 对 x, y 两个参数为 left|center|right|%|px 时的处理，全部处理为纯数字
+    function posConverter(pinObject) {
+        pinObject.x = xyConverter(pinObject.x, pinObject, 'width');
+        pinObject.y = xyConverter(pinObject.y, pinObject, 'height');
+    }
+
+    // 处理 x, y 值，都转化为数字
+    function xyConverter(x, pinObject, type) {
+        // 先转成字符串再说！好处理
+        x = x + '';
+
+        // 处理 px
+        x = x.replace(/px/gi, '');
+
+        // 处理 alias
+        if (/\D/.test(x)) {
+            x = x.replace(/(?:top|left)/gi, '0%')
+                 .replace(/center/gi, '50%')
+                 .replace(/(?:bottom|right)/gi, '100%');
+        }
+
+        // 将百分比转为像素值
+        if (x.indexOf('%') !== -1) {
+            //支持小数
+            x = x.replace(/(\d+(?:\.\d+)?)%/gi, function(m, d) {
+                return pinObject.size()[type] * (d / 100.0);
+            });
+        }
+
+        // 处理类似 100%+20px 的情况
+        if (/[+\-*\/]/.test(x)) {
+            try {
+                // eval 会影响压缩
+                // new Function 方法效率高于 for 循环拆字符串的方法
+                // 参照：http://jsperf.com/eval-newfunction-for
+                x = (new Function('return ' + x))();
+            } catch (e) {
+                throw new Error('Invalid position value: ' + x);
+            }
+        }
+
+        // 转回为数字
+        return numberize(x);
+    }
+
+    // 获取 offsetParent 的位置
+    function getParentOffset(element) {
+        var parent = element.offsetParent();
+
+        if (parent[0] === document.documentElement) {
+            parent = $(document.body);
+        }
+
+        // 修正 ie6 下 absolute 定位不准的 bug
+        if (isIE6) {
+            parent.css('zoom', 1);
+        }
+
+        // 获取 offsetParent 的 offset
+        // 注1：document.body 会默认带 8 像素的偏差
+        //
+        // 注2：IE7 下，body 子节点的 offsetParent 为 html 元素，其 offset 为
+        // { top: 2, left: 2 }，会导致定位差 2 像素，所以这里将 parent
+        // 转为 document.body
+        //
+        // 以上两种情况直接赋为 0
+        var offset = (parent[0] === document.body) ?
+            { left: 0, top: 0 } : parent.offset();
+
+        // 根据基准元素 offsetParent 的 border 宽度，来修正 offsetParent 的基准位置
+        offset.top += numberize(parent.css('border-top-width'));
+        offset.left += numberize(parent.css('border-left-width'));
+
+        return offset;
+    }
+
+    function numberize(s) {
+        return parseFloat(s, 10) || 0;
+    }
+
+    function toElement(element) {
+        return $(element)[0];
+    }
+
+});
+
+define("arale/iframe-shim/1.0.0/iframe-shim-debug", ["$-debug", "arale/position/1.0.0/position-debug"], function(require, exports, module) {
+
+    var $ = require('$-debug');
+    var Position = require('arale/position/1.0.0/position-debug');
+
+
+    // target 是需要添加垫片的目标元素，可以传 `DOM Element` 或 `Selector`
+    function Shim(target) {
+        // 如果选择器选了多个 DOM，则只取第一个
+        this.target = $(target).eq(0);
+    }
+
+
+    // 根据目标元素计算 iframe 的显隐、宽高、定位
+    Shim.prototype.sync = function() {
+        var target = this.target;
+        var iframe = this.iframe;
+
+        // 如果未传 target 则不处理
+        if (!target.length) return this;
+
+        var height = target.outerHeight();
+        var width = target.outerWidth();
+
+        // 如果目标元素隐藏，则 iframe 也隐藏
+        // jquery 判断宽高同时为 0 才算隐藏，这里判断宽高其中一个为 0 就隐藏
+        // http://api.jquery.com/hidden-selector/
+        if (!height || !width || target.is(':hidden')) {
+            iframe && iframe.hide();
+        } else {
+            // 第一次显示时才创建：as lazy as possible
+            iframe || (iframe = this.iframe = createIframe(target));
+
+            iframe.css({
+                'height': height,
+                'width': width
+            });
+
+            Position.pin(iframe[0], target[0]);
+            iframe.show();
+        }
+
+        return this;
+    };
+
+
+    // 销毁 iframe 等
+    Shim.prototype.destroy = function() {
+        if (this.iframe) {
+            this.iframe.remove();
+            delete this.iframe;
+        }
+        delete this.target;
+    };
+
+
+    if ($.browser.msie && $.browser.version == 6.0) {
+        module.exports = Shim;
+    } else {
+        // 除了 IE6 都返回空函数
+        function Noop() {
+        }
+
+        Noop.prototype.sync = Noop;
+        Noop.prototype.destroy = Noop;
+
+        module.exports = Noop;
+    }
+
+
+    // Helpers
+
+    // 在 target 之前创建 iframe，这样就没有 z-index 问题
+    // iframe 永远在 target 下方
+    function createIframe(target) {
+        return $('<iframe>', {
+            src: 'javascript:\'\'', // 不加的话，https 下会弹警告
+            frameborder: 0,
+            css: {
+                display: 'none',
+                border: 'none',
+                opacity: 0,
+                position: 'absolute'
+            }
+        }).insertBefore(target);
+    }
+
+});
+
+define("arale/dialog/0.9.1/confirm-box-debug", ["./anim-dialog-debug", "./base-dialog-debug", "$-debug", "arale/overlay/0.9.12/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/easing/1.0.0/easing-debug", "arale/overlay/0.9.12/mask-debug", "arale/widget/1.0.2/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug"], function(require, exports, module) {
+
+    var $ = require('$-debug'),
+        AnimDialog = require('./anim-dialog-debug'),
+        Templatable = require('arale/widget/1.0.2/templatable-debug');
+
+    // ConfirmBox
+    // -------
+    // ConfirmBox 是一个有基础模板和样式的对话框组件。
+
+    var ConfirmBox = AnimDialog.extend({
+
+        Implements: Templatable,
+
+        attrs: {
+
+            // 默认模板，不要覆盖
+            template: '<div class="ui-xbox"> <div class="ui-xbox-action"> {{#if hasCloseX}}<a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a>{{/if}} </div> <div class="ui-xbox-content"> <div class="ui-confirmXbox"> {{#if hasTitle}} <div class="ui-confirmXbox-title sl-linear-light" data-role="head"> <h2 data-role="title">{{title}}</h2> </div> {{/if}} <div class="ui-confirmXbox-container"> <div class="ui-confirmXbox-content" data-role="content">{{content}}</div> {{#if hasFoot}}        <div class="ui-confirmXbox-operation" data-role="foot"> {{#if hasOk}} <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm"> <a href="javascript:;" class="ui-button-text">确定</a> </div> {{/if}} {{#if hasCancel}} <div class="ui-button ui-button-swhite ui-confirmXbox-cancel" data-role="cancel"> <a href="javascript:;" class="ui-button-text">取消</a> </div> {{/if}} </div> {{/if}} </div> </div> </div> </div>',        
+            // 指定标题内容
+            title: '默认标题',
+            // 指定内容的 html
+            content: '默认内容',
+
+            width: 500,
+            hasMask: true,
+            effect: null,
+
+            align: {
+                selfXY: ['50%', '50%'],
+                baseXY: ['50%', '38%']
+            },
+
+            hasTitle: true,
+            hasOk: true,
+            hasCancel: true,            
+            hasCloseX: true
+        },
+
+        parseElement: function() {
+            this.model = {
+                title: this.get('title'),
+                content: this.get('content'),
+                hasTitle: this.get('hasTitle'),
+                hasOk: this.get('hasOk'),
+                hasCancel: this.get('hasCancel'),
+                hasCloseX: this.get('hasCloseX'),
+                hasFoot: this.get('hasOk') || this.get('hasCancel')
+            }
+            AnimDialog.superclass.parseElement.call(this);
+        }
+
+    });
+
+    ConfirmBox.alert = function(content, callback) {
+        new ConfirmBox({
+            content: content,
+            hasTitle: false,
+            hasCancel: false,
+            hasCloseX: false,
+            onConfirm: function() {
+                callback && callback();
+                this.hide();
+            }
+        }).show();
+    };
+
+    ConfirmBox.confirm = function(content, title, confirmCb, cancelCb) {
+        new ConfirmBox({
+            content: content,
+            title: title || '确认框',
+            hasCloseX: false,
+            onConfirm: function() {
+                confirmCb && confirmCb();
+                this.hide();
+            },
+            onClose: function() {
+                cancelCb && cancelCb();            
+            }
+        }).show();
+    };
+
+    ConfirmBox.show = function(content, callback) {
+        new ConfirmBox({
+            content: content,
+            hasTitle: false,
+            hasOk: false,            
+            hasCancel: false,
+            hasCloseX: true,
+            onConfirm: function() {
+                callback && callback();
+                this.hide();
+            }
+        }).show();
+    };
+
+    module.exports = ConfirmBox;
+
+});
+
+
+define("arale/dialog/0.9.1/anim-dialog-debug", ["./base-dialog-debug", "$-debug", "arale/overlay/0.9.12/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/easing/1.0.0/easing-debug", "arale/overlay/0.9.12/mask-debug"], function(require, exports, module) {
+
+    var $ = require('$-debug'),
+        Overlay = require('arale/overlay/0.9.12/overlay-debug'),
+        easing = require('arale/easing/1.0.0/easing-debug'),
+        BaseDialog = require('./base-dialog-debug');
+
+    // AnimDialog
+    // -------
+    // AnimDialog 组件继承自 Dialog 组件，提供了显隐的基本动画。
+
+    var AnimDialog = BaseDialog.extend({
+
+        attrs: {
+            effect: {
+                type: 'fade',
+                duration: 400,      // 动画时长
+                easing: 'easeOut',  // 平滑函数
+                from: 'up'          // 方向 up|down|left|right
+            },
+            // 显示的动画效果，若未指定则采用 effect
+            showEffect: {},
+            // 隐藏时的动画效果，若未指定则采用 effect
+            hideEffect: {}
+        },
+
+        show: function() {
+            AnimDialog.superclass.show.call(this);
+            this.element.hide();
+            
+            var elem = this.element,
+                that = this,
+                ef = this.get('showEffect');
+
+            ef = $.extend(null, this.get('effect'), ef);
+
+            if (ef.type == null) {
+                ef = { type: 'none' };
+            }
+
+            // 无动画
+            if (ef.type === 'none') {
+                elem.show().focus();
+            }
+            // 淡入淡出
+            else if (ef.type === 'fade') {
+                elem.hide().fadeIn(ef.duration, ef.easing).focus();
+            }
+            // 滑动
+            else if (ef.type === 'slide') {
+                var properties = /left|right/i.test(ef.from)
+                        ? { width: 'toggle' } 
+                        : { height: 'toggle' };
+                elem.hide().animate(properties, {
+                    duration: ef.duration,
+                    easing: ef.easing
+                }).focus();
+            }
+            // 移动
+            else if (ef.type === 'move') {
+                // 避免当 elem.focus() 时的一个诡异的定位 bug
+                // http://jsfiddle.net/ukKfH/1/
+                elem.removeAttr('tabindex');
+                elem.blur();
+                
+                // 确保目标元素为 block 对象，以便创建窗口层
+                elem.css({ display:'block' });
+                
+                // 得到窗口层
+                createLayer.call(this, elem);
+
+                var width = this._layer.get('width'),
+                    height = this._layer.get('height'),
+                    properties;
+
+                // 位置和显示前的准备
+                elem.appendTo(this._layer.element).css({
+                    top: 0,
+                    left: 0,
+                    display: 'block'
+                });
+                
+                if (ef.from === 'left') {
+                    elem.css('left', 0-width);
+                    properties = { left: '+=' + width };
+                }
+                else if (ef.from === 'right') {
+                    elem.css('left', width);    
+                    properties = { left: '-=' + width };                    
+                }
+                else if (ef.from === 'up') {
+                    elem.css('top', 0-height);
+                    properties = { top: '+=' + height };                    
+                }
+                else if (ef.from === 'down') {
+                    elem.css('top', height);
+                    properties = { top: '-=' + height };                    
+                }
+
+                elem.animate(properties, {
+                    duration: ef.duration,
+                    easing: ef.easing,
+                    complete: function() {
+                        // 这里要复原因为 move 而造成的文档变化
+                        // 真恶心
+                        that.element.appendTo(document.body);
+                        that.set('align', that.get('align'));
+                        that.set('visible', 'true');                        
+                        that._layer.hide();
+                        
+                        // 重新 focus
+                        elem.attr('tabindex', '-1');
+                        elem.focus();
+                    }
+                });
+            }
+
+            return this;
+        },
+
+        hide: function() {
+            AnimDialog.superclass.hide.call(this);
+            this.element.show();
+
+            var elem = this.element,
+                that = this,
+                ef = this.get('hideEffect');
+
+            ef = $.extend(null, this.get('effect'), ef);
+
+            if (ef.type == null) {
+                ef = { type: 'none' };
+            }
+
+            // 无动画
+            if (!ef || ef.type === 'none') {
+                elem.hide();
+            }
+            // 淡入淡出
+            else if (ef.type === 'fade') {
+                elem.fadeOut(ef.duration, ef.easing);
+            }
+            // 滑动
+            else if (ef.type === 'slide') {
+                var properties = /left|right/i.test(ef.from)
+                        ? { width: 'toggle' } 
+                        : { height: 'toggle' };
+                elem.animate(properties, {
+                    duration: ef.duration,
+                    easing: ef.easing
+                });
+            }
+            // 移动
+            else if (ef.type === 'move') {
+                // 如果已经隐藏，则不重复调用
+                if (elem.css('display') === 'none') {
+                    return;
+                }
+                // 得到窗口层
+                createLayer.call(this, elem);
+                
+                var width = this._layer.get('width'),
+                    height = this._layer.get('height'),
+                    properties;
+
+                // 位置和显示前的准备
+                elem.appendTo(this._layer.element).css({
+                    top: 0,
+                    left: 0,
+                    display: 'block'
+                });
+
+                if (ef.from === 'left') {
+                    properties = { left: '-=' + width };
+                }
+                else if (ef.from === 'right') {
+                    properties = { left: '+=' + width };
+                }
+                else if (ef.from === 'up') {
+                    properties = { top: '-=' + height };
+                }
+                else if (ef.from === 'down') {
+                    properties = { top: '+=' + height };
+                }
+
+                elem.animate(properties, {
+                    duration: ef.duration,
+                    easing: ef.easing,
+                    complete: function() {
+                        elem.appendTo(document.body);
+                        that.set('align', that.get('align'));
+                        elem.hide();
+                        that.set('visible', false);
+                        that._layer.hide();
+                    }
+                });
+            }
+
+            return this;
+        }
+
+    });
+
+    module.exports = AnimDialog;
+
+    // Helpers
+    // -------
+
+    // 准备好窗口层
+    function createLayer(elem) {
+        if (!this._layer) {
+            this._layer = new Overlay({
+                width: elem.outerWidth(true),
+                height: elem.outerHeight(true),
+                zIndex: 100,
+                visible: true,
+                style: {
+                    overflow: 'hidden'
+                },
+                align: {
+                    baseElement: elem[0]
+                }
+            });
+        }
+        this._layer.set('align', this._layer.get('align')).show();
+    }
+
+});
+
+
+define("arale/dialog/0.9.1/base-dialog-debug", ["$-debug", "arale/overlay/0.9.12/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/0.9.12/mask-debug"], function(require, exports, module) {
+
+    var $ = require('$-debug'),
+        Overlay = require('arale/overlay/0.9.12/overlay-debug'),
+        mask = require('arale/overlay/0.9.12/mask-debug'),
+        Events = require('arale/events/1.0.0/events-debug'),
+        
+        TRIGGER_EVENT_NS = '.trigger-events-';
+
+
+    // BaseDialog
+    // -------
+    // BaseDialog 是通用对话框组件，提供确定、取消、关闭、标题设置、内容区域自定义功能。
+    // 是所有对话框类型组件的基类。
+
+    var BaseDialog = Overlay.extend({
+
+        attrs: {
+            // 对话框触发点
+            trigger: null,
+
+            // 对话框触发方式
+            triggerType: 'click',
+
+            // 不用解释了吧
+            zIndex: 999,
+
+            // 指定标题内容
+            title: '',
+
+            // 指定内容元素
+            content: '',
+
+            // 是否有背景遮罩层
+            hasMask: false,
+
+            // 点击确定时触发的函数，供覆盖
+            onConfirm: function() {},
+
+            // 点击取消或关闭时触发的函数，供覆盖
+            onClose: function() {}
+        },
+
+        parseElement: function() {
+            BaseDialog.superclass.parseElement.call(this);
+
+            // 绑定额外的 dom 元素
+            this.set('trigger', $(this.get('trigger')));
+            this.set('titleElement', this.$('[data-role=title]'));
+            this.set('contentElement', this.$('[data-role=content]'));
+        },
+
+        events: {
+            'click [data-role=confirm]' : 'confirm',
+            'click [data-role=cancel]' : 'close',
+            'click [data-role=close]' : 'close'
+        },
+
+        confirm: function() {
+            this.trigger('confirm');
+        },
+
+        close: function() {
+            this.trigger('close');
+            this.hide();
+            // 关于网页中浮层消失后的焦点处理
+            // http://www.qt06.com/post/280/
+            this.activeTrigger && this.activeTrigger.focus();
+        },
+
+        show: function() {
+            BaseDialog.superclass.show.call(this);
+            
+            // 处理动态绑定的 content 和 title
+            if (this._contentFunction) {
+                this.get('contentElement').html(this._contentFunction.call(this));                
+            }
+            if (this._titleFunction) {
+                this.get('titleElement').html(this._titleFunction.call(this));                
+            }
+
+            this.element.focus();
+            return this;
+        },
+
+        destroy: function() {
+            this.get('trigger').off(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid);
+            return BaseDialog.superclass.destroy.call(this);
+        },
+
+        setup: function() {
+            BaseDialog.superclass.setup.call(this);
+
+            this._setupTrigger();
+            this._setupMask();
+            this._setupKeyEvents();
+            toTabed(this.element);
+            toTabed(this.get('trigger'));
+        },
+
+        // 绑定触发对话框出现的事件
+        _setupTrigger: function() {
+            var that = this;
+            this.get('trigger').on(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid, function(e) {
+                e.preventDefault();
+                // 标识当前点击的元素
+                that.activeTrigger = $(this);
+                that.show();
+            });
+        },
+
+        // 绑定遮罩层事件
+        _setupMask: function() {
+            this.before('show', function() {
+                this.get('hasMask') && mask.show();
+            });
+            this.before('hide', function() {
+                this.get('hasMask') && mask.hide();
+            });
+        },
+
+        // 绑定键盘事件，ESC关闭窗口
+        _setupKeyEvents: function() {
+            this.delegateEvents('keyup', function(e) {
+                if (e.keyCode === 27) {
+                    this.close();
+                }
+            });
+        },
+
+        _onRenderTitle: function(val) {
+            if($.isFunction(val)) {
+                this._titleFunction = val;
+            }
+            else {
+                this._titleFunction = null;                
+                this.get('titleElement').html(val);
+            }
+        },
+
+        _onRenderContent: function(val) {
+            if($.isFunction(val)) {
+                this._contentFunction = val;
+            }
+            else {
+                this._contentFunction = null;
+                this.get('contentElement').html(val);
+            }
+        }
+
+    });
+
+    module.exports = BaseDialog;
+
+    // Helpers
+    // ----
+
+    function toTabed(element) {
+        if(element.attr('tabindex') == null) {
+            element.attr('tabindex', '-1');
+        }
+    }
+
+});
+
+
+define("arale/widget/1.0.2/templatable-debug", ["$-debug", "gallery/handlebars/1.0.0/handlebars-debug"], function(require, exports, module) {
+
+  var $ = require('$-debug')
+  var Handlebars = require('gallery/handlebars/1.0.0/handlebars-debug')
+
+
+  // 提供 Template 模板支持，默认引擎是 Handlebars
+  module.exports = {
+
+    // Handlebars 的 helpers
+    templateHelpers: null,
+
+    // template 对应的 DOM-like object
+    templateObject: null,
+
+    // 根据配置的模板和传入的数据，构建 this.element 和 templateElement
+    parseElementFromTemplate: function() {
+      this.templateObject = convertTemplateToObject(this.template)
+      this.element = $(this.compile())
+    },
+
+    // 编译模板，混入数据，返回 html 结果
+    compile: function(template, model) {
+      template || (template = this.template)
+
+      model || (model = this.model)
+      if (model.toJSON) {
+        model = model.toJSON()
+      }
+
+      var helpers = this.templateHelpers
+
+      // 注册 helpers
+      if (helpers) {
+        for (var name in helpers) {
+          if (helpers.hasOwnProperty(name)) {
+            Handlebars.registerHelper(name, helpers[name])
+          }
+        }
+      }
+
+      // 生成 html
+      var html = Handlebars.compile(template)(model)
+
+      // 卸载 helpers
+      if (helpers) {
+        for (name in helpers) {
+          if (helpers.hasOwnProperty(name)) {
+            delete Handlebars.helpers[name]
+          }
+        }
+      }
+
+      return html
+    },
+
+    // 刷新 selector 指定的局部区域
+    renderPartial: function(selector) {
+      var template = convertObjectToTemplate(this.templateObject, selector)
+      this.$(selector).html(this.compile(template))
+      return this
+    }
+  }
+
+
+  // Helpers
+  // -------
+
+  // 将 template 字符串转换成对应的 DOM-like object
+  function convertTemplateToObject(template) {
+    return $(encode(template))
+  }
+
+  // 根据 selector 得到 DOM-like template object，并转换为 template 字符串
+  function convertObjectToTemplate(templateObject, selector) {
+    var element = templateObject.find(selector)
+    if (element.length === 0) {
+      throw new Error('Invalid template selector: ' + selector)
+    }
+
+    return decode(element.html())
+  }
+
+  function encode(template) {
+    return template
+        // 替换 {{xxx}} 为 <!-- {{xxx}} -->
+        .replace(/({[^}]+}})/g, '<!--$1-->')
+        // 替换 src="{{xxx}}" 为 data-TEMPLATABLE-src="{{xxx}}"
+        .replace(/\s(src|href)\s*=\s*(['"])(.*?\{.+?)\2/g,
+        ' data-templatable-$1=$2$3$2')
+  }
+
+  function decode(template) {
+    return template
+        .replace(/(?:<|&lt;)!--({{[^}]+}})--(?:>|&gt;)/g, '$1')
+        .replace(/data-templatable-/ig, '')
+  }
+
+});
+
+// 调用 renderPartial 时，Templatable 对模板有一个约束：
+// ** template 自身必须是有效的 html 代码片段**，比如
+//   1. 代码闭合
+//   2. 嵌套符合规范
+//
+// 总之，要保证在 template 里，将 `{{...}}` 转换成注释后，直接 innerHTML 插入到
+// DOM 中，浏览器不会自动增加一些东西。比如：
+//
+// tbody 里没有 tr：
+//  `<table><tbody>{{#each items}}<td>{{this}}</td>{{/each}}</tbody></table>`
+//
+// 标签不闭合：
+//  `<div><span>{{name}}</div>`
+
+define("kj/grid/0.0.1/grid-debug", ["$-debug", "gallery/underscore/1.4.2/underscore-debug", "gallery/handlebars/1.0.0/handlebars-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug"], function(require, exports, module) {
+  var $ = require('$-debug'),
+    _ = require('gallery/underscore/1.4.2/underscore-debug'),
+    handlebars = require('gallery/handlebars/1.0.0/handlebars-debug'),
+    Widget = require('arale/widget/1.0.2/widget-debug');
+
+  var tpl = '{{#if title}} <div class="panel-header unselectable"> <span class="panel-header-span">{{title}}</span> </div> {{/if}} <div class="panel-body" style="background-color:white;"> <table class="grid grid-with-row-lines" border="0" cellspacing="0" cellpadding="0"> <thead class="grid-header unselectable"> <tr> {{#each fields}} <td class="grid-header-cell" data-name="{{name}}"{{#if width}} width="{{width}}"{{/if}}> <span>{{header}}</span> </td> {{/each}} </tr> </thead> <tbody> {{#each records}} <tr class="grid-row{{#if isAlt}} grid-row-alt{{/if}}" data-id="{{id}}"> {{#each values}} <td class="grid-cell">{{{.}}}</td> {{/each}} </tr> {{/each}} </tbody> </table> <div class="grid-footer"> <i class="icon icon-btn {{#if isFirst}}icon-btn-is-disabled icon-grid-page-first-disabled{{else}}icon-grid-page-first{{/if}}" data-role="first"></i> <i class="icon icon-btn {{#if hasPrev}}icon-grid-page-prev{{else}}icon-btn-is-disabled icon-grid-page-prev-disabled{{/if}}" data-role="prev"></i> <i class="grid-separator"></i> <span class="grid-footer-text">当前第</span> <input class="form-text" style="width:40px;" type="text" data-role="num"> <span class="grid-footer-text">/10页</span> <i class="grid-separator"></i> <i class="icon icon-btn {{#if hasNext}}icon-grid-page-next{{else}}icon-btn-is-disabled icon-grid-page-next-disabled{{/if}}" data-role="next"></i> <i class="icon icon-btn {{#if isLast}}icon-btn-is-disabled icon-grid-page-last-disabled{{else}}icon-grid-page-last{{/if}}" data-role="last"></i> <i class="grid-separator"></i> <i class="icon icon-btn icon-grid-refresh" data-role="refresh"></i> <span class="grid-footer-text" style="float:right;margin-right:100px;">共{{totalCount}}条记录，每页{{pageSize}}条</span> </div> </div>';
+
+  var Grid = Widget.extend({
+    attrs: {
+      //行默认高度
+      rowHeight: 23
+    },
+    events: {
+      'click .grid-header': 'sort',
+      'click .grid-row': 'click',
+      'click :not(.icon-btn-is-disabled)[data-role=prev]': 'prevPage',
+      'click :not(.icon-btn-is-disabled)[data-role=next]': 'nextPage',
+      'click :not(.icon-btn-is-disabled)[data-role=first]': 'firstPage',
+      'click :not(.icon-btn-is-disabled)[data-role=last]': 'lastPage',
+      'click [data-role=refresh]': 'refresh',
+      'keyup [data-role=num]': 'gotoPage'
+    },
+
+    sort: function(e) {
+      var cell = $(e.target).closest('td');
+      var name = cell.attr('data-name');
+
+      //只能按照单独的列排序
+      if (!this.oldSortHeader) {
+        this.oldSortHeader = cell;
+      } else {
+        if (this.oldSortHeader.attr('data-name') !== name) {
+          this.oldSortHeader.removeClass('grid-header-is-desc grid-header-is-asc');
+          this.oldSortHeader = cell;
+        }
+      }
+
+      if (cell.hasClass('grid-header-is-desc')) {
+        cell.removeClass('grid-header-is-desc').addClass('grid-header-is-asc');
+        console.log(name, 'asc');
+      } else {
+        cell.removeClass('grid-header-is-asc').addClass('grid-header-is-desc');
+        console.log(name, 'desc');
+      }
+    },
+
+    click: function(e) {
+      var cell = $(e.target);
+      var row = cell.parents('tr');
+
+      var id = row.attr('data-id');
+      var data = _.find(this.data.result, function(record) {
+        return record.id = id;
+      });
+      this.trigger('click', data, cell, row);
+    },
+
+    prevPage: function() {
+      var id = this.data.prevPage;
+      this.fetch(id);
+    },
+    nextPage: function() {
+      var id = this.data.nextPage;
+      this.fetch(id);
+    },
+    firstPage: function() {
+      var id = this.data.firstPage;
+      this.fetch(id);
+    },
+    lastPage: function() {
+      var id = this.data.lastPage;
+      this.fetch(id);
+    },
+    refresh: function() {
+      var id = this.data.pageNumber;
+      this.fetch(id);
+    },
+    gotoPage: function(e) {
+      var $input = $(e.target);
+      var value = $input.val();
+
+      if (value && e.which == 13) {
+        this.fetch(value);
+      } else {
+        value = value.replace(/\D/g, '');
+        if (value) {
+          value = parseInt(value, 10);
+
+          var totalPages = this.data.totalPages;
+          if (value > totalPages) {
+            value = totalPages;
+          } else if (value === 0) {
+            value = 1;
+          }
+          $input.val(value);
+        } else {
+          $input.val('');
+        }
+      }
+    },
+
+    fetch: function(id) {
+      var that = this;
+      var url = this.urlFormat(id);
+      $.getJSON(url, function(data) {
+        that._createGrid(data.data);
+      });
+    },
+
+    urlFormat: function(id) {
+      return id;
+    },
+
+    setup: function() {
+      var that = this;
+
+      Grid.superclass.setup.call(this);
+
+      var url = this.get('url');
+      if (url) {
+        $.getJSON(url, function(data) {
+          that._createGrid(data.data);
+        });
+      } else {
+        //避免向服务端发送请求
+        var data = this.get('data');
+        if (data) {
+          this._createGrid(data);
+        }
+      }
+
+    },
+    _createGrid: function(data) {
+      this.data = data;
+
+      var title = this.get('title');
+      var fields = this.get('fields');
+      var records = $.map(data.result, function(record, index) {
+        return {
+          isAlt: index % 2 === 1,
+          id: record.id,
+          values: $.map(fields, function(field) {
+            var value = record[field.name];
+            value = _.escape(value);
+
+            if ($.isFunction(field.render)) {
+              return field.render(value);
+            } else {
+              return value;
+            }
+          })
+        };
+      });
+
+      var html = handlebars.compile(tpl)({
+        title: title,
+        fields: fields,
+        records: records,
+        isFirst: function() {
+          return data.pageNumber <= 1;
+        },
+        isLast: function() {
+          return data.totalPages === 0 || data.pageNumber === data.totalPages;
+        },
+        hasPrev: data.hasPrev,
+        hasNext: data.hasNext,
+        totalCount: data.totalCount,
+        pageSize: data.pageSize
+      });
+      this.element.html(html);
+
+      this.$('[data-role=num]').val(data.pageNumber);
+
+      this._fixFooterPosition();
+    },
+
+    _fixFooterPosition: function() {
+      var blankHeight = this.get('rowHeight') * (this.data.pageSize - this.data.result.length);
+      this.$('.grid-footer').css('margin-top', blankHeight);
+    }
+
+  });
+
+  module.exports = Grid;
+
+});
+
+define('gallery/underscore/1.4.2/underscore-debug', [], function(require, exports, module) {
+
+//     Underscore.js 1.4.2
+//     http://underscorejs.org
+//     (c) 2009-2012 Jeremy Ashkenas, DocumentCloud Inc.
+//     Underscore may be freely distributed under the MIT license.
+
+(function() {
+
+  // Baseline setup
+  // --------------
+
+  // Establish the root object, `window` in the browser, or `global` on the server.
+  var root = this;
+
+  // Save the previous value of the `_` variable.
+  var previousUnderscore = root._;
+
+  // Establish the object that gets returned to break out of a loop iteration.
+  var breaker = {};
+
+  // Save bytes in the minified (but not gzipped) version:
+  var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
+
+  // Create quick reference variables for speed access to core prototypes.
+  var push             = ArrayProto.push,
+      slice            = ArrayProto.slice,
+      concat           = ArrayProto.concat,
+      unshift          = ArrayProto.unshift,
+      toString         = ObjProto.toString,
+      hasOwnProperty   = ObjProto.hasOwnProperty;
+
+  // All **ECMAScript 5** native function implementations that we hope to use
+  // are declared here.
+  var
+    nativeForEach      = ArrayProto.forEach,
+    nativeMap          = ArrayProto.map,
+    nativeReduce       = ArrayProto.reduce,
+    nativeReduceRight  = ArrayProto.reduceRight,
+    nativeFilter       = ArrayProto.filter,
+    nativeEvery        = ArrayProto.every,
+    nativeSome         = ArrayProto.some,
+    nativeIndexOf      = ArrayProto.indexOf,
+    nativeLastIndexOf  = ArrayProto.lastIndexOf,
+    nativeIsArray      = Array.isArray,
+    nativeKeys         = Object.keys,
+    nativeBind         = FuncProto.bind;
+
+  // Create a safe reference to the Underscore object for use below.
+  var _ = function(obj) {
+    if (obj instanceof _) return obj;
+    if (!(this instanceof _)) return new _(obj);
+    this._wrapped = obj;
+  };
+
+  // Export the Underscore object for **Node.js**, with
+  // backwards-compatibility for the old `require()` API. If we're in
+  // the browser, add `_` as a global object via a string identifier,
+  // for Closure Compiler "advanced" mode.
+  if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+      exports = module.exports = _;
+    }
+    exports._ = _;
+  } else {
+    root['_'] = _;
+  }
+
+  // Current version.
+  _.VERSION = '1.4.2';
+
+  // Collection Functions
+  // --------------------
+
+  // The cornerstone, an `each` implementation, aka `forEach`.
+  // Handles objects with the built-in `forEach`, arrays, and raw objects.
+  // Delegates to **ECMAScript 5**'s native `forEach` if available.
+  var each = _.each = _.forEach = function(obj, iterator, context) {
+    if (obj == null) return;
+    if (nativeForEach && obj.forEach === nativeForEach) {
+      obj.forEach(iterator, context);
+    } else if (obj.length === +obj.length) {
+      for (var i = 0, l = obj.length; i < l; i++) {
+        if (iterator.call(context, obj[i], i, obj) === breaker) return;
+      }
+    } else {
+      for (var key in obj) {
+        if (_.has(obj, key)) {
+          if (iterator.call(context, obj[key], key, obj) === breaker) return;
+        }
+      }
+    }
+  };
+
+  // Return the results of applying the iterator to each element.
+  // Delegates to **ECMAScript 5**'s native `map` if available.
+  _.map = _.collect = function(obj, iterator, context) {
+    var results = [];
+    if (obj == null) return results;
+    if (nativeMap && obj.map === nativeMap) return obj.map(iterator, context);
+    each(obj, function(value, index, list) {
+      results[results.length] = iterator.call(context, value, index, list);
+    });
+    return results;
+  };
+
+  // **Reduce** builds up a single result from a list of values, aka `inject`,
+  // or `foldl`. Delegates to **ECMAScript 5**'s native `reduce` if available.
+  _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
+    var initial = arguments.length > 2;
+    if (obj == null) obj = [];
+    if (nativeReduce && obj.reduce === nativeReduce) {
+      if (context) iterator = _.bind(iterator, context);
+      return initial ? obj.reduce(iterator, memo) : obj.reduce(iterator);
+    }
+    each(obj, function(value, index, list) {
+      if (!initial) {
+        memo = value;
+        initial = true;
+      } else {
+        memo = iterator.call(context, memo, value, index, list);
+      }
+    });
+    if (!initial) throw new TypeError('Reduce of empty array with no initial value');
+    return memo;
+  };
+
+  // The right-associative version of reduce, also known as `foldr`.
+  // Delegates to **ECMAScript 5**'s native `reduceRight` if available.
+  _.reduceRight = _.foldr = function(obj, iterator, memo, context) {
+    var initial = arguments.length > 2;
+    if (obj == null) obj = [];
+    if (nativeReduceRight && obj.reduceRight === nativeReduceRight) {
+      if (context) iterator = _.bind(iterator, context);
+      return arguments.length > 2 ? obj.reduceRight(iterator, memo) : obj.reduceRight(iterator);
+    }
+    var length = obj.length;
+    if (length !== +length) {
+      var keys = _.keys(obj);
+      length = keys.length;
+    }
+    each(obj, function(value, index, list) {
+      index = keys ? keys[--length] : --length;
+      if (!initial) {
+        memo = obj[index];
+        initial = true;
+      } else {
+        memo = iterator.call(context, memo, obj[index], index, list);
+      }
+    });
+    if (!initial) throw new TypeError('Reduce of empty array with no initial value');
+    return memo;
+  };
+
+  // Return the first value which passes a truth test. Aliased as `detect`.
+  _.find = _.detect = function(obj, iterator, context) {
+    var result;
+    any(obj, function(value, index, list) {
+      if (iterator.call(context, value, index, list)) {
+        result = value;
+        return true;
+      }
+    });
+    return result;
+  };
+
+  // Return all the elements that pass a truth test.
+  // Delegates to **ECMAScript 5**'s native `filter` if available.
+  // Aliased as `select`.
+  _.filter = _.select = function(obj, iterator, context) {
+    var results = [];
+    if (obj == null) return results;
+    if (nativeFilter && obj.filter === nativeFilter) return obj.filter(iterator, context);
+    each(obj, function(value, index, list) {
+      if (iterator.call(context, value, index, list)) results[results.length] = value;
+    });
+    return results;
+  };
+
+  // Return all the elements for which a truth test fails.
+  _.reject = function(obj, iterator, context) {
+    var results = [];
+    if (obj == null) return results;
+    each(obj, function(value, index, list) {
+      if (!iterator.call(context, value, index, list)) results[results.length] = value;
+    });
+    return results;
+  };
+
+  // Determine whether all of the elements match a truth test.
+  // Delegates to **ECMAScript 5**'s native `every` if available.
+  // Aliased as `all`.
+  _.every = _.all = function(obj, iterator, context) {
+    iterator || (iterator = _.identity);
+    var result = true;
+    if (obj == null) return result;
+    if (nativeEvery && obj.every === nativeEvery) return obj.every(iterator, context);
+    each(obj, function(value, index, list) {
+      if (!(result = result && iterator.call(context, value, index, list))) return breaker;
+    });
+    return !!result;
+  };
+
+  // Determine if at least one element in the object matches a truth test.
+  // Delegates to **ECMAScript 5**'s native `some` if available.
+  // Aliased as `any`.
+  var any = _.some = _.any = function(obj, iterator, context) {
+    iterator || (iterator = _.identity);
+    var result = false;
+    if (obj == null) return result;
+    if (nativeSome && obj.some === nativeSome) return obj.some(iterator, context);
+    each(obj, function(value, index, list) {
+      if (result || (result = iterator.call(context, value, index, list))) return breaker;
+    });
+    return !!result;
+  };
+
+  // Determine if the array or object contains a given value (using `===`).
+  // Aliased as `include`.
+  _.contains = _.include = function(obj, target) {
+    var found = false;
+    if (obj == null) return found;
+    if (nativeIndexOf && obj.indexOf === nativeIndexOf) return obj.indexOf(target) != -1;
+    found = any(obj, function(value) {
+      return value === target;
+    });
+    return found;
+  };
+
+  // Invoke a method (with arguments) on every item in a collection.
+  _.invoke = function(obj, method) {
+    var args = slice.call(arguments, 2);
+    return _.map(obj, function(value) {
+      return (_.isFunction(method) ? method : value[method]).apply(value, args);
+    });
+  };
+
+  // Convenience version of a common use case of `map`: fetching a property.
+  _.pluck = function(obj, key) {
+    return _.map(obj, function(value){ return value[key]; });
+  };
+
+  // Convenience version of a common use case of `filter`: selecting only objects
+  // with specific `key:value` pairs.
+  _.where = function(obj, attrs) {
+    if (_.isEmpty(attrs)) return [];
+    return _.filter(obj, function(value) {
+      for (var key in attrs) {
+        if (attrs[key] !== value[key]) return false;
+      }
+      return true;
+    });
+  };
+
+  // Return the maximum element or (element-based computation).
+  // Can't optimize arrays of integers longer than 65,535 elements.
+  // See: https://bugs.webkit.org/show_bug.cgi?id=80797
+  _.max = function(obj, iterator, context) {
+    if (!iterator && _.isArray(obj) && obj[0] === +obj[0] && obj.length < 65535) {
+      return Math.max.apply(Math, obj);
+    }
+    if (!iterator && _.isEmpty(obj)) return -Infinity;
+    var result = {computed : -Infinity};
+    each(obj, function(value, index, list) {
+      var computed = iterator ? iterator.call(context, value, index, list) : value;
+      computed >= result.computed && (result = {value : value, computed : computed});
+    });
+    return result.value;
+  };
+
+  // Return the minimum element (or element-based computation).
+  _.min = function(obj, iterator, context) {
+    if (!iterator && _.isArray(obj) && obj[0] === +obj[0] && obj.length < 65535) {
+      return Math.min.apply(Math, obj);
+    }
+    if (!iterator && _.isEmpty(obj)) return Infinity;
+    var result = {computed : Infinity};
+    each(obj, function(value, index, list) {
+      var computed = iterator ? iterator.call(context, value, index, list) : value;
+      computed < result.computed && (result = {value : value, computed : computed});
+    });
+    return result.value;
+  };
+
+  // Shuffle an array.
+  _.shuffle = function(obj) {
+    var rand;
+    var index = 0;
+    var shuffled = [];
+    each(obj, function(value) {
+      rand = _.random(index++);
+      shuffled[index - 1] = shuffled[rand];
+      shuffled[rand] = value;
+    });
+    return shuffled;
+  };
+
+  // An internal function to generate lookup iterators.
+  var lookupIterator = function(value) {
+    return _.isFunction(value) ? value : function(obj){ return obj[value]; };
+  };
+
+  // Sort the object's values by a criterion produced by an iterator.
+  _.sortBy = function(obj, value, context) {
+    var iterator = lookupIterator(value);
+    return _.pluck(_.map(obj, function(value, index, list) {
+      return {
+        value : value,
+        index : index,
+        criteria : iterator.call(context, value, index, list)
+      };
+    }).sort(function(left, right) {
+      var a = left.criteria;
+      var b = right.criteria;
+      if (a !== b) {
+        if (a > b || a === void 0) return 1;
+        if (a < b || b === void 0) return -1;
+      }
+      return left.index < right.index ? -1 : 1;
+    }), 'value');
+  };
+
+  // An internal function used for aggregate "group by" operations.
+  var group = function(obj, value, context, behavior) {
+    var result = {};
+    var iterator = lookupIterator(value);
+    each(obj, function(value, index) {
+      var key = iterator.call(context, value, index, obj);
+      behavior(result, key, value);
+    });
+    return result;
+  };
+
+  // Groups the object's values by a criterion. Pass either a string attribute
+  // to group by, or a function that returns the criterion.
+  _.groupBy = function(obj, value, context) {
+    return group(obj, value, context, function(result, key, value) {
+      (_.has(result, key) ? result[key] : (result[key] = [])).push(value);
+    });
+  };
+
+  // Counts instances of an object that group by a certain criterion. Pass
+  // either a string attribute to count by, or a function that returns the
+  // criterion.
+  _.countBy = function(obj, value, context) {
+    return group(obj, value, context, function(result, key, value) {
+      if (!_.has(result, key)) result[key] = 0;
+      result[key]++;
+    });
+  };
+
+  // Use a comparator function to figure out the smallest index at which
+  // an object should be inserted so as to maintain order. Uses binary search.
+  _.sortedIndex = function(array, obj, iterator, context) {
+    iterator = iterator == null ? _.identity : lookupIterator(iterator);
+    var value = iterator.call(context, obj);
+    var low = 0, high = array.length;
+    while (low < high) {
+      var mid = (low + high) >>> 1;
+      iterator.call(context, array[mid]) < value ? low = mid + 1 : high = mid;
+    }
+    return low;
+  };
+
+  // Safely convert anything iterable into a real, live array.
+  _.toArray = function(obj) {
+    if (!obj) return [];
+    if (obj.length === +obj.length) return slice.call(obj);
+    return _.values(obj);
+  };
+
+  // Return the number of elements in an object.
+  _.size = function(obj) {
+    return (obj.length === +obj.length) ? obj.length : _.keys(obj).length;
+  };
+
+  // Array Functions
+  // ---------------
+
+  // Get the first element of an array. Passing **n** will return the first N
+  // values in the array. Aliased as `head` and `take`. The **guard** check
+  // allows it to work with `_.map`.
+  _.first = _.head = _.take = function(array, n, guard) {
+    return (n != null) && !guard ? slice.call(array, 0, n) : array[0];
+  };
+
+  // Returns everything but the last entry of the array. Especially useful on
+  // the arguments object. Passing **n** will return all the values in
+  // the array, excluding the last N. The **guard** check allows it to work with
+  // `_.map`.
+  _.initial = function(array, n, guard) {
+    return slice.call(array, 0, array.length - ((n == null) || guard ? 1 : n));
+  };
+
+  // Get the last element of an array. Passing **n** will return the last N
+  // values in the array. The **guard** check allows it to work with `_.map`.
+  _.last = function(array, n, guard) {
+    if ((n != null) && !guard) {
+      return slice.call(array, Math.max(array.length - n, 0));
+    } else {
+      return array[array.length - 1];
+    }
+  };
+
+  // Returns everything but the first entry of the array. Aliased as `tail` and `drop`.
+  // Especially useful on the arguments object. Passing an **n** will return
+  // the rest N values in the array. The **guard**
+  // check allows it to work with `_.map`.
+  _.rest = _.tail = _.drop = function(array, n, guard) {
+    return slice.call(array, (n == null) || guard ? 1 : n);
+  };
+
+  // Trim out all falsy values from an array.
+  _.compact = function(array) {
+    return _.filter(array, function(value){ return !!value; });
+  };
+
+  // Internal implementation of a recursive `flatten` function.
+  var flatten = function(input, shallow, output) {
+    each(input, function(value) {
+      if (_.isArray(value)) {
+        shallow ? push.apply(output, value) : flatten(value, shallow, output);
+      } else {
+        output.push(value);
+      }
+    });
+    return output;
+  };
+
+  // Return a completely flattened version of an array.
+  _.flatten = function(array, shallow) {
+    return flatten(array, shallow, []);
+  };
+
+  // Return a version of the array that does not contain the specified value(s).
+  _.without = function(array) {
+    return _.difference(array, slice.call(arguments, 1));
+  };
+
+  // Produce a duplicate-free version of the array. If the array has already
+  // been sorted, you have the option of using a faster algorithm.
+  // Aliased as `unique`.
+  _.uniq = _.unique = function(array, isSorted, iterator, context) {
+    var initial = iterator ? _.map(array, iterator, context) : array;
+    var results = [];
+    var seen = [];
+    each(initial, function(value, index) {
+      if (isSorted ? (!index || seen[seen.length - 1] !== value) : !_.contains(seen, value)) {
+        seen.push(value);
+        results.push(array[index]);
+      }
+    });
+    return results;
+  };
+
+  // Produce an array that contains the union: each distinct element from all of
+  // the passed-in arrays.
+  _.union = function() {
+    return _.uniq(concat.apply(ArrayProto, arguments));
+  };
+
+  // Produce an array that contains every item shared between all the
+  // passed-in arrays.
+  _.intersection = function(array) {
+    var rest = slice.call(arguments, 1);
+    return _.filter(_.uniq(array), function(item) {
+      return _.every(rest, function(other) {
+        return _.indexOf(other, item) >= 0;
+      });
+    });
+  };
+
+  // Take the difference between one array and a number of other arrays.
+  // Only the elements present in just the first array will remain.
+  _.difference = function(array) {
+    var rest = concat.apply(ArrayProto, slice.call(arguments, 1));
+    return _.filter(array, function(value){ return !_.contains(rest, value); });
+  };
+
+  // Zip together multiple lists into a single array -- elements that share
+  // an index go together.
+  _.zip = function() {
+    var args = slice.call(arguments);
+    var length = _.max(_.pluck(args, 'length'));
+    var results = new Array(length);
+    for (var i = 0; i < length; i++) {
+      results[i] = _.pluck(args, "" + i);
+    }
+    return results;
+  };
+
+  // Converts lists into objects. Pass either a single array of `[key, value]`
+  // pairs, or two parallel arrays of the same length -- one of keys, and one of
+  // the corresponding values.
+  _.object = function(list, values) {
+    var result = {};
+    for (var i = 0, l = list.length; i < l; i++) {
+      if (values) {
+        result[list[i]] = values[i];
+      } else {
+        result[list[i][0]] = list[i][1];
+      }
+    }
+    return result;
+  };
+
+  // If the browser doesn't supply us with indexOf (I'm looking at you, **MSIE**),
+  // we need this function. Return the position of the first occurrence of an
+  // item in an array, or -1 if the item is not included in the array.
+  // Delegates to **ECMAScript 5**'s native `indexOf` if available.
+  // If the array is large and already in sort order, pass `true`
+  // for **isSorted** to use binary search.
+  _.indexOf = function(array, item, isSorted) {
+    if (array == null) return -1;
+    var i = 0, l = array.length;
+    if (isSorted) {
+      if (typeof isSorted == 'number') {
+        i = (isSorted < 0 ? Math.max(0, l + isSorted) : isSorted);
+      } else {
+        i = _.sortedIndex(array, item);
+        return array[i] === item ? i : -1;
+      }
+    }
+    if (nativeIndexOf && array.indexOf === nativeIndexOf) return array.indexOf(item, isSorted);
+    for (; i < l; i++) if (array[i] === item) return i;
+    return -1;
+  };
+
+  // Delegates to **ECMAScript 5**'s native `lastIndexOf` if available.
+  _.lastIndexOf = function(array, item, from) {
+    if (array == null) return -1;
+    var hasIndex = from != null;
+    if (nativeLastIndexOf && array.lastIndexOf === nativeLastIndexOf) {
+      return hasIndex ? array.lastIndexOf(item, from) : array.lastIndexOf(item);
+    }
+    var i = (hasIndex ? from : array.length);
+    while (i--) if (array[i] === item) return i;
+    return -1;
+  };
+
+  // Generate an integer Array containing an arithmetic progression. A port of
+  // the native Python `range()` function. See
+  // [the Python documentation](http://docs.python.org/library/functions.html#range).
+  _.range = function(start, stop, step) {
+    if (arguments.length <= 1) {
+      stop = start || 0;
+      start = 0;
+    }
+    step = arguments[2] || 1;
+
+    var len = Math.max(Math.ceil((stop - start) / step), 0);
+    var idx = 0;
+    var range = new Array(len);
+
+    while(idx < len) {
+      range[idx++] = start;
+      start += step;
+    }
+
+    return range;
+  };
+
+  // Function (ahem) Functions
+  // ------------------
+
+  // Reusable constructor function for prototype setting.
+  var ctor = function(){};
+
+  // Create a function bound to a given object (assigning `this`, and arguments,
+  // optionally). Binding with arguments is also known as `curry`.
+  // Delegates to **ECMAScript 5**'s native `Function.bind` if available.
+  // We check for `func.bind` first, to fail fast when `func` is undefined.
+  _.bind = function bind(func, context) {
+    var bound, args;
+    if (func.bind === nativeBind && nativeBind) return nativeBind.apply(func, slice.call(arguments, 1));
+    if (!_.isFunction(func)) throw new TypeError;
+    args = slice.call(arguments, 2);
+    return bound = function() {
+      if (!(this instanceof bound)) return func.apply(context, args.concat(slice.call(arguments)));
+      ctor.prototype = func.prototype;
+      var self = new ctor;
+      var result = func.apply(self, args.concat(slice.call(arguments)));
+      if (Object(result) === result) return result;
+      return self;
+    };
+  };
+
+  // Bind all of an object's methods to that object. Useful for ensuring that
+  // all callbacks defined on an object belong to it.
+  _.bindAll = function(obj) {
+    var funcs = slice.call(arguments, 1);
+    if (funcs.length == 0) funcs = _.functions(obj);
+    each(funcs, function(f) { obj[f] = _.bind(obj[f], obj); });
+    return obj;
+  };
+
+  // Memoize an expensive function by storing its results.
+  _.memoize = function(func, hasher) {
+    var memo = {};
+    hasher || (hasher = _.identity);
+    return function() {
+      var key = hasher.apply(this, arguments);
+      return _.has(memo, key) ? memo[key] : (memo[key] = func.apply(this, arguments));
+    };
+  };
+
+  // Delays a function for the given number of milliseconds, and then calls
+  // it with the arguments supplied.
+  _.delay = function(func, wait) {
+    var args = slice.call(arguments, 2);
+    return setTimeout(function(){ return func.apply(null, args); }, wait);
+  };
+
+  // Defers a function, scheduling it to run after the current call stack has
+  // cleared.
+  _.defer = function(func) {
+    return _.delay.apply(_, [func, 1].concat(slice.call(arguments, 1)));
+  };
+
+  // Returns a function, that, when invoked, will only be triggered at most once
+  // during a given window of time.
+  _.throttle = function(func, wait) {
+    var context, args, timeout, throttling, more, result;
+    var whenDone = _.debounce(function(){ more = throttling = false; }, wait);
+    return function() {
+      context = this; args = arguments;
+      var later = function() {
+        timeout = null;
+        if (more) {
+          result = func.apply(context, args);
+        }
+        whenDone();
+      };
+      if (!timeout) timeout = setTimeout(later, wait);
+      if (throttling) {
+        more = true;
+      } else {
+        throttling = true;
+        result = func.apply(context, args);
+      }
+      whenDone();
+      return result;
+    };
+  };
+
+  // Returns a function, that, as long as it continues to be invoked, will not
+  // be triggered. The function will be called after it stops being called for
+  // N milliseconds. If `immediate` is passed, trigger the function on the
+  // leading edge, instead of the trailing.
+  _.debounce = function(func, wait, immediate) {
+    var timeout, result;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) result = func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) result = func.apply(context, args);
+      return result;
+    };
+  };
+
+  // Returns a function that will be executed at most one time, no matter how
+  // often you call it. Useful for lazy initialization.
+  _.once = function(func) {
+    var ran = false, memo;
+    return function() {
+      if (ran) return memo;
+      ran = true;
+      memo = func.apply(this, arguments);
+      func = null;
+      return memo;
+    };
+  };
+
+  // Returns the first function passed as an argument to the second,
+  // allowing you to adjust arguments, run code before and after, and
+  // conditionally execute the original function.
+  _.wrap = function(func, wrapper) {
+    return function() {
+      var args = [func];
+      push.apply(args, arguments);
+      return wrapper.apply(this, args);
+    };
+  };
+
+  // Returns a function that is the composition of a list of functions, each
+  // consuming the return value of the function that follows.
+  _.compose = function() {
+    var funcs = arguments;
+    return function() {
+      var args = arguments;
+      for (var i = funcs.length - 1; i >= 0; i--) {
+        args = [funcs[i].apply(this, args)];
+      }
+      return args[0];
+    };
+  };
+
+  // Returns a function that will only be executed after being called N times.
+  _.after = function(times, func) {
+    if (times <= 0) return func();
+    return function() {
+      if (--times < 1) {
+        return func.apply(this, arguments);
+      }
+    };
+  };
+
+  // Object Functions
+  // ----------------
+
+  // Retrieve the names of an object's properties.
+  // Delegates to **ECMAScript 5**'s native `Object.keys`
+  _.keys = nativeKeys || function(obj) {
+    if (obj !== Object(obj)) throw new TypeError('Invalid object');
+    var keys = [];
+    for (var key in obj) if (_.has(obj, key)) keys[keys.length] = key;
+    return keys;
+  };
+
+  // Retrieve the values of an object's properties.
+  _.values = function(obj) {
+    var values = [];
+    for (var key in obj) if (_.has(obj, key)) values.push(obj[key]);
+    return values;
+  };
+
+  // Convert an object into a list of `[key, value]` pairs.
+  _.pairs = function(obj) {
+    var pairs = [];
+    for (var key in obj) if (_.has(obj, key)) pairs.push([key, obj[key]]);
+    return pairs;
+  };
+
+  // Invert the keys and values of an object. The values must be serializable.
+  _.invert = function(obj) {
+    var result = {};
+    for (var key in obj) if (_.has(obj, key)) result[obj[key]] = key;
+    return result;
+  };
+
+  // Return a sorted list of the function names available on the object.
+  // Aliased as `methods`
+  _.functions = _.methods = function(obj) {
+    var names = [];
+    for (var key in obj) {
+      if (_.isFunction(obj[key])) names.push(key);
+    }
+    return names.sort();
+  };
+
+  // Extend a given object with all the properties in passed-in object(s).
+  _.extend = function(obj) {
+    each(slice.call(arguments, 1), function(source) {
+      for (var prop in source) {
+        obj[prop] = source[prop];
+      }
+    });
+    return obj;
+  };
+
+  // Return a copy of the object only containing the whitelisted properties.
+  _.pick = function(obj) {
+    var copy = {};
+    var keys = concat.apply(ArrayProto, slice.call(arguments, 1));
+    each(keys, function(key) {
+      if (key in obj) copy[key] = obj[key];
+    });
+    return copy;
+  };
+
+   // Return a copy of the object without the blacklisted properties.
+  _.omit = function(obj) {
+    var copy = {};
+    var keys = concat.apply(ArrayProto, slice.call(arguments, 1));
+    for (var key in obj) {
+      if (!_.contains(keys, key)) copy[key] = obj[key];
+    }
+    return copy;
+  };
+
+  // Fill in a given object with default properties.
+  _.defaults = function(obj) {
+    each(slice.call(arguments, 1), function(source) {
+      for (var prop in source) {
+        if (obj[prop] == null) obj[prop] = source[prop];
+      }
+    });
+    return obj;
+  };
+
+  // Create a (shallow-cloned) duplicate of an object.
+  _.clone = function(obj) {
+    if (!_.isObject(obj)) return obj;
+    return _.isArray(obj) ? obj.slice() : _.extend({}, obj);
+  };
+
+  // Invokes interceptor with the obj, and then returns obj.
+  // The primary purpose of this method is to "tap into" a method chain, in
+  // order to perform operations on intermediate results within the chain.
+  _.tap = function(obj, interceptor) {
+    interceptor(obj);
+    return obj;
+  };
+
+  // Internal recursive comparison function for `isEqual`.
+  var eq = function(a, b, aStack, bStack) {
+    // Identical objects are equal. `0 === -0`, but they aren't identical.
+    // See the Harmony `egal` proposal: http://wiki.ecmascript.org/doku.php?id=harmony:egal.
+    if (a === b) return a !== 0 || 1 / a == 1 / b;
+    // A strict comparison is necessary because `null == undefined`.
+    if (a == null || b == null) return a === b;
+    // Unwrap any wrapped objects.
+    if (a instanceof _) a = a._wrapped;
+    if (b instanceof _) b = b._wrapped;
+    // Compare `[[Class]]` names.
+    var className = toString.call(a);
+    if (className != toString.call(b)) return false;
+    switch (className) {
+      // Strings, numbers, dates, and booleans are compared by value.
+      case '[object String]':
+        // Primitives and their corresponding object wrappers are equivalent; thus, `"5"` is
+        // equivalent to `new String("5")`.
+        return a == String(b);
+      case '[object Number]':
+        // `NaN`s are equivalent, but non-reflexive. An `egal` comparison is performed for
+        // other numeric values.
+        return a != +a ? b != +b : (a == 0 ? 1 / a == 1 / b : a == +b);
+      case '[object Date]':
+      case '[object Boolean]':
+        // Coerce dates and booleans to numeric primitive values. Dates are compared by their
+        // millisecond representations. Note that invalid dates with millisecond representations
+        // of `NaN` are not equivalent.
+        return +a == +b;
+      // RegExps are compared by their source patterns and flags.
+      case '[object RegExp]':
+        return a.source == b.source &&
+               a.global == b.global &&
+               a.multiline == b.multiline &&
+               a.ignoreCase == b.ignoreCase;
+    }
+    if (typeof a != 'object' || typeof b != 'object') return false;
+    // Assume equality for cyclic structures. The algorithm for detecting cyclic
+    // structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
+    var length = aStack.length;
+    while (length--) {
+      // Linear search. Performance is inversely proportional to the number of
+      // unique nested structures.
+      if (aStack[length] == a) return bStack[length] == b;
+    }
+    // Add the first object to the stack of traversed objects.
+    aStack.push(a);
+    bStack.push(b);
+    var size = 0, result = true;
+    // Recursively compare objects and arrays.
+    if (className == '[object Array]') {
+      // Compare array lengths to determine if a deep comparison is necessary.
+      size = a.length;
+      result = size == b.length;
+      if (result) {
+        // Deep compare the contents, ignoring non-numeric properties.
+        while (size--) {
+          if (!(result = eq(a[size], b[size], aStack, bStack))) break;
+        }
+      }
+    } else {
+      // Objects with different constructors are not equivalent, but `Object`s
+      // from different frames are.
+      var aCtor = a.constructor, bCtor = b.constructor;
+      if (aCtor !== bCtor && !(_.isFunction(aCtor) && (aCtor instanceof aCtor) &&
+                               _.isFunction(bCtor) && (bCtor instanceof bCtor))) {
+        return false;
+      }
+      // Deep compare objects.
+      for (var key in a) {
+        if (_.has(a, key)) {
+          // Count the expected number of properties.
+          size++;
+          // Deep compare each member.
+          if (!(result = _.has(b, key) && eq(a[key], b[key], aStack, bStack))) break;
+        }
+      }
+      // Ensure that both objects contain the same number of properties.
+      if (result) {
+        for (key in b) {
+          if (_.has(b, key) && !(size--)) break;
+        }
+        result = !size;
+      }
+    }
+    // Remove the first object from the stack of traversed objects.
+    aStack.pop();
+    bStack.pop();
+    return result;
+  };
+
+  // Perform a deep comparison to check if two objects are equal.
+  _.isEqual = function(a, b) {
+    return eq(a, b, [], []);
+  };
+
+  // Is a given array, string, or object empty?
+  // An "empty" object has no enumerable own-properties.
+  _.isEmpty = function(obj) {
+    if (obj == null) return true;
+    if (_.isArray(obj) || _.isString(obj)) return obj.length === 0;
+    for (var key in obj) if (_.has(obj, key)) return false;
+    return true;
+  };
+
+  // Is a given value a DOM element?
+  _.isElement = function(obj) {
+    return !!(obj && obj.nodeType === 1);
+  };
+
+  // Is a given value an array?
+  // Delegates to ECMA5's native Array.isArray
+  _.isArray = nativeIsArray || function(obj) {
+    return toString.call(obj) == '[object Array]';
+  };
+
+  // Is a given variable an object?
+  _.isObject = function(obj) {
+    return obj === Object(obj);
+  };
+
+  // Add some isType methods: isArguments, isFunction, isString, isNumber, isDate, isRegExp.
+  each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp'], function(name) {
+    _['is' + name] = function(obj) {
+      return toString.call(obj) == '[object ' + name + ']';
+    };
+  });
+
+  // Define a fallback version of the method in browsers (ahem, IE), where
+  // there isn't any inspectable "Arguments" type.
+  if (!_.isArguments(arguments)) {
+    _.isArguments = function(obj) {
+      return !!(obj && _.has(obj, 'callee'));
+    };
+  }
+
+  // Optimize `isFunction` if appropriate.
+  if (typeof (/./) !== 'function') {
+    _.isFunction = function(obj) {
+      return typeof obj === 'function';
+    };
+  }
+
+  // Is a given object a finite number?
+  _.isFinite = function(obj) {
+    return _.isNumber(obj) && isFinite(obj);
+  };
+
+  // Is the given value `NaN`? (NaN is the only number which does not equal itself).
+  _.isNaN = function(obj) {
+    return _.isNumber(obj) && obj != +obj;
+  };
+
+  // Is a given value a boolean?
+  _.isBoolean = function(obj) {
+    return obj === true || obj === false || toString.call(obj) == '[object Boolean]';
+  };
+
+  // Is a given value equal to null?
+  _.isNull = function(obj) {
+    return obj === null;
+  };
+
+  // Is a given variable undefined?
+  _.isUndefined = function(obj) {
+    return obj === void 0;
+  };
+
+  // Shortcut function for checking if an object has a given property directly
+  // on itself (in other words, not on a prototype).
+  _.has = function(obj, key) {
+    return hasOwnProperty.call(obj, key);
+  };
+
+  // Utility Functions
+  // -----------------
+
+  // Run Underscore.js in *noConflict* mode, returning the `_` variable to its
+  // previous owner. Returns a reference to the Underscore object.
+  _.noConflict = function() {
+    root._ = previousUnderscore;
+    return this;
+  };
+
+  // Keep the identity function around for default iterators.
+  _.identity = function(value) {
+    return value;
+  };
+
+  // Run a function **n** times.
+  _.times = function(n, iterator, context) {
+    for (var i = 0; i < n; i++) iterator.call(context, i);
+  };
+
+  // Return a random integer between min and max (inclusive).
+  _.random = function(min, max) {
+    if (max == null) {
+      max = min;
+      min = 0;
+    }
+    return min + (0 | Math.random() * (max - min + 1));
+  };
+
+  // List of HTML entities for escaping.
+  var entityMap = {
+    escape: {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#x27;',
+      '/': '&#x2F;'
+    }
+  };
+  entityMap.unescape = _.invert(entityMap.escape);
+
+  // Regexes containing the keys and values listed immediately above.
+  var entityRegexes = {
+    escape:   new RegExp('[' + _.keys(entityMap.escape).join('') + ']', 'g'),
+    unescape: new RegExp('(' + _.keys(entityMap.unescape).join('|') + ')', 'g')
+  };
+
+  // Functions for escaping and unescaping strings to/from HTML interpolation.
+  _.each(['escape', 'unescape'], function(method) {
+    _[method] = function(string) {
+      if (string == null) return '';
+      return ('' + string).replace(entityRegexes[method], function(match) {
+        return entityMap[method][match];
+      });
+    };
+  });
+
+  // If the value of the named property is a function then invoke it;
+  // otherwise, return it.
+  _.result = function(object, property) {
+    if (object == null) return null;
+    var value = object[property];
+    return _.isFunction(value) ? value.call(object) : value;
+  };
+
+  // Add your own custom functions to the Underscore object.
+  _.mixin = function(obj) {
+    each(_.functions(obj), function(name){
+      var func = _[name] = obj[name];
+      _.prototype[name] = function() {
+        var args = [this._wrapped];
+        push.apply(args, arguments);
+        return result.call(this, func.apply(_, args));
+      };
+    });
+  };
+
+  // Generate a unique integer id (unique within the entire client session).
+  // Useful for temporary DOM ids.
+  var idCounter = 0;
+  _.uniqueId = function(prefix) {
+    var id = idCounter++;
+    return prefix ? prefix + id : id;
+  };
+
+  // By default, Underscore uses ERB-style template delimiters, change the
+  // following template settings to use alternative delimiters.
+  _.templateSettings = {
+    evaluate    : /<%([\s\S]+?)%>/g,
+    interpolate : /<%=([\s\S]+?)%>/g,
+    escape      : /<%-([\s\S]+?)%>/g
+  };
+
+  // When customizing `templateSettings`, if you don't want to define an
+  // interpolation, evaluation or escaping regex, we need one that is
+  // guaranteed not to match.
+  var noMatch = /(.)^/;
+
+  // Certain characters need to be escaped so that they can be put into a
+  // string literal.
+  var escapes = {
+    "'":      "'",
+    '\\':     '\\',
+    '\r':     'r',
+    '\n':     'n',
+    '\t':     't',
+    '\u2028': 'u2028',
+    '\u2029': 'u2029'
+  };
+
+  var escaper = /\\|'|\r|\n|\t|\u2028|\u2029/g;
+
+  // JavaScript micro-templating, similar to John Resig's implementation.
+  // Underscore templating handles arbitrary delimiters, preserves whitespace,
+  // and correctly escapes quotes within interpolated code.
+  _.template = function(text, data, settings) {
+    settings = _.defaults({}, settings, _.templateSettings);
+
+    // Combine delimiters into one regular expression via alternation.
+    var matcher = new RegExp([
+      (settings.escape || noMatch).source,
+      (settings.interpolate || noMatch).source,
+      (settings.evaluate || noMatch).source
+    ].join('|') + '|$', 'g');
+
+    // Compile the template source, escaping string literals appropriately.
+    var index = 0;
+    var source = "__p+='";
+    text.replace(matcher, function(match, escape, interpolate, evaluate, offset) {
+      source += text.slice(index, offset)
+        .replace(escaper, function(match) { return '\\' + escapes[match]; });
+      source +=
+        escape ? "'+\n((__t=(" + escape + "))==null?'':_.escape(__t))+\n'" :
+        interpolate ? "'+\n((__t=(" + interpolate + "))==null?'':__t)+\n'" :
+        evaluate ? "';\n" + evaluate + "\n__p+='" : '';
+      index = offset + match.length;
+    });
+    source += "';\n";
+
+    // If a variable is not specified, place data values in local scope.
+    if (!settings.variable) source = 'with(obj||{}){\n' + source + '}\n';
+
+    source = "var __t,__p='',__j=Array.prototype.join," +
+      "print=function(){__p+=__j.call(arguments,'');};\n" +
+      source + "return __p;\n";
+
+    try {
+      var render = new Function(settings.variable || 'obj', '_', source);
+    } catch (e) {
+      e.source = source;
+      throw e;
+    }
+
+    if (data) return render(data, _);
+    var template = function(data) {
+      return render.call(this, data, _);
+    };
+
+    // Provide the compiled function source as a convenience for precompilation.
+    template.source = 'function(' + (settings.variable || 'obj') + '){\n' + source + '}';
+
+    return template;
+  };
+
+  // Add a "chain" function, which will delegate to the wrapper.
+  _.chain = function(obj) {
+    return _(obj).chain();
+  };
+
+  // OOP
+  // ---------------
+  // If Underscore is called as a function, it returns a wrapped object that
+  // can be used OO-style. This wrapper holds altered versions of all the
+  // underscore functions. Wrapped objects may be chained.
+
+  // Helper function to continue chaining intermediate results.
+  var result = function(obj) {
+    return this._chain ? _(obj).chain() : obj;
+  };
+
+  // Add all of the Underscore functions to the wrapper object.
+  _.mixin(_);
+
+  // Add all mutator Array functions to the wrapper.
+  each(['pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift'], function(name) {
+    var method = ArrayProto[name];
+    _.prototype[name] = function() {
+      var obj = this._wrapped;
+      method.apply(obj, arguments);
+      if ((name == 'shift' || name == 'splice') && obj.length === 0) delete obj[0];
+      return result.call(this, obj);
+    };
+  });
+
+  // Add all accessor Array functions to the wrapper.
+  each(['concat', 'join', 'slice'], function(name) {
+    var method = ArrayProto[name];
+    _.prototype[name] = function() {
+      return result.call(this, method.apply(this._wrapped, arguments));
+    };
+  });
+
+  _.extend(_.prototype, {
+
+    // Start chaining a wrapped Underscore object.
+    chain: function() {
+      this._chain = true;
+      return this;
+    },
+
+    // Extracts the result from a wrapped and chained object.
+    value: function() {
+      return this._wrapped;
+    }
+
+  });
+
+}).call(this);
+
+
+});
+
+define("kj/demo/0.0.1/common-debug", ["$-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "kj/accordion/0.0.1/accordion-debug", "gallery/handlebars/1.0.0/handlebars-debug", "kj/tree/0.0.1/tree-debug", "arale/switchable/0.9.11/switchable-debug", "arale/easing/1.0.0/easing-debug", "kj/tab/0.0.1/tab-debug", "kj/dialog/0.0.1/dialog-debug", "arale/overlay/0.9.12/mask-debug", "arale/overlay/0.9.12/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/dialog/0.9.1/confirm-box-debug", "arale/dialog/0.9.1/anim-dialog-debug", "arale/dialog/0.9.1/base-dialog-debug", "arale/widget/1.0.2/templatable-debug", "kj/grid/0.0.1/grid-debug", "gallery/underscore/1.4.2/underscore-debug"], function(require, exports, module) {
   require('$-debug');
   require('arale/widget/1.0.2/widget-debug');
   require('kj/accordion/0.0.1/accordion-debug');
   require('kj/tab/0.0.1/tab-debug');
+  require('kj/dialog/0.0.1/dialog-debug');
+  require('kj/grid/0.0.1/grid-debug');
   require('kj/tree/0.0.1/tree-debug');
 });

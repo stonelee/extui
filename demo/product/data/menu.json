@@ -26,6 +26,12 @@
     "uri": "grid",
     "icon": "icon_book",
     "children": []
+  },{
+    "id": 15,
+    "name": "Dialog",
+    "uri": "dialog",
+    "icon": "icon_book",
+    "children": []
   }]
 },{
   "id": 2,
