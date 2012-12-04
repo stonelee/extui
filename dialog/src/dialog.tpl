@@ -13,7 +13,7 @@
     {{#if hasFoot}}
     <div class="window-toolbar" data-role="foot">
       {{#if hasOk}}<button class="btn" data-role="confirm">确定</button>{{/if}}
-      {{#if hasCancel}}<button class="btn btn-is-pressed" data-role="cancel">取消</button>{{/if}}
+      {{#if hasCancel}}<button class="btn" data-role="cancel">取消</button>{{/if}}
     </div>
     {{/if}}
   </div>

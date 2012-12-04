@@ -2,6 +2,12 @@ define(function(require, exports, module) {
   var $ = require('$'),
     Dialog = require('dialog');
 
+  $(document).delegate('.btn', 'mousedown', function(e) {
+    $(this).addClass('btn-is-pressed');
+  }).delegate('.btn', 'mouseup', function(e) {
+    $(this).removeClass('btn-is-pressed');
+  });
+
   var d11 = new Dialog({
     trigger: '#trigger11',
     title: function() {

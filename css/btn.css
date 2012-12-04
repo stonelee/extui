@@ -16,3 +16,8 @@
   background-color: rgb(182, 203, 228);
   background-image: -webkit-linear-gradient(top,rgb(182, 203, 228),rgb(191, 210, 230) 48%,rgb(141, 192, 245) 52%,rgb(152, 197, 245));
 }
+.btn-is-pressed:hover {
+  border-color: rgb(158, 186, 225);
+  background-color: rgb(182, 203, 228);
+  background-image: -webkit-linear-gradient(top,rgb(182, 203, 228),rgb(191, 210, 230) 48%,rgb(141, 192, 245) 52%,rgb(152, 197, 245));
+}
