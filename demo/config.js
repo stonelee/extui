@@ -4,6 +4,7 @@ seajs.config({
     'widget': 'arale/widget/1.0.2/widget',
     'accordion': 'kj/accordion/0.0.1/accordion',
     'tab': 'kj/tab/0.0.1/tab',
+    'dialog': 'kj/dialog/0.0.1/dialog',
     'tree': 'kj/tree/0.0.1/tree'
   }
 });
