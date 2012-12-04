@@ -1,0 +1,15 @@
+{
+    "name": "dialog",
+    "version": "0.0.1",
+    "root": "kj",
+    "description": "dialog组件",
+    "author": "stonelee",
+    "dependencies": {
+        "$": "$",
+        "confirm-box": "arale/dialog/0.9.1/confirm-box"
+    },
+    "tests": ["dialog"],
+    "output": {
+        "dialog.js": "."
+    }
+}
