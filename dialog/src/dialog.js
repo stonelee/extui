@@ -10,6 +10,40 @@ define(function(require, exports, module) {
       template: require('./dialog.tpl'),
       width: 300
     },
+    events: {
+      'mousedown [data-role=head]': 'dragStart',
+      'mousemove': 'drag',
+      'mouseup [data-role=head]': 'dragEnd'
+    },
+    dragStart: function(e) {
+      //鼠标左键
+      if (e.which == 1) {
+        //避免鼠标变为text-selection
+        e.preventDefault();
+
+        this.onDrag = true;
+        this.mouseX = e.pageX;
+        this.mouseY = e.pageY;
+      }
+    },
+    drag: function(e) {
+      if (this.onDrag) {
+        var deltaX = e.pageX - this.mouseX;
+        var deltaY = e.pageY - this.mouseY;
+
+        var p = this.element.offset();
+        this.element.offset({
+          left: p.left + deltaX,
+          top: p.top + deltaY
+        });
+
+        this.mouseX = e.pageX;
+        this.mouseY = e.pageY;
+      }
+    },
+    dragEnd: function(e) {
+      this.onDrag = false;
+    },
 
     parseElement: function() {
       this.model = {
