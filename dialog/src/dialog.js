@@ -3,6 +3,8 @@ define(function(require, exports, module) {
     mask = require('mask'),
     ConfirmBox = require('confirm-box');
 
+  var EVENT_NS = '.dialog-events-';
+
   mask.set('className', 'mask').set('opacity', 0.5).set('backgroundColor', 'rgb(204, 204, 204)');
 
   var Dialog = ConfirmBox.extend({
@@ -10,11 +12,27 @@ define(function(require, exports, module) {
       template: require('./dialog.tpl'),
       width: 300
     },
+
+    parseElement: function() {
+      this.model = {
+        title: this.get('title'),
+        content: this.get('content'),
+        icon: this.get('icon'),
+        hasTitle: this.get('hasTitle'),
+        hasOk: this.get('hasOk'),
+        hasCancel: this.get('hasCancel'),
+        hasCloseX: this.get('hasCloseX'),
+        hasFoot: this.get('hasOk') || this.get('hasCancel')
+      };
+      //直接调用父类的父类
+      ConfirmBox.superclass.parseElement.call(this);
+    },
+
     events: {
       'mousedown [data-role=head]': 'dragStart',
-      'mousemove': 'drag',
       'mouseup [data-role=head]': 'dragEnd'
     },
+
     dragStart: function(e) {
       //鼠标左键
       if (e.which == 1) {
@@ -32,11 +50,12 @@ define(function(require, exports, module) {
         var deltaY = e.pageY - this.mouseY;
 
         var p = this.element.offset();
+        var newLeft = p.left + deltaX;
+        var newTop = p.top + deltaY;
         this.element.offset({
-          left: p.left + deltaX,
-          top: p.top + deltaY
+          left: newLeft,
+          top: newTop
         });
-
         this.mouseX = e.pageX;
         this.mouseY = e.pageY;
       }
@@ -45,19 +64,17 @@ define(function(require, exports, module) {
       this.onDrag = false;
     },
 
-    parseElement: function() {
-      this.model = {
-        title: this.get('title'),
-        content: this.get('content'),
-        icon: this.get('icon'),
-        hasTitle: this.get('hasTitle'),
-        hasOk: this.get('hasOk'),
-        hasCancel: this.get('hasCancel'),
-        hasCloseX: this.get('hasCloseX'),
-        hasFoot: this.get('hasOk') || this.get('hasCancel')
-      };
-      //直接调用父类的父类
-      ConfirmBox.superclass.parseElement.call(this);
+    setup: function() {
+      Dialog.superclass.setup.call(this);
+
+      var that = this;
+      $(document).on('mousemove' + EVENT_NS + this.cid, function() {
+        that.drag.apply(that, arguments);
+      });
+    },
+    destroy: function() {
+      $(document).off('mousemove' + EVENT_NS + this.cid);
+      return Dialog.superclass.destroy.call(this);
     }
 
   });
