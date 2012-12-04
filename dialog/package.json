@@ -6,6 +6,7 @@
     "author": "stonelee",
     "dependencies": {
         "$": "$",
+        "mask": "arale/overlay/0.9.12/mask",
         "confirm-box": "arale/dialog/0.9.1/confirm-box"
     },
     "tests": ["dialog"],

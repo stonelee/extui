@@ -6,9 +6,12 @@
 <link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
 
 <input type="button" id="trigger11" value="默认样式对话框" />
+<input type="button" id="trigger12" value="ConfirmBox.alert()" />
+<input type="button" id="trigger13" value="ConfirmBox.confirm()" />
+<input type="button" id="trigger14" value="ConfirmBox.show()" />
 
 <script>
-seajs.use(['dialog'], function(Dialog) {
+seajs.use(['$','dialog'], function($, Dialog) {
     var d11 = new Dialog({
         trigger: '#trigger11',
         title: function() {
@@ -22,13 +25,28 @@ seajs.use(['dialog'], function(Dialog) {
         onConfirm: function() {
             var that = this;
             this.set('title', '三秒后关闭对话框');
-            this.set('content', '不要啊！！');            
+            this.set('content', '不要啊！！');
             setTimeout(function() {
                 that.hide();
             }, 3000);
         }
     });
-});
+    $('#trigger12').click(function() {
+        Dialog.alert('静态方法ConfirmBox.alert');
+    });
+
+    $('#trigger13').click(function() {
+        Dialog.confirm('静态方法ConfirmBox.confirm', '自定义标题', function() {
+            alert('点击了确定按钮');
+        }, function() {
+            alert('点击了取消按钮');
+        });
+    });
+
+    $('#trigger14').click(function() {
+        Dialog.show('只是显示一些信息，右上角关闭');
+    });
+})
 </script>
 ````
 

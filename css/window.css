@@ -19,6 +19,10 @@
   background-color: rgb(206, 217, 231);
   box-shadow: rgb(236, 242, 251) 0 1px 0 0 inset,rgb(236, 242, 251) 0 -1px 0 0 inset,rgb(236, 242, 251) -1px 0 0 0 inset,rgb(236, 242, 251) 1px 0 0 0 inset;
 }
+.window:focus {
+  /*取消chrome默认样式*/
+  outline: none;
+}
 .window-header {
   cursor: move;
 }
