@@ -5,7 +5,7 @@ define(function(require, exports, module) {
   var menu = new Accordion({
     element: '#menu',
     url: 'data/menu.json',
-    height: 274
+    height: 600-26
   });
   menu.on('itemclick',function(data){
     $('#main').attr('src', data.uri + '.html');

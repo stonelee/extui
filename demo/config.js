@@ -5,6 +5,7 @@ seajs.config({
     'accordion': 'kj/accordion/0.0.1/accordion',
     'tab': 'kj/tab/0.0.1/tab',
     'dialog': 'kj/dialog/0.0.1/dialog',
+    'grid': 'kj/grid/0.0.1/grid',
     'tree': 'kj/tree/0.0.1/tree'
   }
 });
