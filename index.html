@@ -163,7 +163,7 @@
           <i class="icon icon-btn icon-btn-is-disabled icon-grid-page-prev-disabled"></i>
           <i class="grid-separator"></i>
           <span class="grid-footer-text">当前第</span>
-          <input class="form-text" style="width:40px;" type="text">
+          <input style="width:40px;" type="text">
           <span class="grid-footer-text">/10页</span>
           <i class="grid-separator"></i>
           <i class="icon icon-btn icon-grid-page-next"></i>
@@ -195,135 +195,107 @@
         <span class="panel-header-span">form</span>
       </div>
       <div class="panel-body">
-        <table class="form">
-          <tbody>
-            <tr>
-              <td><label for="name" class="form-label">Name:</label></td>
-              <td colspan="2"><input class="form-text" id="name" type="text"></td>
-            </tr>
-            <tr>
-              <td><label for="name2" class="form-label">
-                  Name2:<span style="color:red;font-weight:bold">*</span>
-              </label></td>
-              <td><input class="form-text form-invalid" id="name2" type="text"></td>
-              <td><i class="icon form-exclamation"></i></td>
-            </tr>
-            <tr>
-              <td><label for="class" class="form-label">class:</label></td>
-              <td colspan="2">
-                <input class="form-text" id="class" type="text"><i class="form-trigger"></i>
-              </td>
-            </tr>
-
-            <tr>
-              <td colspan="3"><label for="content" class="form-label">Content:</label></td>
-            </tr>
-            <tr>
-              <td colspan="3"><textarea class="form-text" id="content" rols="10"></textarea></td>
-            </tr>
-            <tr>
-              <td colspan="2"><textarea class="form-text form-invalid" id="content2" rols="10"></textarea></td>
-              <td><i class="icon form-exclamation"></i></td>
-            </tr>
-            <tr>
-              <td colspan="3">
-                <fieldset class="fieldset">
-                  <legend>
-                    fieldset
-                  </legend>
-                  <table class="form">
-                    <tbody>
-                      <tr>
-                        <td><label for="some" class="form-label">Some:</label></td>
-                        <td><input class="form-text" id="some" type="text"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </fieldset>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="form-toolbar">
-          <button class="btn">确定</button>
-          <button class="btn btn-is-pressed">取消</button>
-        </div>
-
-      </div>
-    </div>
-    <!--form over-->
-    <!--form-->
-    <div class="panel panel-frame" style="width:500px;">
-      <div class="panel-header panel-frame-header unselectable">
-        <span class="panel-header-span">form</span>
-      </div>
-      <div class="panel-body">
-    <div class="form">
-      <div class="row">
-        <label for="text">text:</label>
-        <input class="form-text" id="text" type="text">
-      </div>
-      <div class="row">
-        <label for="invalid"><abbr>*</abbr>invalid:</label>
-        <input class="form-text form-invalid" id="invalid" type="text"><i class="icon form-exclamation"></i>
-      </div>
-      <div class="row">
-        <div class="span3">
-          <label for="comboBox">comboBox:</label>
-          <input class="form-text" id="comboBox" type="text"><i class="form-trigger"></i>
-        </div>
-        <div class="span3">
-          <label for="date">date:</label>
-          <input class="form-text" id="date" type="text"><i class="form-trigger form-date-trigger"></i>
-        </div>
-      </div>
-      <div class="span3">
-        <div class="row">
-          <label for="otherText">otherText:</label>
-          <input class="form-text" id="otherText" type="text">
-        </div>
-        <div class="row">
-          <label for="clear">clear:</label>
-          <input class="form-text" id="clear" type="text"><i class="form-trigger form-clear-trigger"></i>
-        </div>
-        <div class="row">
-          <label for="search">search:</label>
-          <input class="form-text" id="search" type="text"><i class="form-trigger form-search-trigger"></i>
-        </div>
-      </div>
-      <div class="span3">
-        <div class="row">
-          <label for="spinner">spinner:</label>
-          <input class="form-text" id="spinner" type="text"><i class="form-trigger form-spinner-trigger"></i>
-        </div>
-      </div>
-      <div class="row">
-        <label for="textarea">textarea:</label>
-        <textarea class="form-text" id="textarea" rols="10"></textarea>
-      </div>
-      <div class="row">
-        <label>radio:</label>
-        <input type="radio" checked="checked" name="sex" value="m" id="m"/><label for="m">男</label>
-        <input type="radio" name="sex" value="f" style="margin-left:20px;" id="f"><label for="f">女</label>
-      </div>
-      <div class="row">
-        <label>checkbox:</label>
-        <input type="checkbox" checked="checked" name="some" value="one" id="one"/><label for="one">one</label>
-        <input type="checkbox" name="some" value="two" style="margin-left:30px;" id="two"><label for="two">two</label>
-        <input type="checkbox" checked="checked" name="some" value="three" style="margin-left:30px;" id="three"/><label for="three">three</label>
-      </div>
-      <div class="row">
-        <label for="file"><abbr>*</abbr>上传文件</label>
-        <input type="file" name="file" id="file"/>
-      </div>
-      <div class="row">
-        <fieldset>
-          <legend>fieldset</legend>
+        <div class="form">
           <div class="row">
             <label for="text">text:</label>
-            <input class="form-text" id="text" type="text">
+            <input id="text" type="text">
           </div>
-        </fieldset>
+          <div class="row">
+            <label for="invalid"><abbr>*</abbr>invalid:</label>
+            <input class="form-invalid" id="invalid" type="password"><i class="icon form-exclamation"></i>
+          </div>
+          <div class="row">
+            <div class="span3">
+              <label for="comboBox">comboBox:</label>
+              <input id="comboBox" type="text"><i class="form-trigger"></i>
+            </div>
+            <div class="span3">
+              <label for="date">date:</label>
+              <input id="date" type="text"><i class="form-trigger form-date-trigger"></i>
+            </div>
+          </div>
+          <div class="span3">
+            <div class="row">
+              <label for="otherText">otherText:</label>
+              <input id="otherText" type="text">
+            </div>
+            <div class="row">
+              <label for="clear">clear:</label>
+              <input id="clear" type="text"><i class="form-trigger form-clear-trigger"></i>
+            </div>
+            <div class="row">
+              <label for="search">search:</label>
+              <input id="search" type="text"><i class="form-trigger form-search-trigger"></i>
+            </div>
+          </div>
+          <div class="span3">
+            <div class="row">
+              <label for="spinner">spinner:</label>
+              <input id="spinner" type="text"><i class="form-trigger form-spinner-trigger"></i>
+            </div>
+          </div>
+          <div class="row">
+            <label for="textarea">textarea:</label>
+            <textarea id="textarea" rols="10"></textarea>
+          </div>
+          <div class="row">
+            <label>radio:</label>
+            <input type="radio" checked="checked" name="sex" value="m" id="m"/><label for="m">男</label>
+            <input type="radio" name="sex" value="f" style="margin-left:20px;" id="f"><label for="f">女</label>
+          </div>
+          <div class="row">
+            <label>checkbox:</label>
+            <input type="checkbox" checked="checked" name="some" value="one" id="one"/><label for="one">one</label>
+            <input type="checkbox" name="some" value="two" style="margin-left:30px;" id="two"><label for="two">two</label>
+            <input type="checkbox" checked="checked" name="some" value="three" style="margin-left:30px;" id="three"/><label for="three">three</label>
+          </div>
+          <div class="row">
+            <label for="file"><abbr>*</abbr>上传文件</label>
+            <input type="file" name="file" id="file"/>
+          </div>
+          <div class="row">
+            <fieldset>
+              <legend>fieldset</legend>
+              <div class="row">
+                <label for="text">text:</label>
+                <input id="text" type="text">
+              </div>
+            </fieldset>
+          </div>
+          <div class="row">
+            <fieldset>
+              <legend>span3-6</legend>
+                <div class="row">
+                  <div class="span3">
+                    <label for="comboBox">comboBox:</label>
+                    <input id="comboBox" type="text"><i class="form-trigger"></i>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="span4">
+                    <label for="comboBox">comboBox:</label>
+                    <input id="comboBox" type="text"><i class="form-trigger"></i>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="span5">
+                    <label for="comboBox">comboBox:</label>
+                    <input id="comboBox" type="text"><i class="form-trigger"></i>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="span6">
+                    <label for="comboBox">comboBox:</label>
+                    <input id="comboBox" type="text"><i class="form-trigger"></i>
+                  </div>
+                </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="form-toolbar">
+          <button class="btn">确定</button>
+          <button class="btn">取消</button>
+        </div>
       </div>
     </div>
   </body>

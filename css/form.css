@@ -9,32 +9,22 @@
   color:red;
   font-weight:bold;
 }
-.form input{
+.form input,.form textarea{
   margin-left: 70px;
 }
 .form .span3 input {
-  width: 100px;
+  width: 120px;
+}
+.form .span4 input {
+  width: 200px;
+}
+.form .span5 input {
+  width: 280px;
+}
+.form .span6 input {
+  width: 360px;
 }
 
-textarea,
-input[type="text"],
-input[type="password"] {
-  /*清除默认*/
-  margin: 0;
-
-  vertical-align: middle;
-  padding: 1px 3px;
-  background: repeat-x 0 0;
-  background-color: white;
-  background-image: url('../images/form/text-bg.gif');
-  border: 1px solid rgb(181, 184, 200);
-}
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus {
-  outline: none;
-  border-color: rgb(126, 173, 217);
-}
 .form-invalid {
   background-color: white;
   background-image: url('../images/grid/invalid_line.gif');
