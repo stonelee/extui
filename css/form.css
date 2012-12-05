@@ -10,8 +10,10 @@
   font-weight:bold;
 }
 .form input,.form textarea{
+  /*可能需要更改*/
   margin-left: 70px;
 }
+/*不同span下的input宽度*/
 .form .span3 input {
   width: 120px;
 }
@@ -33,6 +35,8 @@
   border-color: rgb(204, 51, 0);
 }
 
+/*trigger*/
+/*TODO:跟icon合并*/
 .form-trigger {
   display: inline-block;
   width: 17px;
@@ -60,16 +64,13 @@
   background-image: url('../images/form/spinner-small.gif');
 }
 
-.form-exclamation {
-  background-image: url('../images/form/exclamation.gif');
-}
-
 .form-toolbar {
   text-align: center;
   border-top: 1px solid rgb(181, 184, 200);
   padding: 3px 0 4px;
 }
 
+/*field*/
 .form fieldset {
   border: 1px solid rgb(181, 184, 200);
   padding: 10px;

@@ -35,6 +35,10 @@
   background-image: url('../images/icons/book.png');
 }
 
+.form-exclamation {
+  background-image: url('../images/form/exclamation.gif');
+}
+
 .icon-question {
   width: 50px;
   height: 35px;
