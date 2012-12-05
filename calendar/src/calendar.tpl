@@ -1,29 +1,29 @@
-<div class="ui-calendar">
-    <ul class="ui-calendar-navigation" data-role="navigation-container">
-        <li class="ui-calendar-previous-year" data-role="prev-year">&lt;&lt;</li>
-        <li class="ui-calendar-previous-month" data-role="prev-month">&lt;</li>
-        <li class="ui-calendar-month-year" data-role="month-year-container">
+<div class="calendar">
+    <ul class="calendar-navigation" data-role="navigation-container">
+        <li class="calendar-previous-year" data-role="prev-year">&lt;&lt;</li>
+        <li class="calendar-previous-month" data-role="prev-month">&lt;</li>
+        <li class="calendar-month-year" data-role="month-year-container">
         <span class="month" data-role="mode-month" data-value="{{month.current.value}}">{{_ month.current.label}}</span>
         <span class="year" data-role="mode-year">{{year.current.label}}</span>
         </li>
-        <li class="ui-calendar-next-month" data-role="next-month">&gt;</li>
-        <li class="ui-calendar-next-year" data-role="next-year">&gt;&gt;</li>
+        <li class="calendar-next-month" data-role="next-month">&gt;</li>
+        <li class="calendar-next-year" data-role="next-year">&gt;&gt;</li>
     </ul>
 
-    <ul class="ui-calendar-control" data-role="pannel-container">
+    <ul class="calendar-control" data-role="pannel-container">
         {{#if mode.date}}
         {{#each day.items}}
-        <li class="ui-calendar-day ui-calendar-day-{{value}}" data-role="day" data-value="{{value}}">{{_ label}}</li>
+        <li class="calendar-day calendar-day-{{value}}" data-role="day" data-value="{{value}}">{{_ label}}</li>
         {{/each}}
         {{/if}}
     </ul>
 
-    <div class="ui-calendar-data-container" data-role="data-container">
+    <div class="calendar-data-container" data-role="data-container">
         {{#if mode.date}}
         {{#each date.items}}
-        <ul class="ui-calendar-date-column">
+        <ul class="calendar-date-column">
             {{#each this}}
-            <li class="ui-calendar-day-{{day}} {{className}}
+            <li class="calendar-day-{{day}} {{className}}
             {{#unless available}}disabled-date{{/unless}}
             "
             data-role="date" data-value="{{value}}"
@@ -35,7 +35,7 @@
 
         {{#if mode.month}}
         {{#each month.items}}
-        <ul class="ui-calendar-month-column">
+        <ul class="calendar-month-column">
             {{#each this}}
             <li data-role="month" data-value="{{value}}">{{_ label}}</li>
             {{/each}}
@@ -45,7 +45,7 @@
 
         {{#if mode.year}}
         {{#each year.items}}
-        <ul class="ui-calendar-year-column">
+        <ul class="calendar-year-column">
             {{#each this}}
             <li data-role="{{role}}" data-value="{{value}}">{{_ label}}</li>
             {{/each}}
@@ -54,10 +54,10 @@
         {{/if}}
     </div>
 
-    <div class="ui-calendar-footer" data-role="time-container">
+    <div class="calendar-footer" data-role="time-container">
       <button class="btn" data-role="today">{{_ message.today}}</button>
       {{#if mode.time}}
-      <div class="ui-calendar-time" data-role="time"><span class="ui-calendar-hour">{{time.hour}}</span> : {{time.minute}}</div>
+      <div class="calendar-time" data-role="time"><span class="calendar-hour">{{time.hour}}</span> : {{time.minute}}</div>
       {{/if}}
     </div>
 

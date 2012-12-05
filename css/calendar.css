@@ -1,13 +1,13 @@
-.ui-calendar {
+.calendar {
   border: 1px solid rgb(27, 55, 108);
   background-color: white;
 }
-.ui-calendar ul {
+.calendar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-.ui-calendar li {
+.calendar li {
   display: inline-block;
   text-align: center;
   width: 22px;
@@ -15,49 +15,49 @@
   cursor: pointer;
 }
 /*navigation*/
- .ui-calendar-navigation {
+ .calendar-navigation {
   background-color: rgb(35, 66, 124);
   color: white;
 }
-.ui-calendar-navigation .ui-calendar-month-year {
+.calendar-navigation .calendar-month-year {
   width: 75px;
 }
-.ui-calendar-navigation li {
+.calendar-navigation li {
   font-weight: normal;
 }
-.ui-calendar-navigation li:hover {
+.calendar-navigation li:hover {
   font-weight: bold;
 }
 /*control*/
- .ui-calendar-control {
+ .calendar-control {
   color: rgb(35, 61, 109);
   border-bottom: 1px solid rgb(178, 209, 245);
   background-color: rgb(223, 236, 251);
   background-image: -webkit-linear-gradient(top, rgb(237, 244, 253), rgb(205, 225, 249));
 }
 /*container*/
- .ui-calendar-date-column .previous-month {
+ .calendar-date-column .previous-month {
   color: rgb(170, 170, 170);
 }
-.ui-calendar-data-container li {
+.calendar-data-container li {
   color: black;
 }
-.ui-calendar-data-container li:hover {
+.calendar-data-container li:hover {
   background-color: rgb(221, 236, 254);
   color: black;
 }
-.ui-calendar-data-container li.focused-element {
+.calendar-data-container li.focused-element {
   border: 1px solid darkRed;
   background-color: rgb(221, 236, 254);
 }
-.ui-calendar-year-column li {
+.calendar-year-column li {
   width: 55px;
 }
-.ui-calendar-month-column li {
+.calendar-month-column li {
   width: 55px;
 }
 /*footer*/
- .ui-calendar-footer {
+ .calendar-footer {
   border-top: 1px solid rgb(178, 209, 245);
   background-color: rgb(223, 236, 251);
   background-image: -webkit-linear-gradient(top, rgb(222, 232, 245), rgb(209, 223, 240) 49%, rgb(199, 216, 237) 51%, rgb(203, 218, 238));
