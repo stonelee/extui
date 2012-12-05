@@ -252,5 +252,79 @@
       </div>
     </div>
     <!--form over-->
+    <!--form-->
+    <div class="panel panel-frame" style="width:500px;">
+      <div class="panel-header panel-frame-header unselectable">
+        <span class="panel-header-span">form</span>
+      </div>
+      <div class="panel-body">
+    <div class="form">
+      <div class="row">
+        <label for="text">text:</label>
+        <input class="form-text" id="text" type="text">
+      </div>
+      <div class="row">
+        <label for="invalid"><abbr>*</abbr>invalid:</label>
+        <input class="form-text form-invalid" id="invalid" type="text"><i class="icon form-exclamation"></i>
+      </div>
+      <div class="row">
+        <div class="span3">
+          <label for="comboBox">comboBox:</label>
+          <input class="form-text" id="comboBox" type="text"><i class="form-trigger"></i>
+        </div>
+        <div class="span3">
+          <label for="date">date:</label>
+          <input class="form-text" id="date" type="text"><i class="form-trigger form-date-trigger"></i>
+        </div>
+      </div>
+      <div class="span3">
+        <div class="row">
+          <label for="otherText">otherText:</label>
+          <input class="form-text" id="otherText" type="text">
+        </div>
+        <div class="row">
+          <label for="clear">clear:</label>
+          <input class="form-text" id="clear" type="text"><i class="form-trigger form-clear-trigger"></i>
+        </div>
+        <div class="row">
+          <label for="search">search:</label>
+          <input class="form-text" id="search" type="text"><i class="form-trigger form-search-trigger"></i>
+        </div>
+      </div>
+      <div class="span3">
+        <div class="row">
+          <label for="spinner">spinner:</label>
+          <input class="form-text" id="spinner" type="text"><i class="form-trigger form-spinner-trigger"></i>
+        </div>
+      </div>
+      <div class="row">
+        <label for="textarea">textarea:</label>
+        <textarea class="form-text" id="textarea" rols="10"></textarea>
+      </div>
+      <div class="row">
+        <label>radio:</label>
+        <input type="radio" checked="checked" name="sex" value="m" id="m"/><label for="m">男</label>
+        <input type="radio" name="sex" value="f" style="margin-left:20px;" id="f"><label for="f">女</label>
+      </div>
+      <div class="row">
+        <label>checkbox:</label>
+        <input type="checkbox" checked="checked" name="some" value="one" id="one"/><label for="one">one</label>
+        <input type="checkbox" name="some" value="two" style="margin-left:30px;" id="two"><label for="two">two</label>
+        <input type="checkbox" checked="checked" name="some" value="three" style="margin-left:30px;" id="three"/><label for="three">three</label>
+      </div>
+      <div class="row">
+        <label for="file"><abbr>*</abbr>上传文件</label>
+        <input type="file" name="file" id="file"/>
+      </div>
+      <div class="row">
+        <fieldset>
+          <legend>fieldset</legend>
+          <div class="row">
+            <label for="text">text:</label>
+            <input class="form-text" id="text" type="text">
+          </div>
+        </fieldset>
+      </div>
+    </div>
   </body>
 </html>

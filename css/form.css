@@ -1,12 +1,24 @@
 .form {
   padding: 5px;
 }
+.form label{
+  padding-right: 5px;
+  position: absolute;
+}
+.form label abbr{
+  color:red;
+  font-weight:bold;
+}
+.form input{
+  margin-left: 70px;
+}
+.form .span3 input {
+  width: 100px;
+}
 
-.form-text {
-  /*width: 100%;*/
-  /*[>同时设了padding和width<]*/
-  /*box-sizing: border-box;*/
-
+textarea,
+input[type="text"],
+input[type="password"] {
   /*清除默认*/
   margin: 0;
 
@@ -17,7 +29,9 @@
   background-image: url('../images/form/text-bg.gif');
   border: 1px solid rgb(181, 184, 200);
 }
-.form-text:focus {
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus {
   outline: none;
   border-color: rgb(126, 173, 217);
 }
@@ -43,6 +57,19 @@
   background-position: -17px 0;
   border-bottom-color: rgb(126, 173, 217);
 }
+.form-date-trigger {
+  background-image: url('../images/form/date-trigger.gif');
+}
+.form-clear-trigger {
+  background-image: url('../images/form/clear-trigger.gif');
+}
+.form-search-trigger {
+  background-image: url('../images/form/search-trigger.gif');
+}
+.form-spinner-trigger {
+  background-image: url('../images/form/spinner-small.gif');
+}
+
 .form-exclamation {
   background-image: url('../images/form/exclamation.gif');
 }
@@ -53,11 +80,11 @@
   padding: 3px 0 4px;
 }
 
-.fieldset {
+.form fieldset {
   border: 1px solid rgb(181, 184, 200);
   padding: 10px;
 }
-.fieldset > legend {
+.form fieldset > legend {
   color: rgb(21, 66, 139);
   padding: 0 3px 1px;
 }
