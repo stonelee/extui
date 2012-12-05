@@ -1,0 +1,15 @@
+{
+    "name": "calendar",
+    "version": "0.0.1",
+    "root": "kj",
+    "description": "calendar组件",
+    "author": "stonelee",
+    "dependencies": {
+        "$": "$",
+        "arale-calendar": "arale/calendar/0.8.0/calendar"
+    },
+    "tests": ["calendar"],
+    "output": {
+        "calendar.js": "."
+    }
+}
