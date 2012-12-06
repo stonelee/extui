@@ -32,6 +32,12 @@
     "uri": "dialog",
     "icon": "icon_book",
     "children": []
+  },{
+    "id": 16,
+    "name": "Form",
+    "uri": "form",
+    "icon": "icon_book",
+    "children": []
   }]
 },{
   "id": 2,
