@@ -48,14 +48,18 @@ define(function(require, exports, module) {
       DatePicker.superclass.setup.call(this);
       //不知道点击其他地方时为什么无法自动关闭
       this._blurHide([this.get('trigger')]);
+
+      //减少input的宽度
+      var output = $(this.get('output'));
+      output.width(output.width() - 17);
     }
 
   });
 
   DatePicker.autoRender = function(config) {
-      config.target = config.element;
-      config.element = '';
-      new DatePicker(config);
+    config.target = config.element;
+    config.element = '';
+    new DatePicker(config);
   };
 
   module.exports = DatePicker;
