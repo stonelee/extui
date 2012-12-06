@@ -13,9 +13,12 @@ define(function(require, exports, module) {
 
       trigger: {
         value: '',
-        getter: function(val) {
-          val = val ? val : $(this.get('target')).next();
-          return $(val);
+        getter: function() {
+          if (!this.$trigger){
+            var target = $(this.get('target'));
+            this.$trigger = $('<i class="form-trigger form-date-trigger"></i>').insertAfter(target);
+          }
+          return this.$trigger;
         }
       },
       output: {

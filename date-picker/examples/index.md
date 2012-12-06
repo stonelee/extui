@@ -9,7 +9,7 @@
   <input type="text" />
 </div>
 <div class="row">
-  <input id="date" type="text"><i id="date-trigger" class="form-trigger form-date-trigger"></i>
+  <input id="date" type="text">
 </div>
 
 <script>
@@ -31,7 +31,7 @@ seajs.use(['$','date-picker'], function($,DatePicker) {
 ````iframe:50
 <link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
 
-<input id="date" type="text" data-widget="date-picker"><i id="date-trigger" class="form-trigger form-date-trigger"></i>
+<input id="date" type="text" data-widget="date-picker">
 
 <script type="text/javascript">
 seajs.config({
