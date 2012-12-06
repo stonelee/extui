@@ -36,7 +36,7 @@
   background-image: -webkit-linear-gradient(top, rgb(237, 244, 253), rgb(205, 225, 249));
 }
 /*container*/
- .calendar-date-column .previous-month {
+ .calendar-date-column .previous-month, .calendar-date-column .next-month {
   color: rgb(170, 170, 170);
 }
 .calendar-data-container li {

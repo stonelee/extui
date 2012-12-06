@@ -49,8 +49,6 @@ define(function(require, exports, module) {
 
     setup: function() {
       DatePicker.superclass.setup.call(this);
-      //不知道点击其他地方时为什么无法自动关闭
-      this._blurHide([this.get('trigger')]);
 
       //减少input的宽度
       var output = $(this.get('output'));
