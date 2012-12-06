@@ -1,10 +1,10 @@
 define(function(require, exports, module) {
   var $ = require('$'),
-    AraleCalendar = require('arale-calendar');
+    Calendar = require('calendar');
 
-  var template = require('./calendar.tpl');
+  var template = require('./date-picker.tpl');
 
-  var Calendar = AraleCalendar.extend({
+  var DatePicker = Calendar.extend({
     attrs: {
       //output为target，trigger为target后面的元素
       target: null,
@@ -45,13 +45,19 @@ define(function(require, exports, module) {
     },
 
     setup: function() {
-      Calendar.superclass.setup.call(this);
+      DatePicker.superclass.setup.call(this);
       //不知道点击其他地方时为什么无法自动关闭
       this._blurHide([this.get('trigger')]);
     }
 
   });
 
-  module.exports = Calendar;
+  DatePicker.autoRender = function(config) {
+      config.target = config.element;
+      config.element = '';
+      new DatePicker(config);
+  };
+
+  module.exports = DatePicker;
 
 });

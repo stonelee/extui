@@ -1,16 +1,16 @@
 {
-    "name": "calendar",
+    "name": "date-picker",
     "version": "0.0.1",
     "root": "kj",
-    "description": "calendar组件",
+    "description": "date-picker组件",
     "author": "stonelee",
     "dependencies": {
         "$": "$",
-        "arale-calendar": "arale/calendar/0.8.0/calendar"
+        "widget": "arale/widget/1.0.2/widget",
+        "calendar": "arale/calendar/0.8.0/calendar"
     },
-    "tests": ["calendar"],
     "output": {
-        "calendar.js": ".",
+        "date-picker.js": ".",
         "i18n/lang.js": ".",
         "i18n/zh-cn/lang.js": "."
     }

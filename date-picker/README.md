@@ -1,4 +1,4 @@
-# calendar
+# date-picker
 
 // description
 

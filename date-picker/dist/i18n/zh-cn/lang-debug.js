@@ -1,4 +1,4 @@
-define("kj/calendar/0.0.1/i18n/zh-cn/lang-debug", [], {
+define("kj/date-picker/0.0.1/i18n/zh-cn/lang-debug", [], {
     'Su': '日',
     'Mo': '一',
     'Tu': '二',
