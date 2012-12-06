@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
   var $ = require('$'),
-    Calendar = require('calendar');
+    Widget = require('widget');
 
   $(document).delegate('.btn', 'mousedown', function(e) {
     $(this).addClass('btn-is-pressed');
@@ -8,8 +8,5 @@ define(function(require, exports, module) {
     $(this).removeClass('btn-is-pressed');
   });
 
-  new Calendar({
-    target: '#date'
-  });
-
+  Widget.autoRenderAll();
 });
