@@ -10,6 +10,8 @@
     },
     "tests": ["calendar"],
     "output": {
-        "calendar.js": "."
+        "calendar.js": ".",
+        "i18n/lang.js": ".",
+        "i18n/zh-cn/lang.js": "."
     }
 }
