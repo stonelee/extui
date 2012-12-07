@@ -1,3 +1,55 @@
+.mod {
+  position: relative;
+  margin-bottom: 10px;
+}
+.hd {
+  padding: 3px 5px 4px;
+  box-shadow: rgb(244, 248, 253) 0 1px 0 0 inset;
+
+  border: 1px solid rgb(153, 188, 232);
+  .border-top-radius(4px);
+
+  .gradient(rgb(218, 231, 246),rgb(205, 222, 243) 45%,rgb(171, 199, 236) 46%,rgb(171, 199, 236) 50%,rgb(184, 207, 238) 51%,rgb(203, 221, 243));
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.bd {
+  border: 1px solid rgb(153, 188, 232);
+  border-top-width: 0;
+
+  background-color: rgb(223, 233, 246);
+}
+.ft {
+}
+.hd-title {
+  color: rgb(4, 64, 140);
+  font-weight: bold;
+}
+
+
+/*accordion*/
+.panel-accordion-header {
+  border-top: 1px solid rgb(153, 188, 232);
+  border-bottom-width: 0;
+
+  background-image: none;
+  background: rgb(217, 231, 248);
+}
+.panel-accordion-header:first-child {
+  border-top-width: 0;
+}
+.accordion-header-is-active {
+  border-bottom: 1px solid rgb(153, 188, 232);
+}
+
+.accordion-item {
+  background-color: white;
+  display: none;
+}
+
+/*待删除*/
 .panel {
   border: 1px solid rgb(153, 188, 232);
   position: relative;
@@ -28,24 +80,4 @@
 }
 .panel-frame-header {
   .border-top-radius(4px);
-}
-
-/*accordion*/
-.panel-accordion-header {
-  border-top: 1px solid rgb(153, 188, 232);
-  border-bottom-width: 0;
-
-  background-image: none;
-  background: rgb(217, 231, 248);
-}
-.panel-accordion-header:first-child {
-  border-top-width: 0;
-}
-.accordion-header-is-active {
-  border-bottom: 1px solid rgb(153, 188, 232);
-}
-
-.accordion-item {
-  background-color: white;
-  display: none;
 }
