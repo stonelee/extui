@@ -1,0 +1,14 @@
+{
+    "name": "choose",
+    "version": "0.0.1",
+    "root": "kj",
+    "author": "stonelee",
+    "dependencies": {
+      "$": "$",
+      "widget": "arale/widget/1.0.2/widget",
+      "overlay": "arale/overlay/0.9.12/overlay"
+    },
+    "output": {
+        "choose.js": "."
+    }
+}
