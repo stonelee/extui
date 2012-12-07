@@ -1,32 +1,81 @@
-.gradient (@color1, @color2, @color3, @color4, @color5, @color6){
-  background-color: @color6;
-  background-image: -webkit-linear-gradient(top, @color1, @color2, @color3, @color4, @color5, @color6);
-  /*background-image: -moz-linear-gradient(top, @color1, @color2, @color3, @color4, @color5, @color6);*/
-  background-image: -o-linear-gradient(top, @color1, @color2, @color3, @color4, @color5, @color6);
-  background-image: -ms-linear-gradient(top, @color1, @color2, @color3, @color4, @color5, @color6);
-  background-image: linear-gradient(top, @color1, @color2, @color3, @color4, @color5, @color6);
-}
-.gradient (@color1, @color2, @color3, @color4){
-  background-color: @color4;
-  background-image: -webkit-linear-gradient(top, @color1, @color2, @color3, @color4);
-  /*background-image: -moz-linear-gradient(top, @color1, @color2, @color3, @color4);*/
-  background-image: -o-linear-gradient(top, @color1, @color2, @color3, @color4);
-  background-image: -ms-linear-gradient(top, @color1, @color2, @color3, @color4);
-  background-image: linear-gradient(top, @color1, @color2, @color3, @color4);
-}
-.gradient (@color1, @color2, @color3){
-  background-color: @color3;
-  background-image: -webkit-linear-gradient(top, @color1, @color2, @color3);
-  /*background-image: -moz-linear-gradient(top, @color1, @color2, @color3);*/
-  background-image: -o-linear-gradient(top, @color1, @color2, @color3);
-  background-image: -ms-linear-gradient(top, @color1, @color2, @color3);
-  background-image: linear-gradient(top, @color1, @color2, @color3);
-}
+//gradient
 .gradient (@color1, @color2){
   background-color: @color2;
   background-image: -webkit-linear-gradient(top, @color1, @color2);
-  /*background-image: -moz-linear-gradient(top, @color1, @color2);*/
+  background-image: -moz-linear-gradient(top, @color1, @color2);
   background-image: -o-linear-gradient(top, @color1, @color2);
   background-image: -ms-linear-gradient(top, @color1, @color2);
   background-image: linear-gradient(top, @color1, @color2);
 }
+.gradient (@color1, @color2, @color3){
+  background-color: @color3;
+  background-image: -webkit-linear-gradient(top, @color1, @color2, @color3);
+  background-image: -moz-linear-gradient(top, @color1, @color2, @color3);
+  background-image: -o-linear-gradient(top, @color1, @color2, @color3);
+  background-image: -ms-linear-gradient(top, @color1, @color2, @color3);
+  background-image: linear-gradient(top, @color1, @color2, @color3);
+}
+.gradient (@color1, @color2, @color3, @color4){
+  background-color: @color4;
+  background-image: -webkit-linear-gradient(top, @color1, @color2, @color3, @color4);
+  background-image: -moz-linear-gradient(top, @color1, @color2, @color3, @color4);
+  background-image: -o-linear-gradient(top, @color1, @color2, @color3, @color4);
+  background-image: -ms-linear-gradient(top, @color1, @color2, @color3, @color4);
+  background-image: linear-gradient(top, @color1, @color2, @color3, @color4);
+}
+.gradient (@color1, @color2, @color3, @color4, @color5, @color6){
+  background-color: @color6;
+  background-image: -webkit-linear-gradient(top, @color1, @color2, @color3, @color4, @color5, @color6);
+  background-image: -moz-linear-gradient(top, @color1, @color2, @color3, @color4, @color5, @color6);
+  background-image: -o-linear-gradient(top, @color1, @color2, @color3, @color4, @color5, @color6);
+  background-image: -ms-linear-gradient(top, @color1, @color2, @color3, @color4, @color5, @color6);
+  background-image: linear-gradient(top, @color1, @color2, @color3, @color4, @color5, @color6);
+}
+
+//border-radius
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Single Corner Border Radius
+.border-top-left-radius(@radius) {
+  -webkit-border-top-left-radius: @radius;
+      -moz-border-radius-topleft: @radius;
+          border-top-left-radius: @radius;
+}
+.border-top-right-radius(@radius) {
+  -webkit-border-top-right-radius: @radius;
+      -moz-border-radius-topright: @radius;
+          border-top-right-radius: @radius;
+}
+.border-bottom-right-radius(@radius) {
+  -webkit-border-bottom-right-radius: @radius;
+      -moz-border-radius-bottomright: @radius;
+          border-bottom-right-radius: @radius;
+}
+.border-bottom-left-radius(@radius) {
+  -webkit-border-bottom-left-radius: @radius;
+      -moz-border-radius-bottomleft: @radius;
+          border-bottom-left-radius: @radius;
+}
+
+// Single Side Border Radius
+.border-top-radius(@radius) {
+  .border-top-right-radius(@radius);
+  .border-top-left-radius(@radius);
+}
+.border-right-radius(@radius) {
+  .border-top-right-radius(@radius);
+  .border-bottom-right-radius(@radius);
+}
+.border-bottom-radius(@radius) {
+  .border-bottom-right-radius(@radius);
+  .border-bottom-left-radius(@radius);
+}
+.border-left-radius(@radius) {
+  .border-top-left-radius(@radius);
+  .border-bottom-left-radius(@radius);
+}
+
