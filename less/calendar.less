@@ -1,0 +1,63 @@
+.calendar {
+  border: 1px solid rgb(27, 55, 108);
+  background-color: white;
+}
+.calendar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.calendar li {
+  display: inline-block;
+  text-align: center;
+  width: 22px;
+  padding: 2px 0;
+  cursor: pointer;
+}
+/*navigation*/
+ .calendar-navigation {
+  background-color: rgb(35, 66, 124);
+  color: white;
+}
+.calendar-navigation .calendar-month-year {
+  width: 75px;
+}
+.calendar-navigation li {
+  font-weight: normal;
+}
+.calendar-navigation li:hover {
+  font-weight: bold;
+}
+/*control*/
+ .calendar-control {
+  color: rgb(35, 61, 109);
+  border-bottom: 1px solid rgb(178, 209, 245);
+  .gradient(rgb(237, 244, 253), rgb(205, 225, 249));
+}
+/*container*/
+ .calendar-date-column .previous-month, .calendar-date-column .next-month {
+  color: rgb(170, 170, 170);
+}
+.calendar-data-container li {
+  color: black;
+}
+.calendar-data-container li:hover {
+  background-color: rgb(221, 236, 254);
+  color: black;
+}
+.calendar-data-container li.focused-element {
+  border: 1px solid darkRed;
+  background-color: rgb(221, 236, 254);
+}
+.calendar-year-column li {
+  width: 55px;
+}
+.calendar-month-column li {
+  width: 55px;
+}
+/*footer*/
+ .calendar-footer {
+  border-top: 1px solid rgb(178, 209, 245);
+  .gradient(rgb(222, 232, 245), rgb(209, 223, 240) 49%, rgb(199, 216, 237) 51%, rgb(203, 218, 238));
+  text-align: center;
+}
