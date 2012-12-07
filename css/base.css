@@ -65,6 +65,10 @@ input[type="password"]:focus {
   outline: none;
   border-color: rgb(126, 173, 217);
 }
+textarea{
+  overflow: auto; // Remove vertical scrollbar in IE6-9
+  vertical-align: top; // Readability and alignment cross-browser
+}
 
 /*grid-unit*/
 .row {
