@@ -2,14 +2,14 @@
   padding: 5px;
 }
 .form label{
-  padding-right: 5px;
   position: absolute;
+  padding-right: 5px;
 }
 .form label abbr{
   color:red;
   font-weight:bold;
 }
-.form input,.form textarea{
+.form input, .form textarea{
   /*可能需要更改*/
   margin-left: 70px;
 }
@@ -27,29 +27,26 @@
   width: 360px;
 }
 
-.form-invalid {
-  background-color: white;
-  background-image: url('../images/grid/invalid_line.gif');
-  background-repeat: repeat-x;
-  background-position: bottom;
+input.form-invalid {
+  background: white url('../images/grid/invalid_line.gif') repeat-x bottom;
   border-color: rgb(204, 51, 0);
 }
 
 /*trigger*/
-/*TODO:跟icon合并*/
 .form-trigger {
   display: inline-block;
   width: 17px;
   height: 18px;
+  border-bottom: 1px solid rgb(181, 184, 200);
   vertical-align: middle;
+
   background-image: url('../images/form/trigger.gif');
   background-position: 0 0;
-  border-bottom: 1px solid rgb(181, 184, 200);
   cursor: pointer;
 }
 .form-trigger:hover {
-  background-position: -17px 0;
   border-bottom-color: rgb(126, 173, 217);
+  background-position: -17px 0;
 }
 .form-date-trigger {
   background-image: url('../images/form/date-trigger.gif');
@@ -70,12 +67,3 @@
   padding: 3px 0 4px;
 }
 
-/*field*/
-.form fieldset {
-  border: 1px solid rgb(181, 184, 200);
-  padding: 10px;
-}
-.form fieldset > legend {
-  color: rgb(21, 66, 139);
-  padding: 0 3px 1px;
-}
