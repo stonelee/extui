@@ -19,7 +19,6 @@ define(function(require, exports, module) {
       if (url){
         $.getJSON(url, function(data){
           var tpl = that._createAccordion(data);
-          console.log(tpl);
           that.element.html(tpl);
 
           Accordion.superclass.setup.call(that);

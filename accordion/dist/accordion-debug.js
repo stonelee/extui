@@ -19,7 +19,6 @@ define("kj/accordion/0.0.1/accordion-debug", ["$-debug", "gallery/handlebars/1.0
       if (url){
         $.getJSON(url, function(data){
           var tpl = that._createAccordion(data);
-          console.log(tpl);
           that.element.html(tpl);
 
           Accordion.superclass.setup.call(that);
