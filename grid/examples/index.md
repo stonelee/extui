@@ -2,10 +2,10 @@
 
 ---
 
-````iframe:250
-<link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
+````iframe:500
+<link href="http://10.10.22.84/work/extui/css/all.css" rel="stylesheet">
 
-<div class="panel" id="demo1"></div>
+<div class="mod" id="demo1"></div>
 
 <script type="text/javascript">
 seajs.use(['$','grid'], function($, Grid) {

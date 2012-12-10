@@ -12,7 +12,7 @@ define(function(require, exports, module) {
       rowHeight: 23
     },
     events: {
-      'click .grid-header': 'sort',
+      'click .grid-hd': 'sort',
       'click .grid-row': 'click',
       'click :not(.icon-btn-is-disabled)[data-role=prev]': 'prevPage',
       'click :not(.icon-btn-is-disabled)[data-role=next]': 'nextPage',
@@ -31,16 +31,16 @@ define(function(require, exports, module) {
         this.oldSortHeader = cell;
       } else {
         if (this.oldSortHeader.attr('data-name') !== name) {
-          this.oldSortHeader.removeClass('grid-header-is-desc grid-header-is-asc');
+          this.oldSortHeader.removeClass('grid-hd-is-desc grid-hd-is-asc');
           this.oldSortHeader = cell;
         }
       }
 
-      if (cell.hasClass('grid-header-is-desc')) {
-        cell.removeClass('grid-header-is-desc').addClass('grid-header-is-asc');
+      if (cell.hasClass('grid-hd-is-desc')) {
+        cell.removeClass('grid-hd-is-desc').addClass('grid-hd-is-asc');
         console.log(name, 'asc');
       } else {
-        cell.removeClass('grid-header-is-asc').addClass('grid-header-is-desc');
+        cell.removeClass('grid-hd-is-asc').addClass('grid-hd-is-desc');
         console.log(name, 'desc');
       }
     },
@@ -177,7 +177,7 @@ define(function(require, exports, module) {
 
     _fixFooterPosition: function() {
       var blankHeight = this.get('rowHeight') * (this.data.pageSize - this.data.result.length);
-      this.$('.grid-footer').css('margin-top', blankHeight);
+      this.$('.grid-ft').css('margin-top', blankHeight);
     }
 
   });
