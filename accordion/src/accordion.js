@@ -10,7 +10,7 @@ define(function(require, exports, module) {
     attrs: {
       triggerType: 'click',
       height: 0,
-      activeTriggerClass: 'accordion-header-is-active'
+      activeTriggerClass: 'accordion-hd-is-active'
     },
 
     setup: function(){
@@ -19,6 +19,7 @@ define(function(require, exports, module) {
       if (url){
         $.getJSON(url, function(data){
           var tpl = that._createAccordion(data);
+          console.log(tpl);
           that.element.html(tpl);
 
           Accordion.superclass.setup.call(that);
