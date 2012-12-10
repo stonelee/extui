@@ -3,7 +3,7 @@
 ---
 
 ````iframe:250
-<link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
+<link href="http://10.10.22.84/work/extui/css/all.css" rel="stylesheet">
 
 <div class="row">
   <input type="text" />
@@ -28,8 +28,8 @@ seajs.use(['$','date-picker'], function($,DatePicker) {
 
 ##auto-render
 
-````iframe:50
-<link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
+````iframe:250
+<link href="http://10.10.22.84/work/extui/css/all.css" rel="stylesheet">
 
 <input id="date" type="text" data-widget="date-picker">
 

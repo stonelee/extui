@@ -4,13 +4,13 @@ define("kj/accordion/0.0.1/accordion-debug", ["$-debug", "gallery/handlebars/1.0
     Tree = require('kj/tree/0.0.1/tree-debug'),
     Switchable = require('arale/switchable/0.9.11/switchable-debug');
 
-  var tpl = '{{#each headers}} <div class="panel-header panel-accordion-header unselectable" data-role="trigger"> <i class="icon {{this.icon}}"></i> <span>{{this.name}}</span> <i data-role="flag" class="icon icon-tool icon-tool-expand-bottom"></i> </div> <div class="accordion-item" data-role="panel"></div> {{/each}}';
+  var tpl = '{{#each headers}} <div class="accordion-hd unselectable" data-role="trigger"> <i class="icon {{this.icon}}"></i> <span>{{this.name}}</span> <i data-role="flag" class="icon icon-tool icon-tool-expand-bottom"></i> </div> <div class="accordion-bd" data-role="panel"></div> {{/each}}';
 
   var Accordion = Switchable.extend({
     attrs: {
       triggerType: 'click',
       height: 0,
-      activeTriggerClass: 'accordion-header-is-active'
+      activeTriggerClass: 'accordion-hd-is-active'
     },
 
     setup: function(){
@@ -19,6 +19,7 @@ define("kj/accordion/0.0.1/accordion-debug", ["$-debug", "gallery/handlebars/1.0
       if (url){
         $.getJSON(url, function(data){
           var tpl = that._createAccordion(data);
+          console.log(tpl);
           that.element.html(tpl);
 
           Accordion.superclass.setup.call(that);
