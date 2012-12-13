@@ -3,33 +3,38 @@
   <head>
     <meta charset="utf-8" />
     <title></title>
-    <link href="css/main.css" rel="stylesheet"/>
+    <link rel="stylesheet/less" type="text/css" href="../less/all.less">
     <script src="jquery.js"></script>
+    <script src="less.js"></script>
   </head>
-  <body>
+  <body style="background:white;padding:20px;">
     <!--panel-->
-    <div class="panel">
-      <div class="panel-header unselectable">
-        <span class="panel-header-span">title</span>
+    <div class="mod">
+      <div class="hd unselectable">
+        <span class="hd-title">panel</span>
       </div>
-      <div class="panel-body">
-        <p>abcdefg</p>
+      <div class="bd">
+        <div>abcdefg</div>
         <!--frame-->
-        <div class="panel panel-frame" style="left:100px;width:100px;">
-          <div class="panel-header panel-header-frame unselectable">
-            <span class="panel-header-span">titletitletitletitletitletitletitle</span>
+        <div class="mod" style="left:100px;width:100px;">
+          <div class="hd unselectable">
+            <span class="hd-title">titletitletitletitletitletitletitle</span>
           </div>
-          <div class="panel-body">
-            <p>abcdefg</p>
+          <div class="bd">
+            <div>abdfdfdfd</div>
           </div>
         </div>
         <!--frame over-->
-        <!--tree-->
-    <div class="panel">
-      <div class="panel-header unselectable">
-        <span class="panel-header-span">title</span>
       </div>
-      <div class="panel-body">
+    </div>
+    <!--panel over-->
+
+    <!--tree-->
+    <div class="mod">
+      <div class="hd unselectable">
+        <span class="hd-title">tree</span>
+      </div>
+      <div class="bd">
         <table class="grid tree unselectable" border="0" cellspacing="0" cellpadding="0">
           <tbody>
             <tr class="grid-row">
@@ -76,63 +81,69 @@
         </table>
       </div>
     </div>
-        <!--tree over-->
+    <!--tree over-->
+
+    <!--tree grid-->
+    <div class="mod">
+      <div class="hd unselectable">
+        <span class="hd-title">tree grid</span>
+      </div>
+      <div class="bd">
+        <table class="grid tree" border="0" cellspacing="0" cellpadding="0">
+          <thead class="grid-hd unselectable">
+            <tr>
+              <td class="grid-hd-cell"><span>title</span></td>
+              <td class="grid-hd-cell"><span>title</span></td>
+              <td class="grid-hd-cell"><span>title</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="grid-row">
+              <td class="grid-cell">
+                <i class="icon icon-tree-elbow-plus"></i><i class="icon icon-tree-folder"></i>First
+              </td>
+              <td class="grid-cell">a</td>
+              <td class="grid-cell">a</td>
+            </tr>
+            <tr class="grid-row">
+              <td class="grid-cell">
+                <i class="icon icon-tree-elbow-minus"></i><i class="icon icon-tree-folder-open"></i>Second
+              </td>
+              <td class="grid-cell">a</td>
+              <td class="grid-cell">a</td>
+            </tr>
+            <tr class="grid-row grid-row-is-selected">
+              <td class="grid-cell">
+                <i class="icon icon-tree-elbow-line"></i><i class="icon icon-tree-elbow-end"></i><i class="icon icon-tree-leaf"></i>Second-first
+              </td>
+              <td class="grid-cell">a</td>
+              <td class="grid-cell">a</td>
+            </tr>
+            <tr class="grid-row">
+              <td class="grid-cell">
+                <i class="icon icon-tree-elbow-end-plus"></i><i class="icon icon-tree-folder"></i>Third
+              </td>
+              <td class="grid-cell">a</td>
+              <td class="grid-cell">a</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <!--panel over-->
-    <!--tree grid-->
-    <table class="grid tree" border="0" cellspacing="0" cellpadding="0">
-      <thead class="grid-header unselectable">
-        <tr>
-          <td class="grid-header-cell"><span>title</span></td>
-          <td class="grid-header-cell"><span>title</span></td>
-          <td class="grid-header-cell"><span>title</span></td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="grid-row">
-          <td class="grid-cell">
-            <i class="icon icon-tree-elbow-plus"></i><i class="icon icon-tree-folder"></i>First
-          </td>
-          <td class="grid-cell">a</td>
-          <td class="grid-cell">a</td>
-        </tr>
-        <tr class="grid-row">
-          <td class="grid-cell">
-            <i class="icon icon-tree-elbow-minus"></i><i class="icon icon-tree-folder-open"></i>Second
-          </td>
-          <td class="grid-cell">a</td>
-          <td class="grid-cell">a</td>
-        </tr>
-        <tr class="grid-row grid-row-is-selected">
-          <td class="grid-cell">
-            <i class="icon icon-tree-elbow-line"></i><i class="icon icon-tree-elbow-end"></i><i class="icon icon-tree-leaf"></i>Second-first
-          </td>
-          <td class="grid-cell">a</td>
-          <td class="grid-cell">a</td>
-        </tr>
-        <tr class="grid-row">
-          <td class="grid-cell">
-            <i class="icon icon-tree-elbow-end-plus"></i><i class="icon icon-tree-folder"></i>Third
-          </td>
-          <td class="grid-cell">a</td>
-          <td class="grid-cell">a</td>
-        </tr>
-      </tbody>
-    </table>
     <!--tree grid over-->
+
     <!--grid-->
-    <div class="panel">
-      <div class="panel-header unselectable">
-        <span class="panel-header-span">grid</span>
+    <div class="mod">
+      <div class="hd unselectable">
+        <span class="hd-title">grid</span>
       </div>
-      <div class="panel-body">
+      <div class="bd">
         <table class="grid grid-with-row-lines" border="0" cellspacing="0" cellpadding="0">
-          <thead class="grid-header unselectable">
+          <thead class="grid-hd unselectable">
             <tr>
-              <td class="grid-header-cell"><span>title</span></td>
-              <td class="grid-header-cell grid-header-is-desc"><span>title</span></td>
-              <td class="grid-header-cell grid-header-is-asc"><span>title</span></td>
+              <td class="grid-hd-cell"><span>title</span></td>
+              <td class="grid-hd-cell grid-hd-is-desc"><span>title</span></td>
+              <td class="grid-hd-cell grid-hd-is-asc"><span>title</span></td>
             </tr>
           </thead>
           <tbody>
@@ -158,43 +169,45 @@
             </tr>
           </tbody>
         </table>
-        <div class="grid-footer">
+        <div class="grid-ft">
           <i class="icon icon-btn icon-btn-is-disabled icon-grid-page-first-disabled"></i>
           <i class="icon icon-btn icon-btn-is-disabled icon-grid-page-prev-disabled"></i>
           <i class="grid-separator"></i>
-          <span class="grid-footer-text">当前第</span>
+          <span class="grid-ft-text">当前第</span>
           <input style="width:40px;" type="text">
-          <span class="grid-footer-text">/10页</span>
+          <span class="grid-ft-text">/10页</span>
           <i class="grid-separator"></i>
           <i class="icon icon-btn icon-grid-page-next"></i>
           <i class="icon icon-btn icon-grid-page-last"></i>
           <i class="grid-separator"></i>
           <i class="icon icon-btn icon-btn-is-pressed icon-grid-refresh"></i>
-          <span class="grid-footer-text" style="float:right;margin-right:100px;">共100条记录，每页10条</span>
+          <span class="grid-ft-text" style="float:right;margin-right:100px;">共100条记录，每页10条</span>
         </div>
       </div>
     </div>
     <!--grid over-->
 
     <!--tab-->
-    <ul class="tab-nav" style="height:19px;">
-      <li class="tab-item tab-item-is-active">item</li>
-      <li class="tab-item">item</li>
-      <li class="tab-item">item</li>
-    </ul>
-    <div class="tab-strip"></div>
-    <div class="tab-content">
-      <div class="panel" style="display:block;">abc</div>
-      <div class="panel">def</div>
+    <div class="mod">
+      <ul class="tab-nav" style="height:19px;">
+        <li class="tab-hd tab-hd-is-active">item</li>
+        <li class="tab-hd">item</li>
+        <li class="tab-hd">item</li>
+      </ul>
+      <div class="tab-strip"></div>
+      <div class="tab-bd">
+        <div class="bd" style="display:block;">abc</div>
+        <div class="bd">def</div>
+      </div>
     </div>
     <!--tab over-->
 
     <!--form-->
-    <div class="panel panel-frame" style="width:500px;">
-      <div class="panel-header panel-frame-header unselectable">
-        <span class="panel-header-span">form</span>
+    <div class="mod" style="width:500px;">
+      <div class="hd unselectable">
+        <span class="hd-title">form</span>
       </div>
-      <div class="panel-body">
+      <div class="bd">
         <div class="form">
           <div class="row">
             <label for="text">text:</label>
@@ -298,5 +311,7 @@
         </div>
       </div>
     </div>
+    <!--form over-->
+
   </body>
 </html>

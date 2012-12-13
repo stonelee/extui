@@ -5,7 +5,7 @@ define(function(require, exports, module) {
   var Tab = Switchable.extend({
     attrs: {
       triggerType: 'click',
-      activeTriggerClass: 'tab-item-is-active'
+      activeTriggerClass: 'tab-hd-is-active'
     },
 
     setup: function() {

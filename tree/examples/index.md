@@ -6,7 +6,7 @@
 ## 树形组件
 
 ````iframe:250
-<link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
+<link href="http://10.10.22.84/work/extui/css/all.css" rel="stylesheet">
 
 <script>
 seajs.use(['tree'], function(Tree) {
@@ -26,14 +26,14 @@ seajs.use(['tree'], function(Tree) {
 ## TreeGrid组件
 
 ````iframe:250
-<link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
+<link href="http://10.10.22.84/work/extui/css/all.css" rel="stylesheet">
 
-<div class="panel"></div>
+<div class="bd"></div>
 
 <script>
 seajs.use(['tree'], function(Tree) {
   var tree = new Tree({
-    element: '.panel',
+    element: '.bd',
     headers: ['','编号','名称'],
     fields: ['id','name'],
     url: './tree.json'

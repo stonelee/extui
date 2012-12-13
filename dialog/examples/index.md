@@ -3,7 +3,7 @@
 ---
 
 ````iframe:250
-<link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
+<link href="http://10.10.22.84/work/extui/css/all.css" rel="stylesheet">
 
 <input type="button" id="trigger11" value="默认样式对话框" />
 <input type="button" id="trigger12" value="ConfirmBox.alert()" />

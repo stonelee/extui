@@ -1,15 +1,16 @@
 .form {
   padding: 5px;
+  position: relative;
 }
 .form label{
-  padding-right: 5px;
   position: absolute;
+  padding-right: 5px;
 }
 .form label abbr{
   color:red;
   font-weight:bold;
 }
-.form input,.form textarea{
+.form input, .form textarea{
   /*可能需要更改*/
   margin-left: 70px;
 }
@@ -27,29 +28,26 @@
   width: 360px;
 }
 
-.form-invalid {
-  background-color: white;
-  background-image: url('../images/grid/invalid_line.gif');
-  background-repeat: repeat-x;
-  background-position: bottom;
+input.form-invalid {
+  background: white url('../images/grid/invalid_line.gif') repeat-x bottom;
   border-color: rgb(204, 51, 0);
 }
 
 /*trigger*/
-/*TODO:跟icon合并*/
 .form-trigger {
   display: inline-block;
   width: 17px;
   height: 18px;
+  border-bottom: 1px solid rgb(181, 184, 200);
   vertical-align: middle;
+
   background-image: url('../images/form/trigger.gif');
   background-position: 0 0;
-  border-bottom: 1px solid rgb(181, 184, 200);
   cursor: pointer;
 }
 .form-trigger:hover {
-  background-position: -17px 0;
   border-bottom-color: rgb(126, 173, 217);
+  background-position: -17px 0;
 }
 .form-date-trigger {
   background-image: url('../images/form/date-trigger.gif');
@@ -68,40 +66,4 @@
   text-align: center;
   border-top: 1px solid rgb(181, 184, 200);
   padding: 3px 0 4px;
-}
-
-/*field*/
-.form fieldset {
-  border: 1px solid rgb(181, 184, 200);
-  padding: 10px;
-}
-.form fieldset > legend {
-  color: rgb(21, 66, 139);
-  padding: 0 3px 1px;
-}
-
-/*select*/
-.select {
-  border: 1px solid rgb(152, 192, 244);
-  border-top-width: 0;
-  background: white;
-  box-shadow: rgb(136, 136, 136) 0px 0px 4px 0px;
-}
-.select ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-.select li {
-  cursor: pointer;
-  padding: 2px;
-  border: 1px dotted white;
-}
-.select li.select-is-selected {
-  border-color: rgb(142, 171, 228);
-  background: rgb(203, 218, 240);
-}
-.select li:hover {
-  border-color: rgb(163, 186, 233);
-  background: rgb(223, 232, 246);
 }

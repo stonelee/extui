@@ -3,15 +3,15 @@
 ---
 
 ````iframe:250
-<link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
+<link href="http://10.10.22.84/work/extui/css/all.css" rel="stylesheet">
 
-<div class="panel" id="demo1">
-  <div class="panel-header panel-accordion-header unselectable">
+<div class="bd" id="demo1">
+  <div class="accordion-hd unselectable">
     <i class="icon icon-book-addresses"></i>
     <span>模块1</span>
     <i data-role="flag" class="icon icon-tool icon-tool-expand-bottom"></i>
   </div>
-  <div class="accordion-item">
+  <div class="accordion-bd">
     <table style="width:100%" class="grid" border="0" cellspacing="0" cellpadding="0">
       <tbody>
         <tr class="grid-row">
@@ -32,24 +32,24 @@
       </tbody>
     </table>
   </div>
-  <div class="panel-header panel-accordion-header unselectable">
+  <div class="accordion-hd unselectable">
     <span>模块1</span>
     <i data-role="flag" class="icon icon-tool icon-tool-expand-bottom"></i>
   </div>
-  <div class="accordion-item">abc</div>
-  <div class="panel-header panel-accordion-header unselectable">
+  <div class="accordion-bd">abc</div>
+  <div class="accordion-hd unselectable">
     <span>模块1</span>
     <i data-role="flag" class="icon icon-tool icon-tool-expand-bottom"></i>
   </div>
-  <div class="accordion-item">def</div>
+  <div class="accordion-bd">def</div>
 </div>
 
 <script type="text/javascript">
 seajs.use(['accordion'], function(Accordion) {
   accordion = new Accordion({
     element: '#demo1',
-    triggers: '.panel-accordion-header',
-    panels: '.accordion-item',
+    triggers: '.accordion-hd',
+    panels: '.accordion-bd',
     height: 200
   });
 });
@@ -59,25 +59,25 @@ seajs.use(['accordion'], function(Accordion) {
 ##auto-render
 
 ````iframe:250
-<link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
+<link href="http://10.10.22.84/work/extui/css/all.css" rel="stylesheet">
 
-<div class="panel" id="demo1" data-widget="accordion">
-  <div class="panel-header panel-accordion-header unselectable" data-role="trigger">
+<div class="bd" id="demo1" data-widget="accordion">
+  <div class="accordion-hd unselectable" data-role="trigger">
     <i class="icon icon-book-addresses"></i>
     <span>模块1</span>
     <i data-role="flag" class="icon icon-tool icon-tool-expand-bottom"></i>
   </div>
-  <div class="accordion-item" data-role="panel">xyz</div>
-  <div class="panel-header panel-accordion-header unselectable" data-role="trigger">
+  <div class="accordion-bd" data-role="panel">xyz</div>
+  <div class="accordion-hd unselectable" data-role="trigger">
     <span>模块1</span>
     <i data-role="flag" class="icon icon-tool icon-tool-expand-bottom"></i>
   </div>
-  <div class="accordion-item" data-role="panel">abc</div>
-  <div class="panel-header panel-accordion-header unselectable" data-role="trigger">
+  <div class="accordion-bd" data-role="panel">abc</div>
+  <div class="accordion-hd unselectable" data-role="trigger">
     <span>模块1</span>
     <i data-role="flag" class="icon icon-tool icon-tool-expand-bottom"></i>
   </div>
-  <div class="accordion-item" data-role="panel">def</div>
+  <div class="accordion-bd" data-role="panel">def</div>
 </div>
 
 <script type="text/javascript">
@@ -94,9 +94,9 @@ seajs.use(['widget'], function(Widget) {
 ## json
 
 ````iframe:250
-<link href="http://10.10.22.84/work/extui/css/main.css" rel="stylesheet">
+<link href="http://10.10.22.84/work/extui/css/all.css" rel="stylesheet">
 
-<div class="panel" id="demo1">
+<div class="bd" id="demo1">
 </div>
 
 <script>

@@ -10,7 +10,7 @@ define(function(require, exports, module) {
     attrs: {
       triggerType: 'click',
       height: 0,
-      activeTriggerClass: 'accordion-header-is-active'
+      activeTriggerClass: 'accordion-hd-is-active'
     },
 
     setup: function(){

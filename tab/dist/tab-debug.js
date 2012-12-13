@@ -5,7 +5,7 @@ define("kj/tab/0.0.1/tab-debug", ["$-debug", "arale/switchable/0.9.11/switchable
   var Tab = Switchable.extend({
     attrs: {
       triggerType: 'click',
-      activeTriggerClass: 'tab-item-is-active'
+      activeTriggerClass: 'tab-hd-is-active'
     },
 
     setup: function() {

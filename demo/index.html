@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <title>index</title>
-  <link href="../css/main.css" rel="stylesheet">
+  <link href="../css/all.css" rel="stylesheet">
 </head>
 <body>
   <div class="header">
@@ -11,19 +11,19 @@
   </div>
 
   <div class="main">
-    <div class="panel" style="float:left;width:200px;height:600px;left:5px;">
-      <div class="panel-header unselectable">
-        <span class="panel-header-span">菜单</span>
+    <div class="mod" style="float:left;width:200px;height:600px;left:5px;">
+      <div class="hd unselectable">
+        <span class="hd-title">菜单</span>
         <i class="icon icon-tool icon-tool-collapse-left"></i>
       </div>
-      <div id="menu"></div>
+      <div id="menu" class="bd"></div>
     </div>
 
     <div class="splitter" style="float:left;height:600px;left:5px;">
       <i class="splitter-mini-left"></i>
     </div>
 
-    <iframe id="main" src="tab.html" style="width:900px;height:600px;margin-left:5px;border:1px solid rgb(153, 188, 232);" frameborder="0" scrolling="no"></iframe>
+    <iframe class="mod" id="main" src="tab.html" style="width:900px;height:600px;margin-left:5px;" frameborder="0" scrolling="no"></iframe>
   </div>
 
   <div class="footer">

@@ -4,7 +4,7 @@ define("kj/tree/0.0.1/tree-debug", ["$-debug", "arale/widget/1.0.2/widget-debug"
     handlebars = require('gallery/handlebars/1.0.0/handlebars-debug');
 
   var rowTpl = '<tr class="grid-row" {{#if expanded}}data-status="expanded"{{/if}} {{#if leaf}}data-type="leaf"{{/if}}> <td class="grid-cell"> {{#each icons}}<i class="icon icon-tree-{{this}}"></i>{{/each}}{{name}} </td> {{#each grids}} <td class="grid-cell">{{this}}</td> {{/each}} </tr>',
-    headerTpl = '{{#if headers}} <thead class="grid-header unselectable"> <tr> {{#each headers}} <td class="grid-header-cell"><span>{{this}}</span></td> {{/each}} </tr> </thead> {{/if}}';
+    headerTpl = '{{#if headers}} <thead class="grid-hd unselectable"> <tr> {{#each headers}} <td class="grid-hd-cell"><span>{{this}}</span></td> {{/each}} </tr> </thead> {{/if}}';
 
   var Tree = Widget.extend({
     setup: function() {

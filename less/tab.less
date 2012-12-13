@@ -1,0 +1,45 @@
+.tab-nav {
+  /*比原始高度少1像素，盖住strip*/
+  /*height:19px;*/
+  margin: 0;
+  padding: 0;
+
+  /*清除ul默认样式*/
+  list-style: none;
+}
+
+.tab-hd {
+  /*height:18px;*/
+  .inline();
+  padding: 0 9px;
+
+  border: 1px solid rgb(141, 179, 227);
+  .border-top-radius(4px);
+  border-bottom-color: rgb(153, 188, 232);
+
+  font-weight: bold;
+  color: rgb(65, 109, 163);
+
+  .gradient(rgb(204, 222, 246),rgb(214, 230, 250) 25%,rgb(222, 236, 253) 45%);
+  box-shadow: white 0 1px 0 0 inset,white -1px 0 0 0 inset,white 1px 0 0 0 inset;
+
+  cursor: pointer;
+}
+.tab-hd:first-child {
+  margin-left: 3px;
+}
+.tab-hd-is-active {
+  color: rgb(21, 73, 139);
+  border-bottom-color: rgb(222, 236, 253);
+  .gradient(white,rgb(245, 249, 254) 25%,rgb(222, 236, 253) 45%);
+}
+
+.tab-strip {
+  height: 3px;
+  border: 1px solid rgb(153, 188, 232);
+  background-color: rgb(222, 236, 253);
+}
+
+.tab-bd > div {
+  display: none;
+}

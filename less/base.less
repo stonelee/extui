@@ -1,72 +1,46 @@
 body {
   margin: 0;
+  font: 12px/1.5 tahoma,arial,simsun;
   background-color: rgb(223, 232, 246);
-  font: 12px/1.5 tahoma,arial,宋体b8b\4f53;
 }
 
-.header {
-  background: -webkit-linear-gradient(top, rgba(134, 174, 204, 1) 0%,rgba(212, 228, 239, 1) 100%);
-  padding-left: 30px;
-}
-.header span {
-  line-height: 50px;
-  font-size: 24px;
-}
-.footer {
-  padding-left: 20px;
-}
-.footer span{
-  line-height: 30px;
-}
-
-.splitter {
-  width: 5px;
-  cursor: col-resize;
-  position: relative;
-}
-.splitter-mini-left {
-  background: no-repeat top right;
-  background-image: url('../images/util/splitter/mini-left.gif');
-  cursor: pointer;
-  width: 5px;
-  height: 35px;
-  top: 50%;
-  margin-top: -17px;
-  display:inline-block;
-  position: absolute;
-}
-
-.unselectable {
-  user-select: none;
-  -o-user-select: none;
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -webkit-user-select: none;
-  cursor: default;
-}
-
-/*input*/
 textarea,
 input[type="text"],
 input[type="password"] {
-  /*清除默认*/
+  //清除默认
   margin: 0;
-
-  vertical-align: middle;
   padding: 1px 3px;
-  background: repeat-x 0 0;
-  background-color: white;
-  background-image: url('../images/form/text-bg.gif');
+
   border: 1px solid rgb(181, 184, 200);
+  vertical-align: middle;
+
+  background: white url('../images/form/text-bg.gif') repeat-x 0 0;
 }
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus {
-  outline: none;
   border-color: rgb(126, 173, 217);
+  outline: none;
+}
+textarea{
+  overflow: auto; // Remove vertical scrollbar in IE6-9
+  vertical-align: top; // Readability and alignment cross-browser
+}
+input[type="text"],
+input[type="password"] {
+  /*firefox默认高度过大*/
+  height:15px;
 }
 
-/*grid-unit*/
+fieldset {
+  padding: 10px;
+  border: 1px solid rgb(181, 184, 200);
+}
+fieldset > legend {
+  padding: 0 3px 1px;
+  color: rgb(21, 66, 139);
+}
+
 .row {
   margin-bottom: 10px;
 }
@@ -83,7 +57,7 @@ input[type="password"]:focus {
 .span10,
 .span11,
 .span12{
-  display: inline-block;
+  .inline();
   vertical-align: top;
 }
 
@@ -183,3 +157,11 @@ input[type="password"]:focus {
   margin-left: 100px;
 }
 
+.unselectable {
+  user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  cursor: default;
+}

@@ -4,21 +4,20 @@
 /* 另外还有grid-with-row-lines*/
 
 /*header*/
-.grid-header {
-  background-color: rgb(197, 197, 197);
-  background-image: -webkit-linear-gradient(top,rgb(249, 249, 249),rgb(227, 228, 230));
+.grid-hd {
+  .gradient(rgb(249, 249, 249),rgb(227, 228, 230));
 }
-.grid-header-cell {
+.grid-hd-cell {
   border-bottom: 1px solid rgb(197, 197, 197);
   border-right: 1px solid rgb(197, 197, 197);
   padding: 3px 6px 4px;
 }
-.grid-header-is-desc span{
+.grid-hd-is-desc span{
   padding-right: 16px;
   background: no-repeat right 6px;
   background-image: url('../images/grid/sort_desc.gif');
 }
-.grid-header-is-asc span{
+.grid-hd-is-asc span{
   padding-right: 16px;
   background: no-repeat right 6px;
   background-image: url('../images/grid/sort_asc.gif');
@@ -50,15 +49,14 @@
 }
 
 /*footer*/
-.grid-footer {
-  background-color: rgb(211, 225, 241);
-  background-image: -webkit-linear-gradient(top,rgb(223, 233, 245),rgb(211, 225, 241));
+.grid-ft {
+  .gradient(rgb(223, 233, 245),rgb(211, 225, 241));
   border-top: 1px solid rgb(153, 188, 232);
   padding: 4px 0 5px 5px;
 }
 
 /*TODO:放到toolbar*/
-.grid-footer-text {
+.grid-ft-text {
   vertical-align: middle;
   color: rgb(76, 76, 76);
 }

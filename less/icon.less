@@ -1,14 +1,15 @@
 .icon {
+  display: inline-block;
   height: 16px;
   width: 16px;
-  display: inline-block;
-  background-repeat: no-repeat;
+
   vertical-align: middle;
+  background-repeat: no-repeat;
 }
 
 .icon-btn {
   border: 1px solid transparent;
-  -webkit-border-radius: 3px;
+  .border-radius(3px);
   cursor: pointer;
 }
 .icon-btn:hover {
@@ -72,8 +73,8 @@
 .icon-tree-elbow-end-minus-nl,
 .icon-tree-elbow-end-plus,
 .icon-tree-elbow-end-plus-nl {
-  height: 20px;
   width: 16px;
+  height: 20px;
 }
 .icon-tree-elbow{
   background-image: url('../images/tree/elbow.gif');
@@ -143,12 +144,12 @@
 
 /*tool*/
 .icon-tool {
+  float: right;
   width: 15px;
   height: 15px;
 
-  float: right;
-  cursor: pointer;
   background-image: url('../images/tools/tool-sprites.gif');
+  cursor: pointer;
 }
 .icon-tool-collapse-left {
   background-position: 0 -180px;
