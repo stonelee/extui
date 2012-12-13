@@ -211,7 +211,7 @@
         <div class="form">
           <div class="row">
             <label for="text">text:</label>
-            <input id="text" type="text">
+            <input id="text" type="text" placeholder="placeholder">
           </div>
           <div class="row">
             <label for="invalid"><abbr>*</abbr>invalid:</label>
@@ -228,17 +228,13 @@
             </div>
           </div>
           <div class="span3">
-            <div class="row">
+            <div class="row disabled">
               <label for="otherText">otherText:</label>
               <input id="otherText" type="text">
             </div>
             <div class="row">
-              <label for="clear">clear:</label>
-              <input id="clear" type="text"><i class="form-trigger form-clear-trigger"></i>
-            </div>
-            <div class="row">
               <label for="search">search:</label>
-              <input id="search" type="text"><i class="form-trigger form-search-trigger"></i>
+              <input id="search" type="text" style="width:100px;"><i class="form-trigger form-clear-trigger"></i><i class="form-trigger form-search-trigger"></i>
             </div>
           </div>
           <div class="span3">
@@ -307,7 +303,7 @@
         </div>
         <div class="form-toolbar">
           <button class="btn">确定</button>
-          <button class="btn">取消</button>
+          <button class="btn disabled">取消</button>
         </div>
       </div>
     </div>
