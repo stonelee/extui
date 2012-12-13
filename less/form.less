@@ -67,3 +67,35 @@ input.form-invalid {
   border-top: 1px solid rgb(181, 184, 200);
   padding: 3px 0 4px;
 }
+
+
+.choose {
+  border: 1px solid rgb(152, 192, 244);
+  border-top-width: 0;
+  background: white;
+  box-shadow: rgb(136, 136, 136) 0px 0px 4px 0px;
+}
+
+ul.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+
+  li {
+    cursor: pointer;
+    padding: 2px;
+    border: 1px dotted white;
+    background: white;
+
+    &.is-selected {
+      border-color: rgb(142, 171, 228);
+      background: rgb(203, 218, 240);
+    }
+
+    &:hover {
+      border-color: rgb(163, 186, 233);
+      background: rgb(223, 232, 246);
+    }
+  }
+}
