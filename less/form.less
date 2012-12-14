@@ -1,14 +1,14 @@
 .form {
-  padding: 5px;
   position: relative;
+  padding: 5px;
 }
 .form label{
   position: absolute;
   padding-right: 5px;
 }
 .form label abbr{
-  color:red;
   font-weight:bold;
+  color:red;
 }
 .form input, .form textarea{
   /*可能需要更改*/
@@ -29,8 +29,8 @@
 }
 
 input.form-invalid {
-  background: white url('../images/grid/invalid_line.gif') repeat-x bottom;
   border-color: rgb(204, 51, 0);
+  background: white url('../images/grid/invalid_line.gif') repeat-x bottom;
 }
 
 /*trigger*/
@@ -38,6 +38,7 @@ input.form-invalid {
   display: inline-block;
   width: 17px;
   height: 18px;
+
   border-bottom: 1px solid rgb(181, 184, 200);
   vertical-align: middle;
 
@@ -63,9 +64,9 @@ input.form-invalid {
 }
 
 .form-toolbar {
-  text-align: center;
-  border-top: 1px solid rgb(181, 184, 200);
   padding: 3px 0 4px;
+  border-top: 1px solid rgb(181, 184, 200);
+  text-align: center;
 }
 
 
@@ -77,16 +78,16 @@ input.form-invalid {
 }
 
 ul.list {
-  list-style-type: none;
+  overflow: auto;
   margin: 0;
   padding: 0;
-  overflow: auto;
+  list-style: none;
 
   li {
-    cursor: pointer;
     padding: 2px;
     border: 1px dotted white;
     background: white;
+    cursor: pointer;
 
     &.is-selected {
       border-color: rgb(142, 171, 228);
