@@ -52,22 +52,24 @@ ul.menu {
 
   li {
     height: 24px;
-    padding: 5px 0 0 8px;
+    padding: 5px 6px 0 6px;
     border: 1px solid transparent;
     cursor: pointer;
 
-    &:hover {
+    &:hover, &.menu-item-is-active {
       border-color: rgb(169, 203, 245);
       .border-radius(3px);
       .gradient(rgb(231, 240, 252),rgb(199, 221, 249));
     }
 
-    .menu-first-item {
-      position: absolute;
-    }
+  }
+}
+.menu-with-pic li {
+  .menu-item-pic {
+    position: absolute;
+  }
 
-    span {
-      margin-left: 20px;
-    }
+  span {
+    margin-left: 20px;
   }
 }
