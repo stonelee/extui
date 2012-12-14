@@ -41,3 +41,32 @@
   border-left: 1px solid rgb(152, 200, 255);
   border-right: 1px solid white;
 }
+
+ul.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 2px;
+  overflow: auto;
+  background: rgb(240, 240, 240);
+
+  li {
+    height: 24px;
+    padding: 5px 0 0 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+
+    &:hover {
+      border-color: rgb(169, 203, 245);
+      .border-radius(3px);
+      .gradient(rgb(231, 240, 252),rgb(199, 221, 249));
+    }
+
+    .menu-first-item {
+      position: absolute;
+    }
+
+    span {
+      margin-left: 20px;
+    }
+  }
+}
