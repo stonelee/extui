@@ -24,7 +24,7 @@
       {{/each}}
     </tbody>
   </table>
-  <div class="toolbar-ft">
+  <div class="toolbar toolbar-ft">
     <i class="icon icon-btn {{#if isFirst}}icon-btn-is-disabled icon-grid-page-first-disabled{{else}}icon-grid-page-first{{/if}}" data-role="first"></i>
     <i class="icon icon-btn {{#if hasPrev}}icon-grid-page-prev{{else}}icon-btn-is-disabled icon-grid-page-prev-disabled{{/if}}" data-role="prev"></i>
     <i class="toolbar-separator"></i>
